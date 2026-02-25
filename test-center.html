@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 测试中心</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 { color: #667eea; text-align: center; }
+        .section { margin: 30px 0; }
+        .section h2 { color: #333; border-bottom: 2px solid #667eea; padding-bottom: 10px; }
+        .link-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
+        .link-card {
+            background: #f5f7fa;
+            border-radius: 10px;
+            padding: 15px;
+            text-decoration: none;
+            transition: transform 0.2s;
+            border-left: 4px solid #667eea;
+        }
+        .link-card:hover { transform: translateX(5px); }
+        .link-card h4 { margin: 0 0 10px 0; color: #333; }
+        .link-card p { margin: 0; font-size: 12px; color: #666; }
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; margin-right: 5px; }
+        .badge-rec { background: #4CAF50; color: white; }
+        .badge-auto { background: #2196F3; color: white; }
+        .badge-debug { background: #FF9800; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 英语学习 - 测试中心</h1>
+        
+        <div class="section">
+            <h2>⭐ 推荐测试</h2>
+            <div class="link-grid">
+                <a href="archives/test-files/auto-test-runner.html" class="link-card">
+                    <h4><span class="badge badge-rec">推荐</span>自动化测试运行器</h4>
+                    <p>自动测试所有页面，可视化界面</p>
+                </a>
+                <a href="javascript:void(0)" onclick="testAllLinks()" class="link-card">
+                    <h4><span class="badge badge-rec">工具</span>检查所有链接</h4>
+                    <p>验证所有测试页面是否可访问</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🤖 自动化测试</h2>
+            <div class="link-grid">
+                <a href="archives/test-files/auto-test-runner.html" class="link-card">
+                    <h4><span class="badge badge-auto">自动化</span>自动化测试运行器</h4>
+                    <p>测试所有学习页面，生成报告</p>
+                </a>
+                <a href="archives/test-files/test-debug.html" class="link-card">
+                    <h4><span class="badge badge-debug">调试</span>TTS 调试工具</h4>
+                    <p>完整的 TTS 功能测试</p>
+                </a>
+                <a href="archives/test-files/test-audio-output.html" class="link-card">
+                    <h4><span class="badge badge-auto">音频</span>音频输出测试</h4>
+                    <p>测试语音合成</p>
+                </a>
+                <a href="archives/test-files/auto-diagnose.html" class="link-card">
+                    <h4><span class="badge badge-auto">诊断</span>自动诊断工具</h4>
+                    <p>诊断 TTS 问题</p>
+                </a>
+                <a href="archives/test-files/test-final-validation.html" class="link-card">
+                    <h4><span class="badge badge-auto">验证</span>功能验证测试</h4>
+                    <p>完整功能验证</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🧪 专项测试</h2>
+            <div class="link-grid">
+                <a href="archives/test-files/test-tts.html" class="link-card">
+                    <h4><span class="badge badge-debug">TTS</span>TTS 独立测试</h4>
+                    <p>独立 TTS 测试页面</p>
+                </a>
+                <a href="archives/test-files/test-tts-simple.html" class="link-card">
+                    <h4><span class="badge badge-debug">简单</span>TTS 简化测试</h4>
+                    <p>简化版测试</p>
+                </a>
+                <a href="archives/test-files/test-tts-independent.html" class="link-card">
+                    <h4><span class="badge badge-debug">独立</span>TTS 组件测试</h4>
+                    <p>组件测试</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📚 学习记录测试</h2>
+            <div class="link-grid">
+                <a href="records/2026-02-06-coming-home.html" class="link-card">
+                    <h4>🏠 Coming Home</h4>
+                    <p>回家主题</p>
+                </a>
+                <a href="records/2026-02-06-month-alone-chiang-mai.html" class="link-card">
+                    <h4>🏝️ Month Alone in Chiang Mai</h4>
+                    <p>清迈独居</p>
+                </a>
+                <a href="records/2026-02-06-shanghai-starting-over.html" class="link-card">
+                    <h4>🏢 Shanghai Starting Over</h4>
+                    <p>上海重新开始</p>
+                </a>
+                <a href="records/2026-02-06-youtube-entrepreneurship.html" class="link-card">
+                    <h4>🎥 YouTube Entrepreneurship</h4>
+                    <p>创业主题</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📖 文档</h2>
+            <div class="link-grid">
+                <a href="docs/TEST-QUICK-GUIDE.md" class="link-card">
+                    <h4>📄 测试快速指南</h4>
+                </a>
+                <a href="docs/TESTING.md" class="link-card">
+                    <h4>📄 完整测试流程</h4>
+                </a>
+                <a href="docs/TTS-TEST.md" class="link-card">
+                    <h4>📄 TTS 调试指南</h4>
+                </a>
+            </div>
+        </div>
+
+        <div id="results"></div>
+    </div>
+
+    <script>
+        const links = [
+            'archives/test-files/auto-test-runner.html',
+            'archives/test-files/test-debug.html',
+            'archives/test-files/test-audio-output.html',
+            'archives/test-files/auto-diagnose.html',
+            'archives/test-files/test-final-validation.html',
+            'archives/test-files/test-tts.html',
+            'archives/test-files/test-tts-simple.html',
+            'archives/test-files/test-tts-independent.html',
+            'records/2026-02-06-coming-home.html',
+            'records/2026-02-06-month-alone-chiang-mai.html',
+            'records/2026-02-06-shanghai-starting-over.html',
+            'records/2026-02-06-youtube-entrepreneurship.html'
+        ];
+
+        async function testAllLinks() {
+            const results = document.getElementById('results');
+            results.innerHTML = '<div class="section"><h2>🔍 链接检查结果</h2><div id="link-results"></div></div>';
+            const linkResults = document.getElementById('link-results');
+
+            let passed = 0;
+            let failed = 0;
+
+            for (let i = 0; i < links.length; i++) {
+                const link = links[i];
+                try {
+                    const response = await fetch(link, { method: 'HEAD' });
+                    if (response.ok) {
+                        linkResults.innerHTML += `<div style="color: #4CAF50; margin: 5px 0;">✅ ${link} - 可访问</div>`;
+                        passed++;
+                    } else {
+                        linkResults.innerHTML += `<div style="color: #f44336; margin: 5px 0;">❌ ${link} - 返回 ${response.status}</div>`;
+                        failed++;
+                    }
+                } catch (error) {
+                    linkResults.innerHTML += `<div style="color: #f44336; margin: 5px 0;">❌ ${link} - 错误: ${error.message}</div>`;
+                    failed++;
+                }
+            }
+
+            linkResults.innerHTML = `<div style="color: #333; margin: 10px 0;"><strong>检查完成：</strong> ${passed} 个通过, ${failed} 个失败</div>` + linkResults.innerHTML;
+        }
+    </script>
+</body>
+</html>
