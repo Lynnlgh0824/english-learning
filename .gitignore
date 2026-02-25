@@ -20,3 +20,13 @@ daily-reports/*.json
 *.swp
 *.swo
 *~
+
+# 敏感配置
+.env
+*.key
+*.pem
+credentials.json
+secrets/
+
+# Claude Code 设置（可选）
+.claude/
