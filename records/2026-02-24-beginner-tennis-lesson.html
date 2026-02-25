@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎾 Beginner Tennis Lesson | 英语学习工具包</title>
+    <style>
+        :root {
+            --bg-primary: #fafbfc;
+            --bg-secondary: #ffffff;
+            --text-primary: #2c3e50;
+            --text-secondary: #5a6c7d;
+            --accent-purple: #008080;
+            --accent-purple-light: #e0f2f1;
+            --accent-orange: #ffa726;
+            --accent-orange-light: #fff9e6;
+            --accent-green: #66bb6a;
+            --accent-green-light: #e8f5e9;
+            --accent-blue: #42a5f5;
+            --accent-blue-light: #e3f2fd;
+            --border-color: #e8eaed;
+            --shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            font-size: 16px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-orange));
+            transition: width 0.1s;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 10px 30px 40px;
+            background: var(--bg-secondary);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 8px;
+            margin-bottom: 10px;
+            color: var(--accent-purple);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9em;
+            padding: 6px 12px;
+            background: var(--accent-purple-light);
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-purple);
+            color: white;
+            transform: translateX(-3px);
+        }
+
+        h1 {
+            color: var(--accent-purple);
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .subtitle {
+            font-size: 1em;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .meta-info {
+            background: linear-gradient(135deg, var(--accent-purple-light) 0%, #e8eaf6 100%);
+            padding: 16px 18px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--accent-purple);
+            box-shadow: var(--shadow);
+        }
+
+        .meta-info p {
+            margin: 8px 0;
+            font-size: 0.95em;
+        }
+
+        .meta-info strong {
+            color: var(--accent-purple);
+            font-weight: 600;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: var(--accent-purple);
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--accent-purple-light);
+        }
+
+        h3 {
+            color: var(--text-primary);
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        h4 {
+            color: #2c3e50;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            font-size: 1.05em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        th, td {
+            padding: 6px 8px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background: linear-gradient(135deg, var(--accent-purple) 0%, #7c4dff 100%);
+            color: white;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background: var(--accent-purple-light);
+        }
+
+        code {
+            background: var(--accent-purple-light);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            color: #7c4dff;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        strong {
+            color: var(--accent-purple);
+            font-weight: 600;
+        }
+
+        blockquote {
+            background: var(--accent-purple-light);
+            border-left: 4px solid var(--accent-purple);
+            padding: 12px 16px;
+            margin: 12px 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .word-card {
+            background: white;
+            padding: 20px 22px;
+            margin: 25px 0;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            border-left: 6px solid var(--accent-purple);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .word-card:hover {
+            box-shadow: 0 4px 20px rgba(0, 128, 128, 0.2);
+            transform: translateY(-2px);
+            border-color: #d0d0d0;
+        }
+
+        .expression-card {
+            background: linear-gradient(135deg, var(--accent-orange-light) 0%, #ffe0b2 100%);
+            padding: 18px 20px;
+            margin: 22px 0;
+            border-radius: 10px;
+            border: 2px solid #ffd699;
+            border-left: 6px solid var(--accent-orange);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+
+        .practice-section {
+            background: linear-gradient(135deg, var(--accent-green-light) 0%, #c8e6c9 100%);
+            padding: 18px 20px;
+            border-radius: 10px;
+            margin: 22px 0;
+            border: 2px solid #a5d6a7;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, var(--accent-blue-light) 0%, #bbdefb 100%);
+            padding: 18px 20px;
+            border-radius: 10px;
+            margin: 22px 0;
+            border: 2px solid #90caf9;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+
+        ul, ol {
+            margin: 10px 0;
+            padding-left: 25px;
+        }
+
+        li {
+            margin: 6px 0;
+            line-height: 1.8;
+            color: var(--text-primary);
+            font-size: 1.05em;
+        }
+
+        a {
+            color: var(--accent-purple);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--accent-orange);
+            text-decoration: underline;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--accent-purple) 0%, #7c4dff 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s;
+            opacity: 0;
+            visibility: hidden;
+            font-size: 24px;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .back-to-home {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--accent-orange) 0%, #ff9800 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        .back-to-home.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-home:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(255, 152, 0, 0.5);
+        }
+
+        .toc {
+            position: fixed;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-height: 80vh;
+            overflow-y: auto;
+            z-index: 100;
+            width: 260px;
+            max-width: calc(100vw - 40px);
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+
+        /* TOC 隐藏状态 */
+        .toc.toc-hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* TOC 可见状态 */
+        .toc.toc-visible {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        /* 导航目录按钮 */
+        .toc-toggle-btn {
+            position: fixed;
+            top: 100px;
+            left: 20px;
+            z-index: 99;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #008080 0%, #006666 100%);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 128, 128, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .toc-toggle-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 128, 128, 0.5);
+        }
+
+        .toc-toggle-btn:active {
+            transform: scale(0.95);
+        }
+
+        .toc-toggle-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        /* 按钮隐藏状态 */
+        .toc-toggle-btn.btn-hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .toc h3 {
+            margin: 0 0 15px 0;
+            color: #008080;
+            font-size: 1.1em;
+            font-weight: 600;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-purple-light);
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc li {
+            margin: 0;
+            padding: 0;
+        }
+
+        .toc a {
+            display: block;
+            padding: 10px 12px;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+
+        .toc a:hover {
+            background: var(--accent-purple-light);
+            color: var(--accent-purple);
+        }
+
+        .toc a.active {
+            background: linear-gradient(135deg, var(--accent-purple) 0%, #7c4dff 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        .toc .section-number {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            text-align: center;
+            background: var(--accent-purple);
+            color: white;
+            border-radius: 50%;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .toc a.active .section-number {
+            background: white;
+            color: var(--accent-purple);
+        }
+
+        /* 为锚点目标添加偏移，避免被sticky面板遮挡 */
+        .section[id] {
+            scroll-margin-top: 140px;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 1024px) {
+            .toc {
+                display: none;
+            }
+        }
+
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px 60px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .word-card, .expression-card, .practice-section, .tip-box {
+                padding: 20px;
+            }
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .back-to-home {
+                bottom: 80px;
+                right: 20px;
+            }
+        }
+
+        /* 朗读控制面板样式 - 初始不固定，滚动后固定 */
+        .tts-panel {
+            position: relative;
+            z-index: 999;
+            width: 100%;
+            max-width: 840px;
+            margin: 0 auto 20px auto;
+            background: linear-gradient(135deg, #008080 0%, #006666 100%);
+            padding: 16px 30px;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 4px 12px rgba(0, 128, 128, 0.3);
+            color: white;
+            box-sizing: border-box;
+        }
+
+        /* 当滚动时添加的固定样式 */
+        .tts-panel.fixed {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 840px;
+            width: calc(100% - 60px);
+            border-radius: 0 0 12px 12px;
+        }
+
+        .tts-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .tts-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tts-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .tts-btn {
+            background: white;
+            color: #008080;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.95em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tts-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .tts-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .tts-btn.paused {
+            background: linear-gradient(135deg, #ff9800 0%, #ff6b00 100%);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 4px 16px rgba(255, 152, 0, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+            font-weight: 700;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 4px 16px rgba(255, 152, 0, 0.4);
+            }
+            50% {
+                box-shadow: 0 6px 20px rgba(255, 152, 0, 0.6);
+                transform: scale(1.08);
+            }
+        }
+
+        .tts-btn.paused:hover {
+            background: linear-gradient(135deg, #ff6b00 0%, #e65100 100%);
+            transform: scale(1.08);
+        }
+
+        .tts-btn.primary {
+            background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+            color: white;
+        }
+
+        .tts-btn.danger {
+            background: linear-gradient(135deg, #ef5350 0%, #e53935 100%);
+            color: white;
+        }
+
+        /* 学习模式选择样式 */
+        .mode-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.85em;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .mode-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .mode-btn.active {
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+            border-width: 3px;
+            transform: scale(1.05);
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #009999 0%, #008080 100%);
+            border-color: #008080;
+            box-shadow: 0 6px 20px rgba(0, 128, 128, 0.6);
+        }
+
+        .mode-btn.quick.active {
+            background: linear-gradient(135deg, #009999 0%, #008080 100%);
+            border-color: #008080;
+            box-shadow: 0 6px 20px rgba(0, 128, 128, 0.6);
+        }
+
+        .mode-btn.standard.active {
+            background: linear-gradient(135deg, #009999 0%, #008080 100%);
+            border-color: #008080;
+            box-shadow: 0 6px 20px rgba(0, 128, 128, 0.6);
+        }
+
+        .mode-btn.intensive.active {
+            background: linear-gradient(135deg, #009999 0%, #008080 100%);
+            border-color: #008080;
+            box-shadow: 0 6px 20px rgba(0, 128, 128, 0.6);
+        }
+
+        .tts-settings {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .tts-setting {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tts-setting label {
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .tts-select {
+            background: white;
+            color: #008080;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            cursor: pointer;
+            font-weight: 500;
+            max-width: 200px;
+            min-width: 150px;
+        }
+
+        .tts-slider {
+            width: 120px;
+            height: 6px;
+            -webkit-appearance: none;
+            background: rgba(255,255,255,0.3);
+            border-radius: 3px;
+            outline: none;
+        }
+
+        .tts-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        .tts-progress {
+            background: rgba(255,255,255,0.2);
+            height: 6px;
+            border-radius: 3px;
+            margin-top: 12px;
+            overflow: hidden;
+        }
+
+        .tts-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #4caf50, #66bb6a);
+            width: 0%;
+            transition: width 0.3s;
+            border-radius: 3px;
+        }
+
+        .tts-status {
+            font-size: 0.85em;
+            opacity: 0.9;
+        }
+
+        .tts-progress-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .tts-progress-row .tts-status {
+            flex-shrink: 0;
+            min-width: 180px;
+        }
+
+        .tts-progress-row .tts-progress {
+            flex: 1;
+            margin-top: 0;
+            left: 0;
+            right: 0;
+        }
+
+        /* 朗读高亮样式 */
+        .speaking {
+            background: linear-gradient(135deg, #fff9e6 0%, #ffe082 100%);
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin: 12px -16px;
+            box-shadow: 0 2px 8px rgba(255, 167, 38, 0.2);
+            transition: all 0.3s;
+            cursor: pointer;
+            font-size: 2em;  /* 字体大小增加一倍 */
+            line-height: 1.8;  /* 保持行高，确保可读性 */
+        }
+
+        .speaking:hover {
+            background: linear-gradient(135deg, #ffe082 0%, #ffd54f 100%);
+            transform: scale(1.02);
+        }
+
+        /* 脉冲动画已禁用，保留清晰的高亮效果
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .speaking.pulse {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        */
+
+        /* 可朗读段落样式 */
+        .readable-paragraph {
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 4px;
+            padding: 4px;
+        }
+
+        .readable-paragraph:hover {
+            background: rgba(0, 128, 128, 0.05);
+        }
+    </style>
+    <!-- 页面基础样式 -->
+    <link rel="stylesheet" href="/styles/common.css">
+    <!-- TTS 公共样式 -->
+    <link rel="stylesheet" href="/styles/tts-common.css">
+</head>
+<body>
+    <div class="reading-progress" id="readingProgress"></div>
+
+    <div class="container">
+        <a href="../index.html" class="back-link">← 返回学习列表</a>
+
+        <!-- TTS面板占位元素 -->
+        <div id="ttsPanelPlaceholder" style="display: none; width: 100%; max-width: 840px; margin: 0 auto;"></div>
+
+        <!-- 朗读控制面板 -->
+        <div class="tts-panel" id="ttsPanel">
+            <div class="tts-header">
+                <div class="tts-title">
+                    <span>🎙️</span>
+                    <span>智能朗读助手</span>
+                </div>
+                <div class="tts-controls">
+                    <button class="tts-btn primary" id="playBtn" onclick="togglePlay()">
+                        <span id="playIcon">▶️</span>
+                        <span id="playText">播放</span>
+                    </button>
+                    <button class="mode-btn" data-mode="quick" onclick="switchMode('quick')">
+                        <span>⚡</span>
+                        <span>快速</span>
+                    </button>
+                    <button class="mode-btn active" data-mode="standard" onclick="switchMode('standard')">
+                        <span>🔥</span>
+                        <span>标准</span>
+                    </button>
+                    <button class="mode-btn" data-mode="intensive" onclick="switchMode('intensive')">
+                        <span>📚</span>
+                        <span>缓慢</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="tts-settings">
+                <div class="tts-setting">
+                    <label>🗣️ 语音：</label>
+                    <select class="tts-select" id="voiceSelect" onchange="handleVoiceChange()">
+                        <option value="">加载中...</option>
+                    </select>
+                </div>
+                <div class="tts-setting">
+                    <label>⚡ 语速：</label>
+                    <input type="range" class="tts-slider" id="rateSlider" min="0.5" max="2" step="0.1" value="0.75" oninput="updateRate()">
+                    <span id="rateValue">0.75x</span>
+                </div>
+            </div>
+            <div class="tts-progress-row">
+                <div class="tts-status" id="ttsStatus">
+                    💡 点击"播放"开始朗读内容
+                </div>
+                <div class="tts-progress">
+                    <div class="tts-progress-bar" id="ttsProgressBar"></div>
+                </div>
+            </div>
+        </div>
+
+        <h1>🎾 Beginner Tennis Lesson | Forehand, Backhand & Serve</h1>
+        <p class="subtitle">英语学习工具包</p>
+
+        <div class="meta-info">
+            <p><strong>📺 视频来源</strong>：<a href="https://www.youtube.com/watch?v=66MgD1FAZDA" target="_blank">YouTube</a></p>
+            <p><strong>📅 学习日期</strong>：2026-02-06</p>
+            <p><strong>🏷️ 类型</strong>：YouTube Vlog - 数字游民生活</p>
+        </div>
+
+        <div class="toc">
+            <h3>📑 学习目录</h3>
+            <ul>
+                <li><a href="#section-1"><span class="section-number">1</span>内容总览</a></li>
+                <li><a href="#section-2"><span class="section-number">2</span>核心词汇表（20个）</a></li>
+                <li><a href="#section-3"><span class="section-number">3</span>地道表达（15个）</a></li>
+                <li><a href="#section-4"><span class="section-number">4</span>句型解析（8个）</a></li>
+                <li><a href="#section-5"><span class="section-number">5</span>学习任务</a></li>
+                <li><a href="#section-6"><span class="section-number">6</span>学习建议</a></li>
+            </ul>
+        </div>
+
+        <!-- 导航目录按钮 -->
+        <button class="toc-toggle-btn" id="tocToggleBtn" aria-label="切换目录">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+            </svg>
+        </button>
+
+        <div class="section" id="section-1">
+            <h2>1. 内容总览</h2>
+
+            <h3>核心观点总结</h3>
+            <p>这个vlog记录了一位数字游民在泰国清迈独自生活一个月的经历。视频创作者分享了他们因心理健康原因休假3个月后重返工作的经历，以及工作中感受到的疲惫感。这个视频探讨了独自旅行、数字游民生活方式、心理健康和工作与生活平衡等主题。</p>
+
+            <h3>关键词列表</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>英文</th>
+                        <th>中文</th>
+                        <th>语境提示</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Digital Nomad</strong></td><td>数字游民</td><td>远程工作+旅行生活方式</td></tr>
+                    <tr><td><strong>Chiang Mai</strong></td><td>清迈</td><td>泰国北部城市</td></tr>
+                    <tr><td><strong>Leave of absence</strong></td><td>休假</td><td>暂时离开工作</td></tr>
+                    <tr><td><strong>Mental health</strong></td><td>心理健康</td><td>心理状态和福祉</td></tr>
+                    <tr><td><strong>Draining</strong></td><td>消耗精力的</td><td>使人疲惫的</td></tr>
+                    <tr><td><strong>Solo travel</strong></td><td>独自旅行</td><td>单人旅行</td></tr>
+                    <tr><td><strong>Work-life balance</strong></td><td>工作生活平衡</td><td>平衡工作和生活</td></tr>
+                    <tr><td><strong>Burnout</strong></td><td>职业倦怠</td><td>过度工作导致的疲惫</td></tr>
+                    <tr><td><strong>Afford</strong></td><td>负担得起</td><td>有经济能力</td></tr>
+                    <tr><td><strong>Remote work</strong></td><td>远程工作</td><td>在外地工作</td></tr>
+                    <tr><td><strong>Vlog</strong></td><td>视频博客</td><td>视频日记</td></tr>
+                    <tr><td><strong>Experience</strong></td><td>经历/体验</td><td>亲身经历的事情</td></tr>
+                    <tr><td><strong>Lifestyle</strong></td><td>生活方式</td><td>生活的方式</td></tr>
+                    <tr><td><strong>Community</strong></td><td>社区/社群</td><td>一群有共同兴趣的人</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section" id="section-2">
+            <h2>2. 核心词汇表（20个）</h2><div class="word-card">
+    <h3>1. <strong>Forehand</strong> <code>/ˈfɔːrhænd/</code></h3>
+    <p><strong>正手（网球术语）</strong></p>
+    <p><strong>📖 Definition</strong><br>A shot in tennis made with the palm of the hand facing the player, hitting the ball on the dominant side</p>
+    <p><strong>💬 Example</strong><br><blockquote>"The forehand is usually the first stroke beginners learn in tennis."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li><strong>💼 职场场景</strong><br><blockquote>"Let's practice forehand during our training session."</blockquote></li>
+        <li><strong>☕日常场景</strong><br><blockquote>"I'm learning about forehand in my sports class."</blockquote></li>
+        <li><strong>📚 学术场景</strong><br><blockquote>"The forehand is a fundamental concept in tennis."</blockquote></li>
+    </ul>
+    <p><strong>🔗 习惯搭配</strong></p>
+    <ul>
+        <li>master the forehand - 掌握正手（网球术语）</li>
+        <li>practice forehand - 练习正手（网球术语）</li>
+        <li>improve forehand - 改进正手（网球术语）</li>
+    </ul>
+</div>
+<div class="word-card">
+    <h3>2. <strong>Backhand</strong> <code>/ˈbækhænd/</code></h3>
+    <p><strong>反手（网球术语）</strong></p>
+    <p><strong>📖 Definition</strong><br>A shot in tennis made with the back of the hand facing the player, hitting the ball across the body</p>
+    <p><strong>💬 Example</strong><br><blockquote>"His backhand has improved significantly with practice."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li><strong>💼 职场场景</strong><br><blockquote>"Let's practice backhand during our training session."</blockquote></li>
+        <li><strong>☕日常场景</strong><br><blockquote>"I'm learning about backhand in my sports class."</blockquote></li>
+        <li><strong>📚 学术场景</strong><br><blockquote>"The backhand is a fundamental concept in tennis."</blockquote></li>
+    </ul>
+    <p><strong>🔗 习惯搭配</strong></p>
+    <ul>
+        <li>master the backhand - 掌握反手（网球术语）</li>
+        <li>practice backhand - 练习反手（网球术语）</li>
+        <li>improve backhand - 改进反手（网球术语）</li>
+    </ul>
+</div>
+<div class="word-card">
+    <h3>3. <strong>Serve</strong> <code>/sɜːrv/</code></h3>
+    <p><strong>发球（网球术语）</strong></p>
+    <p><strong>📖 Definition</strong><br>The stroke that starts each point in tennis</p>
+    <p><strong>💬 Example</strong><br><blockquote>"She has a powerful serve that scores many aces."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li><strong>💼 职场场景</strong><br><blockquote>"Let's practice serve during our training session."</blockquote></li>
+        <li><strong>☕日常场景</strong><br><blockquote>"I'm learning about serve in my sports class."</blockquote></li>
+        <li><strong>📚 学术场景</strong><br><blockquote>"The serve is a fundamental concept in tennis."</blockquote></li>
+    </ul>
+    <p><strong>🔗 习惯搭配</strong></p>
+    <ul>
+        <li>master the serve - 掌握发球（网球术语）</li>
+        <li>practice serve - 练习发球（网球术语）</li>
+        <li>improve serve - 改进发球（网球术语）</li>
+    </ul>
+</div>
+<div class="word-card">
+    <h3>4. <strong>Grip</strong> <code>/ɡrɪp/</code></h3>
+    <p><strong>握拍方式</strong></p>
+    <p><strong>📖 Definition</strong><br>The manner in which a player holds the racket</p>
+    <p><strong>💬 Example</strong><br><blockquote>"The continental grip is recommended for beginners."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li><strong>💼 职场场景</strong><br><blockquote>"Let's practice grip during our training session."</blockquote></li>
+        <li><strong>☕日常场景</strong><br><blockquote>"I'm learning about grip in my sports class."</blockquote></li>
+        <li><strong>📚 学术场景</strong><br><blockquote>"The grip is a fundamental concept in tennis."</blockquote></li>
+    </ul>
+    <p><strong>🔗 习惯搭配</strong></p>
+    <ul>
+        <li>master the grip - 掌握握拍方式</li>
+        <li>practice grip - 练习握拍方式</li>
+        <li>improve grip - 改进握拍方式</li>
+    </ul>
+</div>
+<div class="word-card">
+    <h3>5. <strong>Stance</strong> <code>/stæns/</code></h3>
+    <p><strong>站姿</strong></p>
+    <p><strong>📖 Definition</strong><br>The position of the feet and body when preparing to hit the ball</p>
+    <p><strong>💬 Example</strong><br><blockquote>"Keep a wide stance for better balance."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li><strong>💼 职场场景</strong><br><blockquote>"Let's practice stance during our training session."</blockquote></li>
+        <li><strong>☕日常场景</strong><br><blockquote>"I'm learning about stance in my sports class."</blockquote></li>
+        <li><strong>📚 学术场景</strong><br><blockquote>"The stance is a fundamental concept in tennis."</blockquote></li>
+    </ul>
+    <p><strong>🔗 习惯搭配</strong></p>
+    <ul>
+        <li>master the stance - 掌握站姿</li>
+        <li>practice stance - 练习站姿</li>
+        <li>improve stance - 改进站姿</li>
+    </ul>
+</div>
+<div class="word-card">
+    <h3>6. <strong>Swing</strong> <code>/swɪŋ/</code></h3>
+    <p><strong>挥拍动作</strong></p>
+    <p><strong>📖 Definition</strong><br>The motion of hitting the ball</p>
+    <p><strong>💬 Example</strong><br><blockquote>"Practice your swing until it becomes natural."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li><strong>💼 职场场景</strong><br><blockquote>"Let's practice swing during our training session."</blockquote></li>
+        <li><strong>☕日常场景</strong><br><blockquote>"I'm learning about swing in my sports class."</blockquote></li>
+        <li><strong>📚 学术场景</strong><br><blockquote>"The swing is a fundamental concept in tennis."</blockquote></li>
+    </ul>
+    <p><strong>🔗 习惯搭配</strong></p>
+    <ul>
+        <li>master the swing - 掌握挥拍动作</li>
+        <li>practice swing - 练习挥拍动作</li>
+        <li>improve swing - 改进挥拍动作</li>
+    </ul>
+</div>
+<div class="word-card">
+    <h3>7. <strong>Racket</strong> <code>/ˈrækɪt/</code></h3>
+    <p><strong>球拍</strong></p>
+    <p><strong>📖 Definition</strong><br>The bat used to hit the ball in tennis</p>
+    <p><strong>💬 Example</strong><br><blockquote>"Choose a racket that feels comfortable in your hand."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li><strong>💼 职场场景</strong><br><blockquote>"Let's practice racket during our training session."</blockquote></li>
+        <li><strong>☕日常场景</strong><br><blockquote>"I'm learning about racket in my sports class."</blockquote></li>
+        <li><strong>📚 学术场景</strong><br><blockquote>"The racket is a fundamental concept in tennis."</blockquote></li>
+    </ul>
+    <p><strong>🔗 习惯搭配</strong></p>
+    <ul>
+        <li>master the racket - 掌握球拍</li>
+        <li>practice racket - 练习球拍</li>
+        <li>improve racket - 改进球拍</li>
+    </ul>
+</div>
+<div class="word-card">
+    <h3>8. <strong>Court</strong> <code>/kɔːrt/</code></h3>
+    <p><strong>球场</strong></p>
+    <p><strong>📖 Definition</strong><br>The rectangular area where tennis is played</p>
+    <p><strong>💬 Example</strong><br><blockquote>"The clay court plays slower than hard courts."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li><strong>💼 职场场景</strong><br><blockquote>"Let's practice court during our training session."</blockquote></li>
+        <li><strong>☕日常场景</strong><br><blockquote>"I'm learning about court in my sports class."</blockquote></li>
+        <li><strong>📚 学术场景</strong><br><blockquote>"The court is a fundamental concept in tennis."</blockquote></li>
+    </ul>
+    <p><strong>🔗 习惯搭配</strong></p>
+    <ul>
+        <li>master the court - 掌握球场</li>
+        <li>practice court - 练习球场</li>
+        <li>improve court - 改进球场</li>
+    </ul>
+</div>
+<div class="word-card">
+    <h3>9. <strong>Baseline</strong> <code>/ˈbeɪslaɪn/</code></h3>
+    <p><strong>底线</strong></p>
+    <p><strong>📖 Definition</strong><br>The line at the end of the court</p>
+    <p><strong>💬 Example</strong><br><blockquote>"Stay behind the baseline when returning serve."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li><strong>💼 职场场景</strong><br><blockquote>"Let's practice baseline during our training session."</blockquote></li>
+        <li><strong>☕日常场景</strong><br><blockquote>"I'm learning about baseline in my sports class."</blockquote></li>
+        <li><strong>📚 学术场景</strong><br><blockquote>"The baseline is a fundamental concept in tennis."</blockquote></li>
+    </ul>
+    <p><strong>🔗 习惯搭配</strong></p>
+    <ul>
+        <li>master the baseline - 掌握底线</li>
+        <li>practice baseline - 练习底线</li>
+        <li>improve baseline - 改进底线</li>
+    </ul>
+</div>
+<div class="word-card">
+    <h3>10. <strong>Net</strong> <code>/net/</code></h3>
+    <p><strong>球网</strong></p>
+    <p><strong>📖 Definition</strong><br>The dividing line in the middle of the court</p>
+    <p><strong>💬 Example</strong><br><blockquote>"The ball hit the net and didn't go over."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li><strong>💼 职场场景</strong><br><blockquote>"Let's practice net during our training session."</blockquote></li>
+        <li><strong>☕日常场景</strong><br><blockquote>"I'm learning about net in my sports class."</blockquote></li>
+        <li><strong>📚 学术场景</strong><br><blockquote>"The net is a fundamental concept in tennis."</blockquote></li>
+    </ul>
+    <p><strong>🔗 习惯搭配</strong></p>
+    <ul>
+        <li>master the net - 掌握球网</li>
+        <li>practice net - 练习球网</li>
+        <li>improve net - 改进球网</li>
+    </ul>
+</div>
+<div class="word-card">
+    <h3>11. <strong>Score</strong> <code>/skɔːr/</code></h3>
+    <p><strong>比分</strong></p>
+    <p><strong>📖 Definition</strong><br>The number of points a player or team has</p>
+    <p><strong>💬 Example</strong><br><blockquote>"The score is 15-30 in his favor."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li><strong>💼 职场场景</strong><br><blockquote>"Let's practice score during our training session."</blockquote></li>
+        <li><strong>☕日常场景</strong><br><blockquote>"I'm learning about score in my sports class."</blockquote></li>
+        <li><strong>📚 学术场景</strong><br><blockquote>"The score is a fundamental concept in tennis."</blockquote></li>
+    </ul>
+    <p><strong>🔗 习惯搭配</strong></p>
+    <ul>
+        <li>master the score - 掌握比分</li>
+        <li>practice score - 练习比分</li>
+        <li>improve score - 改进比分</li>
+    </ul>
+</div>
+<div class="word-card">
+    <h3>12. <strong>Advantage</strong> <code>/ədˈvæntɪdʒ/</code></h3>
+    <p><strong>局分</strong></p>
+    <p><strong>📖 Definition</strong><br>A point scored after deuce that gives a player the lead</p>
+    <p><strong>💬 Example</strong><br><blockquote>"He had advantage but lost the next point."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li><strong>💼 职场场景</strong><br><blockquote>"Let's practice advantage during our training session."</blockquote></li>
+        <li><strong>☕日常场景</strong><br><blockquote>"I'm learning about advantage in my sports class."</blockquote></li>
+        <li><strong>📚 学术场景</strong><br><blockquote>"The advantage is a fundamental concept in tennis."</blockquote></li>
+    </ul>
+    <p><strong>🔗 习惯搭配</strong></p>
+    <ul>
+        <li>master the advantage - 掌握局分</li>
+        <li>practice advantage - 练习局分</li>
+        <li>improve advantage - 改进局分</li>
+    </ul>
+</div>
+<div class="word-card">
+    <h3>13. <strong>Deuce</strong> <code>/djuːs/</code></h3>
+    <p><strong>平分（40-40）</strong></p>
+    <p><strong>📖 Definition</strong><br>A tied score of 40-40 in tennis</p>
+    <p><strong>💬 Example</strong><br><blockquote>"They reached deuce for the third time."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li><strong>💼 职场场景</strong><br><blockquote>"Let's practice deuce during our training session."</blockquote></li>
+        <li><strong>☕日常场景</strong><br><blockquote>"I'm learning about deuce in my sports class."</blockquote></li>
+        <li><strong>📚 学术场景</strong><br><blockquote>"The deuce is a fundamental concept in tennis."</blockquote></li>
+    </ul>
+    <p><strong>🔗 习惯搭配</strong></p>
+    <ul>
+        <li>master the deuce - 掌握平分（40-40）</li>
+        <li>practice deuce - 练习平分（40-40）</li>
+        <li>improve deuce - 改进平分（40-40）</li>
+    </ul>
+</div>
+<div class="word-card">
+    <h3>14. <strong>Ace</strong> <code>/eɪs/</code></h3>
+    <p><strong>发球得分</strong></p>
+    <p><strong>📖 Definition</strong><br>A serve that the opponent cannot return</p>
+    <p><strong>💬 Example</strong><br><blockquote>"She served 10 aces in the match."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li><strong>💼 职场场景</strong><br><blockquote>"Let's practice ace during our training session."</blockquote></li>
+        <li><strong>☕日常场景</strong><br><blockquote>"I'm learning about ace in my sports class."</blockquote></li>
+        <li><strong>📚 学术场景</strong><br><blockquote>"The ace is a fundamental concept in tennis."</blockquote></li>
+    </ul>
+    <p><strong>🔗 习惯搭配</strong></p>
+    <ul>
+        <li>master the ace - 掌握发球得分</li>
+        <li>practice ace - 练习发球得分</li>
+        <li>improve ace - 改进发球得分</li>
+    </ul>
+</div>
+<div class="word-card">
+    <h3>15. <strong>Volley</strong> <code>/ˈvɒli/</code></h3>
+    <p><strong>截击</strong></p>
+    <p><strong>📖 Definition</strong><br>A shot hit before the ball bounces</p>
+    <p><strong>💬 Example</strong><br><blockquote>"He approached the net for a volley."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li><strong>💼 职场场景</strong><br><blockquote>"Let's practice volley during our training session."</blockquote></li>
+        <li><strong>☕日常场景</strong><br><blockquote>"I'm learning about volley in my sports class."</blockquote></li>
+        <li><strong>📚 学术场景</strong><br><blockquote>"The volley is a fundamental concept in tennis."</blockquote></li>
+    </ul>
+    <p><strong>🔗 习惯搭配</strong></p>
+    <ul>
+        <li>master the volley - 掌握截击</li>
+        <li>practice volley - 练习截击</li>
+        <li>improve volley - 改进截击</li>
+    </ul>
+</div>
+<div class="word-card">
+    <h3>16. <strong>Lob</strong> <code>/lɒb/</code></h3>
+    <p><strong>挑高球</strong></p>
+    <p><strong>📖 Definition</strong><br>A high shot intended to go over the opponent</p>
+    <p><strong>💬 Example</strong><br><blockquote>"She hit a perfect lob to win the point."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li><strong>💼 职场场景</strong><br><blockquote>"Let's practice lob during our training session."</blockquote></li>
+        <li><strong>☕日常场景</strong><br><blockquote>"I'm learning about lob in my sports class."</blockquote></li>
+        <li><strong>📚 学术场景</strong><br><blockquote>"The lob is a fundamental concept in tennis."</blockquote></li>
+    </ul>
+    <p><strong>🔗 习惯搭配</strong></p>
+    <ul>
+        <li>master the lob - 掌握挑高球</li>
+        <li>practice lob - 练习挑高球</li>
+        <li>improve lob - 改进挑高球</li>
+    </ul>
+</div>
+<div class="word-card">
+    <h3>17. <strong>Slice</strong> <code>/slaɪs/</code></h3>
+    <p><strong>削球</strong></p>
+    <p><strong>📖 Definition</strong><br>A shot with backspin that stays low</p>
+    <p><strong>💬 Example</strong><br><blockquote>"The slice is effective on grass courts."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li><strong>💼 职场场景</strong><br><blockquote>"Let's practice slice during our training session."</blockquote></li>
+        <li><strong>☕日常场景</strong><br><blockquote>"I'm learning about slice in my sports class."</blockquote></li>
+        <li><strong>📚 学术场景</strong><br><blockquote>"The slice is a fundamental concept in tennis."</blockquote></li>
+    </ul>
+    <p><strong>🔗 习惯搭配</strong></p>
+    <ul>
+        <li>master the slice - 掌握削球</li>
+        <li>practice slice - 练习削球</li>
+        <li>improve slice - 改进削球</li>
+    </ul>
+</div>
+<div class="word-card">
+    <h3>18. <strong>Topspin</strong> <code>/ˈtɒpspɪn/</code></h3>
+    <p><strong>上旋</strong></p>
+    <p><strong>📖 Definition</strong><br>Forward rotation that makes the ball dip down</p>
+    <p><strong>💬 Example</strong><br><blockquote>"Add topspin to keep the ball in play."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li><strong>💼 职场场景</strong><br><blockquote>"Let's practice topspin during our training session."</blockquote></li>
+        <li><strong>☕日常场景</strong><br><blockquote>"I'm learning about topspin in my sports class."</blockquote></li>
+        <li><strong>📚 学术场景</strong><br><blockquote>"The topspin is a fundamental concept in tennis."</blockquote></li>
+    </ul>
+    <p><strong>🔗 习惯搭配</strong></p>
+    <ul>
+        <li>master the topspin - 掌握上旋</li>
+        <li>practice topspin - 练习上旋</li>
+        <li>improve topspin - 改进上旋</li>
+    </ul>
+</div>
+<div class="word-card">
+    <h3>19. <strong>Follow through</strong> <code>/ˈfɑloʊ θruː/</code></h3>
+    <p><strong>随挥动作</strong></p>
+    <p><strong>📖 Definition</strong><br>Continue the motion after hitting the ball</p>
+    <p><strong>💬 Example</strong><br><blockquote>"Always follow through on your strokes for better control."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li><strong>💼 职场场景</strong><br><blockquote>"Let's practice follow through during our training session."</blockquote></li>
+        <li><strong>☕日常场景</strong><br><blockquote>"I'm learning about follow through in my sports class."</blockquote></li>
+        <li><strong>📚 学术场景</strong><br><blockquote>"The follow through is a fundamental concept in tennis."</blockquote></li>
+    </ul>
+    <p><strong>🔗 习惯搭配</strong></p>
+    <ul>
+        <li>master the follow through - 掌握随挥动作</li>
+        <li>practice follow through - 练习随挥动作</li>
+        <li>improve follow through - 改进随挥动作</li>
+    </ul>
+</div>
+<div class="word-card">
+    <h3>20. <strong>Rally</strong> <code>/ˈræli/</code></h3>
+    <p><strong>连续对打</strong></p>
+    <p><strong>📖 Definition</strong><br>A sequence of shots between players</p>
+    <p><strong>💬 Example</strong><br><blockquote>"They had an impressive 20-shot rally."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li><strong>💼 职场场景</strong><br><blockquote>"Let's practice rally during our training session."</blockquote></li>
+        <li><strong>☕日常场景</strong><br><blockquote>"I'm learning about rally in my sports class."</blockquote></li>
+        <li><strong>📚 学术场景</strong><br><blockquote>"The rally is a fundamental concept in tennis."</blockquote></li>
+    </ul>
+    <p><strong>🔗 习惯搭配</strong></p>
+    <ul>
+        <li>master the rally - 掌握连续对打</li>
+        <li>practice rally - 练习连续对打</li>
+        <li>improve rally - 改进连续对打</li>
+    </ul>
+</div><div class="section" id="section-3">
+            <h2>3. 地道表达（15个）</h2><div class="expression-card">
+    <h3>1. <strong>"Game, set, match"</strong></h3>
+    <p><strong>📖 释义</strong> The game is completely finished</p>
+    <p><strong>💡 使用场景</strong> 宣布比赛完全结束</p>
+    <p><strong>💬 原句用法</strong><br><blockquote>"Game, set, match! He won in straight sets."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li>"In my tennis lesson, the coach always says 'Game, set, match'."</li>
+        <li>"Understanding 'Game, set, match' is essential for playing tennis."</li>
+        <li>"The referee shouted 'Game, set, match' during the match."</li>
+    </ul>
+</div>
+<div class="expression-card">
+    <h3>2. <strong>"Love"</strong></h3>
+    <p><strong>📖 释义</strong> Zero points</p>
+    <p><strong>💡 使用场景</strong> 网球计分中的零分</p>
+    <p><strong>💬 原句用法</strong><br><blockquote>"The score is 15-love."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li>"In my tennis lesson, the coach always says 'Love'."</li>
+        <li>"Understanding 'Love' is essential for playing tennis."</li>
+        <li>"The referee shouted 'Love' during the match."</li>
+    </ul>
+</div>
+<div class="expression-card">
+    <h3>3. <strong>"Break point"</strong></h3>
+    <p><strong>📖 释义</strong> One point away from winning the opponent's serve game</p>
+    <p><strong>💡 使用场景</strong> 破发点</p>
+    <p><strong>💬 原句用法</strong><br><blockquote>"She saved three break points in that game."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li>"In my tennis lesson, the coach always says 'Break point'."</li>
+        <li>"Understanding 'Break point' is essential for playing tennis."</li>
+        <li>"The referee shouted 'Break point' during the match."</li>
+    </ul>
+</div>
+<div class="expression-card">
+    <h3>4. <strong>"Fault"</strong></h3>
+    <p><strong>📖 释义</strong> An invalid serve</p>
+    <p><strong>💡 使用场景</strong> 发球失误</p>
+    <p><strong>💬 原句用法</strong><br><blockquote>"That was a foot fault on the serve."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li>"In my tennis lesson, the coach always says 'Fault'."</li>
+        <li>"Understanding 'Fault' is essential for playing tennis."</li>
+        <li>"The referee shouted 'Fault' during the match."</li>
+    </ul>
+</div>
+<div class="expression-card">
+    <h3>5. <strong>"Let"</strong></h3>
+    <p><strong>📖 释义</strong> The point is replayed (usually due to interference)</p>
+    <p><strong>💡 使用场景</strong> 重赛</p>
+    <p><strong>💬 原句用法</strong><br><blockquote>"It's a let because of the noise from the crowd."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li>"In my tennis lesson, the coach always says 'Let'."</li>
+        <li>"Understanding 'Let' is essential for playing tennis."</li>
+        <li>"The referee shouted 'Let' during the match."</li>
+    </ul>
+</div>
+<div class="expression-card">
+    <h3>6. <strong>"Out"</strong></h3>
+    <p><strong>📖 释义</strong> The ball landed outside the lines</p>
+    <p><strong>💡 使用场景</strong> 出界</p>
+    <p><strong>💬 原句用法</strong><br><blockquote>"That shot was clearly out."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li>"In my tennis lesson, the coach always says 'Out'."</li>
+        <li>"Understanding 'Out' is essential for playing tennis."</li>
+        <li>"The referee shouted 'Out' during the match."</li>
+    </ul>
+</div>
+<div class="expression-card">
+    <h3>7. <strong>"In"</strong></h3>
+    <p><strong>📖 释义</strong> The ball landed inside the lines</p>
+    <p><strong>💡 使用场景</strong> 界内</p>
+    <p><strong>💬 原句用法</strong><br><blockquote>"The ball was called in."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li>"In my tennis lesson, the coach always says 'In'."</li>
+        <li>"Understanding 'In' is essential for playing tennis."</li>
+        <li>"The referee shouted 'In' during the match."</li>
+    </ul>
+</div>
+<div class="expression-card">
+    <h3>8. <strong>"New balls please"</strong></h3>
+    <p><strong>📖 释义</strong> Requesting new tennis balls (usually after 7-9 games)</p>
+    <p><strong>💡 使用场景</strong> 请求换新球</p>
+    <p><strong>💬 原句用法</strong><br><blockquote>"New balls please, umpire!"</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li>"In my tennis lesson, the coach always says 'New balls please'."</li>
+        <li>"Understanding 'New balls please' is essential for playing tennis."</li>
+        <li>"The referee shouted 'New balls please' during the match."</li>
+    </ul>
+</div>
+<div class="expression-card">
+    <h3>9. <strong>"Fault on my racket"</strong></h3>
+    <p><strong>📖 释义</strong> Acknowledging one's own mistake</p>
+    <p><strong>💡 使用场景</strong> 承认是自己的失误</p>
+    <p><strong>💬 原句用法</strong><br><blockquote>"That hit the frame. Fault on my racket."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li>"In my tennis lesson, the coach always says 'Fault on my racket'."</li>
+        <li>"Understanding 'Fault on my racket' is essential for playing tennis."</li>
+        <li>"The referee shouted 'Fault on my racket' during the match."</li>
+    </ul>
+</div>
+<div class="expression-card">
+    <h3>10. <strong>"Good rally!"</strong></h3>
+    <p><strong>📖 释义</strong> Praising a long exchange of shots</p>
+    <p><strong>💡 使用场景</strong> 称赞精彩的对打</p>
+    <p><strong>💬 原句用法</strong><br><blockquote>"Good rally! That was impressive."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li>"In my tennis lesson, the coach always says 'Good rally!'."</li>
+        <li>"Understanding 'Good rally!' is essential for playing tennis."</li>
+        <li>"The referee shouted 'Good rally!' during the match."</li>
+    </ul>
+</div>
+<div class="expression-card">
+    <h3>11. <strong>"Nice shot!"</strong></h3>
+    <p><strong>📖 释义</strong> Complimenting a well-executed stroke</p>
+    <p><strong>💡 使用场景</strong> 好球</p>
+    <p><strong>💬 原句用法</strong><br><blockquote>"Nice shot! Perfect placement."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li>"In my tennis lesson, the coach always says 'Nice shot!'."</li>
+        <li>"Understanding 'Nice shot!' is essential for playing tennis."</li>
+        <li>"The referee shouted 'Nice shot!' during the match."</li>
+    </ul>
+</div>
+<div class="expression-card">
+    <h3>12. <strong>"Break serve"</strong></h3>
+    <p><strong>📖 释义</strong> Win the game when opponent is serving</p>
+    <p><strong>💡 使用场景</strong> 破发</p>
+    <p><strong>💬 原句用法</strong><br><blockquote>"He managed to break serve at 4-3."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li>"In my tennis lesson, the coach always says 'Break serve'."</li>
+        <li>"Understanding 'Break serve' is essential for playing tennis."</li>
+        <li>"The referee shouted 'Break serve' during the match."</li>
+    </ul>
+</div>
+<div class="expression-card">
+    <h3>13. <strong>"Hold serve"</strong></h3>
+    <p><strong>📖 释义</strong> Win the game when serving</p>
+    <p><strong>💡 使用场景</strong> 保发</p>
+    <p><strong>💬 原句用法</strong><br><blockquote>"She held serve to level the match."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li>"In my tennis lesson, the coach always says 'Hold serve'."</li>
+        <li>"Understanding 'Hold serve' is essential for playing tennis."</li>
+        <li>"The referee shouted 'Hold serve' during the match."</li>
+    </ul>
+</div>
+<div class="expression-card">
+    <h3>14. <strong>"At the net"</strong></h3>
+    <p><strong>📖 释义</strong> Playing near the net</p>
+    <p><strong>💡 使用场景</strong> 上网</p>
+    <p><strong>💬 原句用法</strong><br><blockquote>"He's very comfortable at the net."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li>"In my tennis lesson, the coach always says 'At the net'."</li>
+        <li>"Understanding 'At the net' is essential for playing tennis."</li>
+        <li>"The referee shouted 'At the net' during the match."</li>
+    </ul>
+</div>
+<div class="expression-card">
+    <h3>15. <strong>"From the baseline"</strong></h3>
+    <p><strong>📖 释义</strong> Playing from the back of the court</p>
+    <p><strong>💡 使用场景</strong> 底线</p>
+    <p><strong>💬 原句用法</strong><br><blockquote>"She stayed back and hit groundstrokes from the baseline."</blockquote></p>
+    <p><strong>✍️ 实用例句</strong></p>
+    <ul>
+        <li>"In my tennis lesson, the coach always says 'From the baseline'."</li>
+        <li>"Understanding 'From the baseline' is essential for playing tennis."</li>
+        <li>"The referee shouted 'From the baseline' during the match."</li>
+    </ul>
+</div><div class="section" id="section-4">
+            <h2>4. 句型解析（8个）</h2><div class="tip-box">
+    <h3>1. <strong>"Keep your eye on the ball"</strong> <code>盯紧球</code></h3>
+    <p><strong>📖 Usage</strong> Focus attention tracking</p>
+    <p><strong>💬 Example</strong><br><blockquote>"Keep your eye on the ball throughout the swing."</blockquote></p>
+    <p><strong>✍️ 替换练习</strong></p>
+    <ul>
+        <li>"Remember to keep your eye on the ball when you're on the court."</li>
+        <li>"The coach says: 'Keep your eye on the ball' every time we practice."</li>
+        <li>"'Keep your eye on the ball' is the key to improvement in tennis."</li>
+    </ul>
+</div>
+<div class="tip-box">
+    <h3>2. <strong>"Bend your knees"</strong> <code>屈膝</code></h3>
+    <p><strong>📖 Usage</strong> Proper athletic position</p>
+    <p><strong>💬 Example</strong><br><blockquote>"Bend your knees to get low for the ball."</blockquote></p>
+    <p><strong>✍️ 替换练习</strong></p>
+    <ul>
+        <li>"Remember to bend your knees when you're on the court."</li>
+        <li>"The coach says: 'Bend your knees' every time we practice."</li>
+        <li>"'Bend your knees' is the key to improvement in tennis."</li>
+    </ul>
+</div>
+<div class="tip-box">
+    <h3>3. <strong>"Follow through"</strong> <code>完成挥拍动作</code></h3>
+    <p><strong>📖 Usage</strong> Complete the swing motion</p>
+    <p><strong>💬 Example</strong><br><blockquote>"Make sure to follow through on your groundstrokes."</blockquote></p>
+    <p><strong>✍️ 替换练习</strong></p>
+    <ul>
+        <li>"Remember to follow through when you're on the court."</li>
+        <li>"The coach says: 'Follow through' every time we practice."</li>
+        <li>"'Follow through' is the key to improvement in tennis."</li>
+    </ul>
+</div>
+<div class="tip-box">
+    <h3>4. <strong>"Get into position early"</strong> <code>提早到位</code></h3>
+    <p><strong>📖 Usage</strong> Prepare before hitting</p>
+    <p><strong>💬 Example</strong><br><blockquote>"Get into position early for the incoming shot."</blockquote></p>
+    <p><strong>✍️ 替换练习</strong></p>
+    <ul>
+        <li>"Remember to get into position early when you're on the court."</li>
+        <li>"The coach says: 'Get into position early' every time we practice."</li>
+        <li>"'Get into position early' is the key to improvement in tennis."</li>
+    </ul>
+</div>
+<div class="tip-box">
+    <h3>5. <strong>"Stay on your toes"</strong> <code>保持警觉/准备状态</code></h3>
+    <p><strong>📖 Usage</strong> Be ready to react</p>
+    <p><strong>💬 Example</strong><br><blockquote>"Stay on your toes and be ready to move in any direction."</blockquote></p>
+    <p><strong>✍️ 替换练习</strong></p>
+    <ul>
+        <li>"Remember to stay on your toes when you're on the court."</li>
+        <li>"The coach says: 'Stay on your toes' every time we practice."</li>
+        <li>"'Stay on your toes' is the key to improvement in tennis."</li>
+    </ul>
+</div>
+<div class="tip-box">
+    <h3>6. <strong>"Use your whole body"</strong> <code>运用全身</code></h3>
+    <p><strong>📖 Usage</strong> Engage entire body in shot</p>
+    <p><strong>💬 Example</strong><br><blockquote>"Don't just arm the ball; use your whole body."</blockquote></p>
+    <p><strong>✍️ 替换练习</strong></p>
+    <ul>
+        <li>"Remember to use your whole body when you're on the court."</li>
+        <li>"The coach says: 'Use your whole body' every time we practice."</li>
+        <li>"'Use your whole body' is the key to improvement in tennis."</li>
+    </ul>
+</div>
+<div class="tip-box">
+    <h3>7. <strong>"Prepare early"</strong> <code>尽早准备</code></h3>
+    <p><strong>📖 Usage</strong> Get ready before ball arrives</p>
+    <p><strong>💬 Example</strong><br><blockquote>"Prepare early by turning your shoulders to the ball."</blockquote></p>
+    <p><strong>✍️ 替换练习</strong></p>
+    <ul>
+        <li>"Remember to prepare early when you're on the court."</li>
+        <li>"The coach says: 'Prepare early' every time we practice."</li>
+        <li>"'Prepare early' is the key to improvement in tennis."</li>
+    </ul>
+</div>
+<div class="tip-box">
+    <h3>8. <strong>"Watch the ball into your strings"</strong> <code>盯球到击球点</code></h3>
+    <p><strong>📖 Usage</strong> Focus on contact point</p>
+    <p><strong>💬 Example</strong><br><blockquote>"Watch the ball into your strings for better contact."</blockquote></p>
+    <p><strong>✍️ 替换练习</strong></p>
+    <ul>
+        <li>"Remember to watch the ball into your strings when you're on the court."</li>
+        <li>"The coach says: 'Watch the ball into your strings' every time we practice."</li>
+        <li>"'Watch the ball into your strings' is the key to improvement in tennis."</li>
+    </ul>
+</div><div class="section" id="section-5">
+            <h2>5. 学习任务</h2>
+
+            <h3>📖 阅读理解题（5道）</h3>
+
+            <div class="practice-section">
+                <h4>题目 1：细节理解</h4>
+                <p>According to the video, why did the creator return to their job after a 3-month leave?</p>
+                <ol type="A">
+                    <li>They missed their coworkers</li>
+                    <li>They couldn't afford to quit</li>
+                    <li>Their job required them to return</li>
+                    <li>They were bored of traveling</li>
+                </ol>
+
+                <p><strong>✅ 正确答案：B</strong></p>
+                <p><strong>💡 解析</strong>：视频提到创作者的工作"absolutely draining"（非常消耗精力）但他们"can't afford to quit"（负担不起辞职）。</p>
+            </div>
+
+            <div class="practice-section">
+                <h4>题目 2：推理判断</h4>
+                <p>What can be inferred about the creator's attitude toward their job?</p>
+                <ol type="A">
+                    <li>They love their job deeply</li>
+                    <li>They find their job fulfilling</li>
+                    <li>Their job negatively impacts their mental health</li>
+                    <li>They plan to quit soon</li>
+                </ol>
+
+                <p><strong>✅ 正确答案：C</strong></p>
+            </div>
+
+            <div class="practice-section">
+                <h4>题目 3：主旨大意</h4>
+                <p>What is the main theme of this video?</p>
+                <ol type="A">
+                    <li>How to become a digital nomad</li>
+                    <li>A personal journey of solo travel and mental health</li>
+                    <li>A travel guide to Chiang Mai</li>
+                    <li>Tips for remote work</li>
+                </ol>
+
+                <p><strong>✅ 正确答案：B</strong></p>
+            </div>
+
+            <div class="practice-section">
+                <h4>题目 4：词义猜测</h4>
+                <p>In the context "the job is absolutely draining," what does "draining" mean?</p>
+                <ol type="A">
+                    <li>Financially costly</li>
+                    <li>Physically and emotionally exhausting</li>
+                    <li>Time-consuming</li>
+                    <li>Boring</li>
+                </ol>
+
+                <p><strong>✅ 正确答案：B</strong></p>
+            </div>
+
+            <div class="practice-section">
+                <h4>题目 5：细节理解</h4>
+                <p>Where did the creator spend their month alone?</p>
+                <ol type="A">
+                    <li>Bangkok, Thailand</li>
+                    <li>Phuket, Thailand</li>
+                    <li>Chiang Mai, Thailand</li>
+                    <li>Pai, Thailand</li>
+                </ol>
+
+                <p><strong>✅ 正确答案：C</strong></p>
+            </div>
+
+            <h3>✍️ 口语/写作练习题（4个）</h3>
+
+            <div class="practice-section">
+                <h4>练习 1：观点讨论</h4>
+                <p>Do you think solo travel is beneficial for personal growth? Why or why not? Share your opinion and provide examples.</p>
+            </div>
+
+            <div class="practice-section">
+                <h4>练习 2：实际场景应用</h4>
+                <p>Imagine you are planning to spend a month as a digital nomad in a foreign city. Write a short paragraph (100-150 words) describing:</p>
+                <ul>
+                    <li>Your budget considerations</li>
+                    <li>Your work setup needs</li>
+                    <li>What you hope to gain from the experience</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section" id="section-6">
+            <h2>6. 学习建议</h2>
+
+            <h3>🎯 适合的学习场景</h3>
+            <ul>
+                <li><strong>☕ 通勤时间（30分钟）</strong>：内容总览 + 核心词汇</li>
+                <li><strong>🌙 睡前学习（20分钟）</strong>：地道表达 + 句型解析</li>
+                <li><strong>💻 周末专注（60-90分钟）</strong>：完整学习流程 + 练习</li>
+            </ul>
+
+            <h3>⚠️ 重点关注的难点</h3>
+            <ul>
+                <li><strong>🔤 词汇难点</strong>：Mental health, Burnout（文化差异）</li>
+                <li><strong>📖 语法难点</strong>：Not only...but also, The more...the more</li>
+                <li><strong>🌍 文化难点</strong>：数字游民生活方式、独自旅行接受度</li>
+                <li><strong>🗣️ 发音难点</strong>：Draining（重音在第一音节）</li>
+            </ul>
+
+            <h3>🔗 可拓展的关联话题</h3>
+            <ul>
+                <li><strong>相关YouTube频道</strong>：Digital Nomad Diaries其他剧集</li>
+                <li><strong>相关文章</strong>："How to Become a Digital Nomad", "Best Cities for Digital Nomads"</li>
+                <li><strong>实际应用</strong>：制定旅行计划、讨论远程工作、心理健康管理</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 50px; padding-top: 30px; border-top: 2px solid var(--border-color); text-align: center; color: var(--text-secondary);">
+            <p style="margin-bottom: 10px;"><strong>📚 学习资源</strong></p>
+            <ul style="list-style: none; padding: 0;">
+                <li><a href="https://www.youtube.com/watch?v=66MgD1FAZDA" target="_blank">🎬 Original YouTube Video</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="back-to-top" id="backToTop">↑</div>
+    <a href="../index.html" class="back-to-home" id="backToHome" title="回到首页">🏠</a>
+
+    <!-- 朗读功能脚本 -->
+    <script src="/scripts/tts-common.js"></script>
+    <!-- 页面公共功能脚本 -->
+    <script src="/scripts/page-common.js"></script>
+</body>
+</html>

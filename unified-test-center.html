@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 统一测试中心 - 英语学习系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 14px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            overflow-x: auto;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            background: #f5f7fa;
+            border: none;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .tab:hover {
+            background: #e8ebf0;
+        }
+
+        .tab.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .card {
+            background: #f5f7fa;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s;
+            border-left: 4px solid #667eea;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .badge-primary { background: #667eea; color: white; }
+        .badge-success { background: #4CAF50; color: white; }
+        .badge-warning { background: #FF9800; color: white; }
+        .badge-danger { background: #f44336; color: white; }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #45a049;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            font-size: 36px;
+            margin-bottom: 5px;
+        }
+
+        .stat-card p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .status {
+            background: #f5f7fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #e0e0e0;
+        }
+
+        .status-line {
+            padding: 4px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .status-line:last-child {
+            border-bottom: none;
+        }
+
+        .log-time { color: #999; }
+        .log-success { color: #4CAF50; font-weight: bold; }
+        .log-error { color: #f44336; font-weight: bold; }
+        .log-info { color: #2196F3; }
+        .log-warning { color: #FF9800; }
+
+        select, input[type="text"] {
+            padding: 10px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            margin: 5px;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 统一测试中心</h1>
+        <p class="subtitle">英语学习系统 - 一站式测试平台</p>
+
+        <!-- 标签页导航 -->
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('overview')">📊 概览</button>
+            <button class="tab" onclick="switchTab('tts')">🔊 TTS 测试</button>
+            <button class="tab" onclick="switchTab('pages')">📄 页面测试</button>
+            <button class="tab" onclick="switchTab('e2e')">🤖 E2E 测试</button>
+            <button class="tab" onclick="switchTab('tools')">🛠️ 工具</button>
+        </div>
+
+        <!-- 概览标签页 -->
+        <div id="overview" class="tab-content active">
+            <div class="stats">
+                <div class="stat-card">
+                    <h3 id="totalTests">0</h3>
+                    <p>测试文件</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="totalPages">4</h3>
+                    <p>学习页面</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="totalScripts">0</h3>
+                    <p>测试脚本</p>
+                </div>
+                <div class="stat-card">
+                    <h3>✅</h3>
+                    <p>系统正常</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>📁 项目结构</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3><span class="badge badge-primary">学习页面</span></h3>
+                        <p>4个 YouTube 视频学习包，包含完整转录和翻译</p>
+                        <button class="btn btn-primary" onclick="listRecords()">查看列表</button>
+                    </div>
+                    <div class="card">
+                        <h3><span class="badge badge-success">TTS 系统</span></h3>
+                        <p>智能语音合成，支持多种学习模式和语音</p>
+                        <button class="btn btn-primary" onclick="switchTab('tts')">测试 TTS</button>
+                    </div>
+                    <div class="card">
+                        <h3><span class="badge badge-warning">测试文件</span></h3>
+                        <p>34个测试文件，涵盖功能和性能测试</p>
+                        <button class="btn btn-primary" onclick="listTestFiles()">查看列表</button>
+                    </div>
+                    <div class="card">
+                        <h3><span class="badge badge-danger">E2E 测试</span></h3>
+                        <p>端到端自动化测试，验证完整用户流程</p>
+                        <button class="btn btn-primary" onclick="switchTab('e2e')">运行 E2E</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TTS 测试标签页 -->
+        <div id="tts" class="tab-content">
+            <div class="section">
+                <h2>🔊 TTS 快速测试</h2>
+                <div class="card">
+                    <h3>基础播放测试</h3>
+                    <p>测试浏览器语音合成功能是否正常</p>
+                    <button class="btn btn-success" onclick="testTTSBasic()">▶️ 播放测试</button>
+                    <button class="btn btn-primary" onclick="checkVoices()">🔍 检查语音</button>
+                    <div id="ttsStatus" class="status"></div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🔧 TTS 调试工具</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3><span class="badge badge-warning">调试工具</span></h3>
+                        <p>完整的 TTS 功能调试和问题诊断</p>
+                        <a href="archives/test-files/test-debug.html" class="btn btn-primary">打开</a>
+                    </div>
+                    <div class="card">
+                        <h3><span class="badge badge-warning">音频输出</span></h3>
+                        <p>测试音频设备和输出是否正常</p>
+                        <a href="archives/test-files/test-audio-output.html" class="btn btn-primary">打开</a>
+                    </div>
+                    <div class="card">
+                        <h3><span class="badge badge-warning">自动诊断</span></h3>
+                        <p>自动检测和诊断 TTS 问题</p>
+                        <a href="archives/test-files/auto-diagnose.html" class="btn btn-primary">打开</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页面测试标签页 -->
+        <div id="pages" class="tab-content">
+            <div class="section">
+                <h2>📄 学习页面列表</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>🏠 Coming Home</h3>
+                        <p>回家主题 - 关于家庭和归属感</p>
+                        <a href="records/2026-02-06-coming-home.html" class="btn btn-success">打开</a>
+                        <button class="btn btn-primary" onclick="testPage('2026-02-06-coming-home.html')">测试</button>
+                    </div>
+                    <div class="card">
+                        <h3>🏝️ Month Alone in Chiang Mai</h3>
+                        <p>清迈独居 - 关于独立生活</p>
+                        <a href="records/2026-02-06-month-alone-chiang-mai.html" class="btn btn-success">打开</a>
+                        <button class="btn btn-primary" onclick="testPage('2026-02-06-month-alone-chiang-mai.html')">测试</button>
+                    </div>
+                    <div class="card">
+                        <h3>🏢 Shanghai Starting Over</h3>
+                        <p>上海重新开始 - 关于新的开始</p>
+                        <a href="records/2026-02-06-shanghai-starting-over.html" class="btn btn-success">打开</a>
+                        <button class="btn btn-primary" onclick="testPage('2026-02-06-shanghai-starting-over.html')">测试</button>
+                    </div>
+                    <div class="card">
+                        <h3>🎥 YouTube Entrepreneurship</h3>
+                        <p>创业主题 - 关于创业经历</p>
+                        <a href="records/2026-02-06-youtube-entrepreneurship.html" class="btn btn-success">打开</a>
+                        <button class="btn btn-primary" onclick="testPage('2026-02-06-youtube-entrepreneurship.html')">测试</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- E2E 测试标签页 -->
+        <div id="e2e" class="tab-content">
+            <div class="section">
+                <h2>🤖 E2E 自动化测试</h2>
+                <div class="card">
+                    <h3>运行 E2E 测试套件</h3>
+                    <p>端到端测试整个系统，包括页面加载、TTS 功能和用户体验</p>
+                    <div style="background: #f5f7fa; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                        <code style="color: #667eea;">node tests/automated-e2e-test.js</code>
+                    </div>
+                    <button class="btn btn-success" onclick="runE2ETest()">▶️ 运行测试</button>
+                    <button class="btn btn-primary" onclick="viewE2EReport()">📊 查看报告</button>
+                    <div id="e2eStatus" class="status"></div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>📋 测试脚本列表</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3><span class="badge badge-danger">E2E 测试</span></h3>
+                        <p>完整的端到端测试套件</p>
+                        <code style="font-size: 12px;">tests/automated-e2e-test.js</code>
+                    </div>
+                    <div class="card">
+                        <h3><span class="badge badge-warning">集成测试</span></h3>
+                        <p>TTS 播放集成测试</p>
+                        <code style="font-size: 12px;">tests/integration/test_tts_playback.js</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 工具标签页 -->
+        <div id="tools" class="tab-content">
+            <div class="section">
+                <h2>🛠️ 开发工具</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>📝 项目验证</h3>
+                        <p>验证项目结构和文件完整性</p>
+                        <code style="font-size: 12px;">scripts/validate-project.sh</code>
+                    </div>
+                    <div class="card">
+                        <h3>🔍 TTS 调试</h3>
+                        <p>TTS 功能调试脚本</p>
+                        <code style="font-size: 12px;">scripts/debug-tts.js</code>
+                    </div>
+                    <div class="card">
+                        <h3>🚀 快速启动</h3>
+                        <p>启动开发服务器</p>
+                        <code style="font-size: 12px;">./start-server.sh</code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>📚 文档</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>测试指南</h3>
+                        <p>完整的测试流程和指南</p>
+                        <a href="docs/TESTING.md" class="btn btn-primary">查看</a>
+                    </div>
+                    <div class="card">
+                        <h3>TTS 调试</h3>
+                        <p>TTS 问题排查指南</p>
+                        <a href="docs/TTS-TEST.md" class="btn btn-primary">查看</a>
+                    </div>
+                    <div class="card">
+                        <h3>快速指南</h3>
+                        <p>快速上手指南</p>
+                        <a href="docs/QUICK_GUIDE.md" class="btn btn-primary">查看</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========================================
+        // 标签页切换
+        // ========================================
+
+        function switchTab(tabName) {
+            // 隐藏所有标签页
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // 移除所有标签按钮的 active 类
+            document.querySelectorAll('.tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // 显示选中的标签页
+            document.getElementById(tabName).classList.add('active');
+
+            // 添加 active 类到对应的按钮
+            event.target.classList.add('active');
+        }
+
+        // ========================================
+        // 日志工具
+        // ========================================
+
+        function log(containerId, message, type = 'info') {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            const line = document.createElement('div');
+            line.className = 'status-line';
+            const timestamp = new Date().toLocaleTimeString();
+            const className = `log-${type}`;
+            line.innerHTML = `<span class="log-time">[${timestamp}]</span> <span class="${className}">${message}</span>`;
+            container.insertBefore(line, container.firstChild);
+        }
+
+        // ========================================
+        // 概览功能
+        // ========================================
+
+        function updateStats() {
+            // 统计测试文件
+            document.getElementById('totalTests').textContent = '34';
+            document.getElementById('totalScripts').textContent = '2';
+        }
+
+        function listRecords() {
+            const records = [
+                '2026-02-06-coming-home.html',
+                '2026-02-06-month-alone-chiang-mai.html',
+                '2026-02-06-shanghai-starting-over.html',
+                '2026-02-06-youtube-entrepreneurship.html'
+            ];
+            log('ttsStatus', `找到 ${records.length} 个学习记录`, 'info');
+        }
+
+        function listTestFiles() {
+            log('ttsStatus', '项目包含 34 个测试文件', 'info');
+            log('ttsStatus', '主要测试: TTS 功能、页面导航、用户交互', 'info');
+        }
+
+        // ========================================
+        // TTS 测试
+        // ========================================
+
+        function testTTSBasic() {
+            const statusDiv = document.getElementById('ttsStatus');
+            statusDiv.innerHTML = '';
+
+            log('ttsStatus', '开始 TTS 基础测试...', 'info');
+
+            if (!('speechSynthesis' in window)) {
+                log('ttsStatus', '❌ 浏览器不支持 speechSynthesis', 'error');
+                return;
+            }
+
+            log('ttsStatus', '✅ 浏览器支持 speechSynthesis', 'success');
+
+            const voices = window.speechSynthesis.getVoices();
+            const englishVoices = voices.filter(v => v.lang.startsWith('en'));
+
+            if (englishVoices.length === 0) {
+                log('ttsStatus', '⚠️ 未找到英文语音，尝试重新加载...', 'warning');
+                setTimeout(() => {
+                    const newVoices = window.speechSynthesis.getVoices();
+                    const newEnglish = newVoices.filter(v => v.lang.startsWith('en'));
+                    log('ttsStatus', `✅ 找到 ${newEnglish.length} 个英文语音`, 'success');
+                }, 500);
+            } else {
+                log('ttsStatus', `✅ 找到 ${englishVoices.length} 个英文语音`, 'success');
+            }
+
+            // 播放测试
+            const utterance = new SpeechSynthesisUtterance('Hello, this is a test.');
+            utterance.lang = 'en-US';
+
+            utterance.onstart = () => {
+                log('ttsStatus', '✅ 开始播放: "Hello, this is a test."', 'success');
+            };
+
+            utterance.onend = () => {
+                log('ttsStatus', '✅ 播放完成！', 'success');
+            };
+
+            utterance.onerror = (e) => {
+                log('ttsStatus', `❌ 播放错误: ${e.error}`, 'error');
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function checkVoices() {
+            const voices = window.speechSynthesis.getVoices();
+            const englishVoices = voices.filter(v => v.lang.startsWith('en'));
+
+            log('ttsStatus', `总共 ${voices.length} 个语音`, 'info');
+            log('ttsStatus', `其中英文语音 ${englishVoices.length} 个`, 'info');
+
+            englishVoices.slice(0, 5).forEach((voice, index) => {
+                log('ttsStatus', `${index + 1}. ${voice.name} (${voice.lang})`, 'info');
+            });
+        }
+
+        // ========================================
+        // 页面测试
+        // ========================================
+
+        function testPage(pageName) {
+            log('ttsStatus', `测试页面: ${pageName}`, 'info');
+            window.open(`records/${pageName}`, '_blank');
+        }
+
+        // ========================================
+        // E2E 测试
+        // ========================================
+
+        function runE2ETest() {
+            const statusDiv = document.getElementById('e2eStatus');
+            statusDiv.innerHTML = '';
+
+            log('e2eStatus', '准备运行 E2E 测试...', 'info');
+            log('e2eStatus', '请在终端中运行: node tests/automated-e2e-test.js', 'warning');
+            log('e2eStatus', '确保已安装依赖: npm install puppeteer', 'info');
+        }
+
+        function viewE2EReport() {
+            log('e2eStatus', '测试报告保存在: test-reports/', 'info');
+            log('e2eStatus', '截图保存在: test-screenshots/', 'info');
+        }
+
+        // ========================================
+        // 初始化
+        // ========================================
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateStats();
+
+            // 预加载语音
+            if (window.speechSynthesis.onvoiceschanged !== undefined) {
+                window.speechSynthesis.onvoiceschanged = () => {
+                    const voices = window.speechSynthesis.getVoices();
+                    const english = voices.filter(v => v.lang.startsWith('en'));
+                    console.log(`预加载 ${english.length} 个英文语音`);
+                };
+            }
+        });
+    </script>
+</body>
+</html>

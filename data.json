@@ -1,6 +1,20 @@
 {
   "records": [
     {
+      "id": "2026-02-26-youtube-english-learning-methods",
+      "title": "📚 How to Learn English with YouTube - Effective Methods for Beginners",
+      "date": "2026-02-26",
+      "type": "youtube",
+      "typeLabel": "YouTube",
+      "file": "records/2026-02-26-youtube-english-learning-methods.html",
+      "sourceUrl": "https://www.youtube.com/watch?v=6aGVB-VGgoM&list=PLEjrF3twLW4Kg-E65-g0ZdRz2KQ5YCJ66",
+      "wordCount": 20,
+      "expressionCount": 15,
+      "patternCount": 8,
+      "preview": "Comprehensive guide exploring the most effective methods for learning English through YouTube in 2026, emphasizing a six-step progressive approach from 5-minute daily immersion to full fluency...",
+      "tags": ["Learning", "YouTube", "Education", "Methods"]
+    },
+    {
       "id": "2026-02-24-beginner-tennis-lesson",
       "title": "🎾 Beginner Tennis Lesson | Forehand, Backhand & Serve",
       "date": "2026-02-24",
@@ -72,6 +86,16 @@
     }
   ],
   "byDate": {
+    "2026-02-26": {
+      "weekday": "星期四",
+      "count": 1,
+      "totalWords": 20,
+      "totalExpressions": 15,
+      "totalPatterns": 8,
+      "records": [
+        "2026-02-26-youtube-english-learning-methods"
+      ]
+    },
     "2026-02-24": {
       "weekday": "星期二",
       "count": 1,
@@ -97,13 +121,13 @@
     }
   },
   "statistics": {
-    "totalRecords": 5,
-    "totalWords": 100,
-    "totalExpressions": 75,
-    "totalPatterns": 40,
+    "totalRecords": 6,
+    "totalWords": 120,
+    "totalExpressions": 90,
+    "totalPatterns": 48,
     "firstDate": "2026-02-06",
-    "lastDate": "2026-02-24",
-    "activeDays": 2
+    "lastDate": "2026-02-26",
+    "activeDays": 3
   },
-  "lastUpdated": "2026-02-25T19:00:00+08:00"
+  "lastUpdated": "2026-02-26T23:59:00+08:00"
 }
