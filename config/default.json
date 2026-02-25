@@ -1,0 +1,38 @@
+{
+  "app": {
+    "name": "English Learning TTS System",
+    "version": "1.0.0",
+    "description": "智能文本转语音学习系统"
+  },
+  "tts": {
+    "defaultLang": "en-US",
+    "defaultRate": 1.0,
+    "preferredVoices": ["female", "google", "microsoft"],
+    "modes": {
+      "quick": {
+        "rate": 1.2,
+        "label": "快速模式"
+      },
+      "standard": {
+        "rate": 1.0,
+        "label": "标准模式"
+      },
+      "intensive": {
+        "rate": 0.8,
+        "label": "缓慢模式"
+      }
+    }
+  },
+  "ui": {
+    "theme": "light",
+    "autoScroll": true,
+    "highlightSpeaking": true,
+    "showProgress": true
+  },
+  "features": {
+    "queueStrategy": true,
+    "wordSelection": true,
+    "pauseBetween": true,
+    "pauseDuration": 500
+  }
+}

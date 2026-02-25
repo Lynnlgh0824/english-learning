@@ -1,53 +1,49 @@
-# 英语学习项目结构
+# 📁 专业团队项目结构
 
-## 📁 核心文件
-- `index.html` - 主应用入口
-- `README.md` - 项目说明
+## 目录结构
 
-## 📁 目录结构
 ```
 english-learning/
-├── index.html          # 主应用
-├── README.md           # 项目说明
-├── server.py           # Python服务器（可选）
-├── start-server.sh     # 启动脚本（可选）
-├── quick-start.sh      # 快速启动脚本
-├── data/               # 数据文件
-├── records/            # 学习记录（HTML格式）
-├── scripts/            # 功能脚本
-│   ├── tts-*.js       # TTS相关脚本
-│   ├── page-common.js # 页面通用脚本
-│   └── auto-diagnose.js
-├── styles/             # 样式文件
-├── tests/              # 测试文件
-├── docs/               # 项目文档
-└── archives/           # 归档文件
-    └── test-files/     # 测试文件归档
+├── src/                    # 源代码目录
+├── prompts/                # AI 提示词模板
+├── config/                 # 配置文件
+│   └── default.json       # 默认配置
+├── tests/                  # 测试文件
+│   └── integration/       # 集成测试
+├── scripts/                # 工具脚本
+├── docs/                   # 文档
+├── records/                # 学习记录
+├── styles/                 # 样式文件
+├── archives/               # 归档文件
+├── learnings/              # 学习资料
+├── .env.example           # 环境变量示例
+├── .gitignore             # Git 忽略规则
+├── README.md              # 项目说明
+└── package.json           # 项目配置（如果有）
 ```
 
-## 📦 已清理文件（移至 archives/test-files/）
-- test-*.html（15个测试页面）
-- test-*.js（21个测试脚本）
-- tts_*.js（TTS测试脚本）
-- diagnose_paragraphs.js
-- auto-diagnose.html
-- auto-test-runner.html
-- verify-fix.html
+## 安全原则
 
-## 📚 文档（移至 docs/）
-- BUG-REPORT-TEMPLATE.md
-- COMMUNICATION-PROTOCOL.md
-- DEVELOPMENT-PROCESS.md
-- IMPROVEMENT-GUIDE.md
-- PROJECT-LESSONS-LEARNED.md
-- REQUIREMENT-TEMPLATE.md
-- TESTING.md
-- 其他开发文档
+### ✅ 应该提交
+- src/
+- prompts/
+- config/
+- tests/
+- scripts/
+- docs/
+- .env.example
+- .gitignore
+- README.md
 
-## 🚀 使用方式
-1. **桌面快捷方式**: 双击 `📚英语学习.app`
-2. **手动启动**: 运行 `start-server.sh` 或 `python3 -m http.server 8000`
-3. **访问**: 打开浏览器访问 http://localhost:8000
-
-## 📝 更新日期
-2026-02-06 - 合并代码，清理测试文件，重组目录结构
+### ❌ 绝不提交
+- .env
+- .env.local
+- *.pem, *.key
+- credentials.json
+- secrets/
+- models/
+- *.gguf, *.bin, *.pt
+- node_modules/
+- venv/
+- .claude/
+- .cursor/
