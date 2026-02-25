@@ -30,3 +30,19 @@ secrets/
 
 # Claude Code 设置（可选）
 .claude/
+
+# 测试文件（如果不想提交）
+# test-*.html
+# auto-*.html
+# debug-*.html
+
+# 个人项目文件
+auto-log-server.js
+auto-log-server.sh
+auto-daily-log.sh
+project-log.html
+FULL_BACKUP.md
+STRUCTURE.md
+
+# 其他项目引用
+*.log

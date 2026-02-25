@@ -36,21 +36,33 @@
 ### 方式一：直接打开（推荐）⭐
 
 ```bash
-# 在浏览器中打开
-open /Users/yuzhoudeshengyin/Documents/my_project/english-learning/index.html
+# 克隆仓库后，在浏览器中打开 index.html
+open index.html
+
+# 或者双击 index.html 文件
 ```
 
 ### 方式二：本地服务器
 
 ```bash
-cd /Users/yuzhoudeshengyin/Documents/my_project/english-learning
+# 进入项目目录
+cd english-learning
+
+# 启动本地服务器（Python 3）
 python3 -m http.server 8000
-# 然后访问 http://localhost:8000
+
+# 或者使用 Node.js
+npx serve
+
+# 然后在浏览器访问
+# http://localhost:8000
 ```
 
-### 方式三：使用桌面快捷方式
+### 方式三：使用 GitHub Pages（在线访问）
 
-双击桌面上的 **"📚 英语学习"** 或 **"EnglishLearning"** 图标
+直接访问：https://lynnlgh0824.github.io/english-learning/（如果启用）
+
+> 💡 **提示**：推荐使用方式二（本地服务器），可以避免浏览器安全策略限制。
 
 ---
 

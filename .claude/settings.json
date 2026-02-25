@@ -11,7 +11,18 @@
       "Bash(git add .claude/settings.json)",
       "Bash(git remote set-url origin https://github.com/Lynnlgh0824/english-learning.git)",
       "Bash(git fetch origin)",
-      "Bash(git push origin main --force)"
+      "Bash(git push origin main --force)",
+      "Bash(git add .gitignore)",
+      "Bash(ls -lh archives/test-files/*.html)",
+      "Bash(ls -lh *.html)",
+      "Bash(wc -l archives/test-files/*.html)",
+      "Bash(scripts/fix-paths.sh:*)",
+      "Bash(chmod +x scripts/fix-paths.sh)",
+      "Bash(.gitignore:*)",
+      "Bash(git rm --cached auto-log-server.js auto-log-server.sh project-log.html FULL_BACKUP.md)"
+    ],
+    "additionalDirectories": [
+      "/Users/yuzhoudeshengyin/Documents/my_project/english-learning"
     ]
   }
 }

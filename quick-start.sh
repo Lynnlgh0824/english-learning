@@ -4,7 +4,9 @@
 
 set -e  # 遇到错误立即退出
 
-PROJECT_DIR="/Users/yuzhoudeshengyin/english-learning"
+# 自动获取脚本所在目录
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+PROJECT_DIR="$SCRIPT_DIR"
 cd "$PROJECT_DIR"
 
 echo "=========================================="

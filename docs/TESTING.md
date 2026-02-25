@@ -2,7 +2,7 @@
 
 **文档版本**: v1.0
 **最后更新**: 2026-02-06
-**项目路径**: `/Users/yuzhoudeshengyin/english-learning`
+**项目路径**: `$(PROJECT_ROOT)` （请替换为实际项目路径）
 
 ---
 
@@ -11,8 +11,8 @@
 ### 启动测试环境
 
 ```bash
-# 1. 进入项目目录
-cd /Users/yuzhoudeshengyin/english-learning
+# 1. 进入项目目录（克隆仓库后）
+cd english-learning
 
 # 2. 停止已有的服务器（如果有）
 pkill -f 'http.server 8000'
