@@ -1,0 +1,435 @@
+/**
+ * ========================================
+ * 页面基础样式 - 公共样式
+ * ========================================
+ * 包含：颜色变量、基础布局、排版样式、卡片样式等
+ *
+ * 使用方法：在 HTML <head> 中引入
+ * <link rel="stylesheet" href="/styles/common.css">
+ */
+
+/* ========================================
+   CSS 变量定义
+   ======================================== */
+
+:root {
+    --bg-primary: #fafbfc;
+    --bg-secondary: #ffffff;
+    --text-primary: #2c3e50;
+    --text-secondary: #5a6c7d;
+    --accent-purple: #008080;
+    --accent-purple-light: #e0f2f1;
+    --accent-orange: #ffa726;
+    --accent-orange-light: #fff9e6;
+    --accent-green: #66bb6a;
+    --accent-green-light: #e8f5e9;
+    --accent-blue: #42a5f5;
+    --accent-blue-light: #e3f2fd;
+    --border-color: #e8eaed;
+    --shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* ========================================
+   基础重置
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.8;
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+}
+
+/* ========================================
+   阅读进度条
+   ======================================== */
+
+.reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-purple), var(--accent-orange));
+    transition: width 0.1s;
+    z-index: 1000;
+}
+
+/* ========================================
+   主容器
+   ======================================== */
+
+.container {
+    max-width: 840px;
+    margin: 0 auto;
+    padding: 10px 30px 40px;
+    background: var(--bg-secondary);
+    min-height: 100vh;
+}
+
+/* ========================================
+   返回链接
+   ======================================== */
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 8px;
+    margin-bottom: 10px;
+    color: var(--accent-purple);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9em;
+    padding: 6px 12px;
+    background: var(--accent-purple-light);
+    border-radius: 6px;
+    transition: all 0.3s;
+}
+
+.back-link:hover {
+    background: var(--accent-purple);
+    color: white;
+    transform: translateX(-3px);
+}
+
+/* ========================================
+   标题样式
+   ======================================== */
+
+h1 {
+    color: var(--accent-purple);
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.subtitle {
+    font-size: 1em;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+
+h2 {
+    color: var(--accent-purple);
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent-purple-light);
+}
+
+h3 {
+    color: var(--text-primary);
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+h4 {
+    color: #2c3e50;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+/* ========================================
+   段落和文本
+   ======================================== */
+
+p {
+    margin-bottom: 10px;
+    color: var(--text-primary);
+    font-size: 1.05em;
+}
+
+strong {
+    color: var(--accent-purple);
+    font-weight: 600;
+}
+
+code {
+    background: var(--accent-purple-light);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-family: 'Monaco', 'Courier New', monospace;
+    color: #7c4dff;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+a {
+    color: var(--accent-purple);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--accent-orange);
+    text-decoration: underline;
+}
+
+/* ========================================
+   引用块
+   ======================================== */
+
+blockquote {
+    background: var(--accent-purple-light);
+    border-left: 4px solid var(--accent-purple);
+    padding: 12px 16px;
+    margin: 12px 0;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    color: var(--text-primary);
+    line-height: 1.7;
+}
+
+/* ========================================
+   列表
+   ======================================== */
+
+ul, ol {
+    margin: 10px 0;
+    padding-left: 25px;
+}
+
+li {
+    margin: 6px 0;
+    line-height: 1.8;
+    color: var(--text-primary);
+    font-size: 1.05em;
+}
+
+/* ========================================
+   表格
+   ======================================== */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+th, td {
+    padding: 6px 8px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+th {
+    background: linear-gradient(135deg, var(--accent-purple) 0%, #7c4dff 100%);
+    color: white;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:hover {
+    background: var(--accent-purple-light);
+}
+
+/* ========================================
+   卡片样式
+   ======================================== */
+
+.meta-info {
+    background: linear-gradient(135deg, var(--accent-purple-light) 0%, #e8eaf6 100%);
+    padding: 16px 18px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--accent-purple);
+    box-shadow: var(--shadow);
+}
+
+.meta-info p {
+    margin: 8px 0;
+    font-size: 0.95em;
+}
+
+.meta-info strong {
+    color: var(--accent-purple);
+    font-weight: 600;
+}
+
+.word-card {
+    background: white;
+    padding: 20px 22px;
+    margin: 25px 0;
+    border-radius: 10px;
+    border: 2px solid #e0e0e0;
+    border-left: 6px solid var(--accent-purple);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    transition: all 0.3s;
+}
+
+.word-card:hover {
+    box-shadow: 0 4px 20px rgba(0, 128, 128, 0.2);
+    transform: translateY(-2px);
+    border-color: #d0d0d0;
+}
+
+.expression-card {
+    background: linear-gradient(135deg, var(--accent-orange-light) 0%, #ffe0b2 100%);
+    padding: 18px 20px;
+    margin: 22px 0;
+    border-radius: 10px;
+    border: 2px solid #ffd699;
+    border-left: 6px solid var(--accent-orange);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.practice-section {
+    background: linear-gradient(135deg, var(--accent-green-light) 0%, #c8e6c9 100%);
+    padding: 18px 20px;
+    border-radius: 10px;
+    margin: 22px 0;
+    border: 2px solid #a5d6a7;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.tip-box {
+    background: linear-gradient(135deg, var(--accent-blue-light) 0%, #bbdefb 100%);
+    padding: 18px 20px;
+    border-radius: 10px;
+    margin: 22px 0;
+    border: 2px solid #90caf9;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+/* ========================================
+   章节/部分
+   ======================================== */
+
+.section {
+    margin-bottom: 30px;
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 为锚点目标添加偏移，避免被sticky面板遮挡 */
+.section[id] {
+    scroll-margin-top: 140px;
+}
+
+/* ========================================
+   浮动按钮
+   ======================================== */
+
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, var(--accent-purple) 0%, #7c4dff 100%);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    transition: all 0.3s;
+    opacity: 0;
+    visibility: hidden;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+.back-to-home {
+    position: fixed;
+    bottom: 90px;
+    right: 30px;
+    background: linear-gradient(135deg, var(--accent-orange) 0%, #ff9800 100%);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.back-to-home.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-home:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(255, 152, 0, 0.5);
+}
+
+/* ========================================
+   响应式适配
+   ======================================== */
+
+@media (max-width: 768px) {
+    .container {
+        padding: 40px 20px 60px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .word-card, .expression-card, .practice-section, .tip-box {
+        padding: 20px;
+    }
+
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .back-to-home {
+        bottom: 80px;
+        right: 20px;
+    }
+}

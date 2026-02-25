@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TTS 独立测试</title>
+</head>
+<body>
+    <h1>TTS 完全独立测试</h1>
+    <button id="testBtn">点击测试 TTS</button>
+    <p id="status">等待测试...</p>
+
+    <script>
+        console.log('=== 页面加载 ===');
+
+        // 等待语音加载
+        let voicesLoaded = false;
+        window.speechSynthesis.onvoiceschanged = function() {
+            voicesLoaded = true;
+            console.log('✅ 语音已加载');
+        };
+
+        // 如果语音已加载，手动触发
+        setTimeout(() => {
+            if (window.speechSynthesis.getVoices().length > 0) {
+                voicesLoaded = true;
+                console.log('✅ 语音已加载（延迟检查）');
+            }
+        }, 500);
+
+        document.getElementById('testBtn').addEventListener('click', function() {
+            console.log('=== 按钮被点击 ===');
+            document.getElementById('status').textContent = '正在测试...';
+
+            // 等待语音加载
+            const waitForVoices = setInterval(() => {
+                const voices = window.speechSynthesis.getVoices();
+                console.log('检查语音...', voices.length);
+
+                if (voices.length > 0) {
+                    clearInterval(waitForVoices);
+                    console.log('✅ 语音已加载，数量:', voices.length);
+                    testTTS(voices);
+                }
+            }, 100);
+
+            // 10秒后超时
+            setTimeout(() => {
+                clearInterval(waitForVoices);
+                if (document.getElementById('status').textContent === '正在测试...') {
+                    document.getElementById('status').textContent = '❌ 语音加载超时';
+                }
+            }, 10000);
+        });
+
+        function testTTS(voices) {
+            // 1. 测试 API
+            console.log('1. API 存在:', 'speechSynthesis' in window);
+
+            // 2. 创建 utterance
+            const text = "This is a test";
+            const utterance = new SpeechSynthesisUtterance(text);
+            console.log('2. 创建 utterance: 成功');
+
+            // 3. 设置事件
+            utterance.onstart = function() {
+                console.log('✅✅✅ onstart 触发了！有声音！');
+                document.getElementById('status').textContent = '✅ 播放成功！';
+            };
+
+            utterance.onerror = function(e) {
+                console.log('❌❌❌ onerror:', e.error);
+                document.getElementById('status').textContent = '❌ 播放失败: ' + e.error;
+            };
+
+            utterance.onend = function() {
+                console.log('✅ 播放结束');
+                document.getElementById('status').textContent = '✅ 播放完成';
+            };
+
+            // 4. 播放
+            console.log('3. 调用 synthesis.speak()...');
+            window.speechSynthesis.speak(utterance);
+            console.log('4. speak() 已调用');
+        }
+    </script>
+</body>
+</html>

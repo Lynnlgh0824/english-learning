@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>验证修复</title>
+</head>
+<body>
+    <h1>自动验证 TTS 修复</h1>
+    <button id="testBtn">点击开始测试</button>
+    <div id="log" style="margin-top:20px;font-family:monospace;"></div>
+
+    <script>
+        const logDiv = document.getElementById('log');
+
+        function log(msg) {
+            const time = new Date().toLocaleTimeString();
+            logDiv.innerHTML += `[${time}] ${msg}<br>`;
+            console.log(msg);
+        }
+
+        document.getElementById('testBtn').addEventListener('click', async function() {
+            this.disabled = true;
+            log('=== 开始测试队列策略 ===');
+
+            // 等待语音
+            const waitForVoices = () => new Promise(resolve => {
+                const voices = speechSynthesis.getVoices();
+                if (voices.length > 0) return resolve(voices);
+                speechSynthesis.onvoiceschanged = () => resolve(speechSynthesis.getVoices());
+                setTimeout(() => resolve(speechSynthesis.getVoices()), 3000);
+            });
+
+            const voices = await waitForVoices();
+            log(`✅ 语音加载: ${voices.length}个`);
+
+            // 队列策略测试：一次性添加3段
+            log('📝 使用队列策略添加3段...');
+
+            speechSynthesis.cancel();
+
+            for (let i = 1; i <= 3; i++) {
+                const u = new SpeechSynthesisUtterance(`Paragraph ${i}`);
+                u.volume = 1;
+
+                if (i === 1) {
+                    u.onstart = () => log(`✅ 第1段开始播放`);
+                    u.onerror = (e) => log(`❌ 错误: ${e.error}`);
+                }
+
+                if (i === 2) {
+                    u.onstart = () => log(`✅ 第2段开始播放（队列自动播放）`);
+                }
+
+                if (i === 3) {
+                    u.onstart = () => log(`✅ 第3段开始播放（队列自动播放）`);
+                    u.onend = () => log(`🎉 全部播放完成！队列策略有效！`);
+                }
+
+                speechSynthesis.speak(u);
+                log(`添加第${i}段到队列`);
+            }
+
+            log('✅ 所有段落已添加到队列，等待播放...');
+            log('（请听到3段连续播放）');
+        });
+    </script>
+</body>
+</html>

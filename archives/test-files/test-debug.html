@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TTS 深度调试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-item {
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+        .pass { background: #d4edda; border-color: #28a745; }
+        .fail { background: #f8d7da; border-color: #dc3545; }
+        .info { background: #d1ecf1; border-color: #17a2b8; }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        button:hover { background: #0056b3; }
+        #log {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 TTS 深度调试测试</h1>
+
+    <div class="test-item info">
+        <h3>测试说明</h3>
+        <p>此页面会进行多组测试，找出为什么 onstart 触发但没有声音</p>
+    </div>
+
+    <div>
+        <button onclick="runAllTests()">🚀 运行所有测试</button>
+        <button onclick="testUtteranceProperties()">🔬 测试 Utterance 属性</button>
+        <button onclick="testDifferentVoices()">🎤 测试不同语音</button>
+        <button onclick="testWithUserGesture()">👆 用户手势测试</button>
+    </div>
+
+    <div id="results"></div>
+    <div id="log"></div>
+
+    <script>
+        const results = document.getElementById('results');
+        const log = document.getElementById('log');
+
+        function addLog(message) {
+            const time = new Date().toLocaleTimeString();
+            log.innerHTML += `[${time}] ${message}<br>`;
+            log.scrollTop = log.scrollHeight;
+            console.log(message);
+        }
+
+        function addResult(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `test-item ${type}`;
+            div.innerHTML = message;
+            results.appendChild(div);
+            addLog(message);
+        }
+
+        function clearResults() {
+            results.innerHTML = '';
+            log.innerHTML = '';
+        }
+
+        async function runAllTests() {
+            clearResults();
+            addResult('🎯 开始完整测试套件...', 'info');
+
+            // 测试1: 基础 API
+            addResult('测试1: Web Speech API 可用性', 'info');
+            if ('speechSynthesis' in window) {
+                addResult('✅ speechSynthesis API 存在', 'pass');
+            } else {
+                addResult('❌ speechSynthesis API 不存在', 'fail');
+                return;
+            }
+
+            // 测试2: 语音加载
+            addResult('测试2: 语音列表加载', 'info');
+            const voices = await waitForVoices();
+            if (voices.length > 0) {
+                addResult(`✅ 已加载 ${voices.length} 个语音`, 'pass');
+                addResult(`前5个语音:<br>${voices.slice(0, 5).map((v, i) => `${i+1}. ${v.name} (${v.lang})`).join('<br>')}`, 'info');
+            } else {
+                addResult('❌ 语音加载失败', 'fail');
+                return;
+            }
+
+            // 测试3: synthesis 状态
+            addResult('测试3: synthesis 初始状态', 'info');
+            addResult(`speaking: ${speechSynthesis.speaking}`, 'info');
+            addResult(`pending: ${speechSynthesis.pending}`, 'info');
+            addResult(`paused: ${speechSynthesis.paused}`, 'info');
+
+            // 测试4: 最简单测试
+            addResult('测试4: 最简单的 TTS 测试（单个单词）', 'info');
+            await testSimpleTTS('Hello');
+
+            // 测试5: 不设置语音 vs 设置语音
+            addResult('测试5: 对比测试 - 不设置语音', 'info');
+            await testWithAndWithoutVoice(voices);
+
+            // 测试6: 检查是否被静音
+            addResult('测试6: 静音状态检查', 'info');
+            await testMuteDetection();
+
+            addResult('🏁 所有测试完成', 'info');
+        }
+
+        function waitForVoices() {
+            return new Promise(resolve => {
+                const voices = speechSynthesis.getVoices();
+                if (voices.length > 0) {
+                    resolve(voices);
+                    return;
+                }
+
+                speechSynthesis.onvoiceschanged = () => {
+                    resolve(speechSynthesis.getVoices());
+                };
+
+                setTimeout(() => {
+                    resolve(speechSynthesis.getVoices());
+                }, 3000);
+            });
+        }
+
+        async function testSimpleTTS(text) {
+            return new Promise(resolve => {
+                addLog(`创建 utterance: "${text}"`);
+
+                const utterance = new SpeechSynthesisUtterance(text);
+
+                let started = false;
+                let ended = false;
+                let errored = false;
+
+                utterance.onstart = () => {
+                    started = true;
+                    addLog('✅ onstart 触发');
+                    addResult('✅ onstart 触发了！', 'pass');
+                };
+
+                utterance.onend = () => {
+                    ended = true;
+                    addLog('✅ onend 触发');
+                    addResult('✅ onend 触发了（播放完成）', 'pass');
+                    resolve({ started, ended, errored });
+                };
+
+                utterance.onerror = (e) => {
+                    errored = true;
+                    addLog(`❌ onerror: ${e.error}`);
+                    addResult(`❌ onerror: ${e.error}`, 'fail');
+                    resolve({ started, ended, errored });
+                };
+
+                utterance.onboundary = (e) => {
+                    addLog(`📍 onboundary: ${e.name} at ${e.charLength}`);
+                };
+
+                addLog('调用 speechSynthesis.speak()');
+                speechSynthesis.speak(utterance);
+
+                // 超时检查
+                setTimeout(() => {
+                    if (!ended && !errored) {
+                        addLog('⏱️ 超时：5秒内未完成');
+                        addResult('⚠️ 5秒内未完成播放（检查是否有声音）', 'info');
+                        resolve({ started, ended, errored });
+                    }
+                }, 5000);
+            });
+        }
+
+        async function testWithAndWithoutVoice(voices) {
+            // 测试 A: 不设置语音
+            addLog('--- 测试 A: 不设置 voice 属性 ---');
+            const testA = new SpeechSynthesisUtterance('Test without voice');
+            testA.volume = 1;
+            testA.rate = 1;
+            testA.pitch = 1;
+
+            testA.onstart = () => addLog('A: onstart 触发');
+            testA.onend = () => addLog('A: onend 触发');
+            testA.onerror = (e) => addLog(`A: onerror: ${e.error}`);
+
+            speechSynthesis.speak(testA);
+
+            await new Promise(r => setTimeout(r, 3000));
+
+            // 测试 B: 设置第一个语音
+            addLog('--- 测试 B: 设置 voices[0] ---');
+            const testB = new SpeechSynthesisUtterance('Test with first voice');
+            testB.voice = voices[0];
+            testB.volume = 1;
+            testB.rate = 1;
+            testB.pitch = 1;
+
+            testB.onstart = () => addLog('B: onstart 触发');
+            testB.onend = () => addLog('B: onend 触发');
+            testB.onerror = (e) => addLog(`B: onerror: ${e.error}`);
+
+            speechSynthesis.speak(testB);
+
+            await new Promise(r => setTimeout(r, 3000));
+
+            // 测试 C: 设置英文语音
+            const englishVoices = voices.filter(v => v.lang.startsWith('en'));
+            if (englishVoices.length > 0) {
+                addLog('--- 测试 C: 设置第一个英文语音 ---');
+                addLog(`使用语音: ${englishVoices[0].name}`);
+
+                const testC = new SpeechSynthesisUtterance('Test with English voice');
+                testC.voice = englishVoices[0];
+                testC.volume = 1;
+                testC.rate = 1;
+                testC.pitch = 1;
+
+                testC.onstart = () => addLog('C: onstart 触发');
+                testC.onend = () => addLog('C: onend 触发');
+                testC.onerror = (e) => addLog(`C: onerror: ${e.error}`);
+
+                speechSynthesis.speak(testC);
+
+                await new Promise(r => setTimeout(r, 3000));
+            }
+        }
+
+        async function testMuteDetection() {
+            addLog('检查系统音频状态...');
+
+            // 尝试播放一个非常短的测试音
+            const utterance = new SpeechSynthesisUtterance('a');
+            utterance.volume = 1;
+            utterance.rate = 0.5; // 慢速，更容易听清
+
+            let played = false;
+            utterance.onstart = () => {
+                played = true;
+                addLog('🔊 测试音开始播放（应该听到 "a" 的声音）');
+            };
+
+            utterance.onend = () => {
+                if (played) {
+                    addResult('✅ 播放完成（如果听到声音说明 TTS 正常）', 'pass');
+                } else {
+                    addResult('❌ 未触发 onstart', 'fail');
+                }
+            };
+
+            utterance.onerror = (e) => {
+                addResult(`❌ 播放错误: ${e.error}`, 'fail');
+            };
+
+            speechSynthesis.cancel(); // 清空队列
+            speechSynthesis.speak(utterance);
+
+            await new Promise(r => setTimeout(r, 2000));
+        }
+
+        function testUtteranceProperties() {
+            clearResults();
+            addResult('🔬 测试 Utterance 属性', 'info');
+
+            const utterance = new SpeechSynthesisUtterance('Test');
+
+            const props = {
+                'text': utterance.text,
+                'volume': utterance.volume,
+                'rate': utterance.rate,
+                'pitch': utterance.pitch,
+                'lang': utterance.lang,
+                'voice': utterance.voice
+            };
+
+            addLog('Utterance 默认属性:');
+            for (let [key, value] of Object.entries(props)) {
+                addLog(`  ${key}: ${value}`);
+            }
+
+            addResult('✅ 属性检查完成（查看控制台）', 'pass');
+        }
+
+        async function testDifferentVoices() {
+            clearResults();
+            addResult('🎤 测试不同语音', 'info');
+
+            const voices = await waitForVoices();
+            const englishVoices = voices.filter(v => v.lang.startsWith('en'));
+
+            addResult(`找到 ${englishVoices.length} 个英文语音`, 'info');
+
+            if (englishVoices.length === 0) {
+                addResult('❌ 没有英文语音', 'fail');
+                return;
+            }
+
+            // 测试前3个英文语音
+            for (let i = 0; i < Math.min(3, englishVoices.length); i++) {
+                const voice = englishVoices[i];
+                addResult(`测试语音 ${i + 1}: ${voice.name}`, 'info');
+
+                const utterance = new SpeechSynthesisUtterance(`Voice ${i + 1} test`);
+                utterance.voice = voice;
+                utterance.volume = 1;
+
+                utterance.onstart = () => {
+                    addLog(`✅ 语音 ${i + 1} onstart 触发`);
+                    addResult(`✅ 语音 ${i + 1} (${voice.name}) onstart 触发`, 'pass');
+                };
+
+                utterance.onend = () => {
+                    addLog(`✅ 语音 ${i + 1} 播放完成`);
+                };
+
+                utterance.onerror = (e) => {
+                    addLog(`❌ 语音 ${i + 1} 错误: ${e.error}`);
+                    addResult(`❌ 语音 ${i + 1} 错误: ${e.error}`, 'fail');
+                };
+
+                speechSynthesis.speak(utterance);
+                await new Promise(r => setTimeout(r, 3000));
+            }
+        }
+
+        function testWithUserGesture() {
+            clearResults();
+            addResult('👆 用户手势测试', 'info');
+            addResult('此按钮点击是由用户直接触发的，应该满足浏览器自动播放策略', 'info');
+
+            const utterance = new SpeechSynthesisUtterance('This was triggered by your click');
+            utterance.volume = 1;
+
+            utterance.onstart = () => {
+                addLog('✅ 用户手势触发: onstart');
+                addResult('✅ onstart 触发！（应该听到声音）', 'pass');
+            };
+
+            utterance.onend = () => {
+                addLog('✅ 用户手势触发: onend');
+                addResult('✅ 播放完成！听到声音了吗？', 'pass');
+            };
+
+            utterance.onerror = (e) => {
+                addResult(`❌ 错误: ${e.error}`, 'fail');
+            };
+
+            addLog('调用 speak()...');
+            speechSynthesis.speak(utterance);
+        }
+
+        // 页面加载时检查
+        window.addEventListener('load', () => {
+            addLog('页面加载完成');
+            addLog('浏览器: ' + navigator.userAgent);
+            addLog('等待用户操作...');
+        });
+    </script>
+</body>
+</html>

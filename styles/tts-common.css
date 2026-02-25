@@ -1,0 +1,519 @@
+/* ========================================
+   TTS 智能朗读系统 - 公共样式
+   ======================================== */
+
+/* 朗读控制面板样式 */
+.tts-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background: linear-gradient(135deg, #008080 0%, #006666 100%);
+    padding: 16px 20px;
+    border-radius: 0 0 12px 12px;
+    margin: 0;
+    box-shadow: 0 4px 12px rgba(0, 128, 128, 0.3);
+    color: white;
+}
+
+.tts-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.tts-title {
+    font-size: 1.1em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tts-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.tts-btn {
+    background: white;
+    color: #008080;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.95em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.tts-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.tts-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.tts-btn.paused {
+    background: linear-gradient(135deg, #ff9800 0%, #ff6b00 100%);
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(255, 152, 0, 0.4);
+    animation: pulse 2s ease-in-out infinite;
+    font-weight: 700;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 4px 16px rgba(255, 152, 0, 0.4);
+    }
+    50% {
+        box-shadow: 0 6px 20px rgba(255, 152, 0, 0.6);
+        transform: scale(1.08);
+    }
+}
+
+.tts-btn.paused:hover {
+    background: linear-gradient(135deg, #ff6b00 0%, #e65100 100%);
+    transform: scale(1.08);
+}
+
+.tts-btn.primary {
+    background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+    color: white;
+}
+
+.tts-btn.danger {
+    background: linear-gradient(135deg, #ef5350 0%, #e53935 100%);
+    color: white;
+}
+
+/* 学习模式选择样式 */
+.mode-btn {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.85em;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.mode-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.mode-btn.active {
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+    border-width: 3px;
+    transform: scale(1.05);
+}
+
+.mode-btn.quick.active {
+    background: linear-gradient(135deg, #66bb6a 0%, #4caf50 100%);
+    border-color: #4caf50;
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.6);
+}
+
+.mode-btn.standard.active {
+    background: linear-gradient(135deg, #42a5f5 0%, #2196f3 100%);
+    border-color: #2196f3;
+    box-shadow: 0 6px 20px rgba(33, 150, 243, 0.6);
+}
+
+.mode-btn.intensive.active {
+    background: linear-gradient(135deg, #ff7043 0%, #f4511e 100%);
+    border-color: #f4511e;
+    box-shadow: 0 6px 20px rgba(244, 81, 30, 0.6);
+}
+
+.tts-settings {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.voice-selector, .slider-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.voice-selector label, .slider-container label {
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.voice-selector select {
+    background: white;
+    color: #008080;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.9em;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.tts-slider {
+    width: 120px;
+    height: 6px;
+    -webkit-appearance: none;
+    background: rgba(255,255,255,0.3);
+    border-radius: 3px;
+    outline: none;
+}
+
+.tts-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.tts-progress {
+    background: rgba(255,255,255,0.2);
+    height: 6px;
+    border-radius: 3px;
+    margin-top: 12px;
+    overflow: hidden;
+}
+
+.tts-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #4caf50, #66bb6a);
+    width: 0%;
+    transition: width 0.3s;
+    border-radius: 3px;
+}
+
+.tts-status {
+    font-size: 0.85em;
+    opacity: 0.9;
+}
+
+.tts-progress-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.tts-progress-row .tts-status {
+    flex-shrink: 0;
+    min-width: 180px;
+}
+
+.tts-progress-row .tts-progress {
+    flex: 1;
+    margin-top: 0;
+}
+
+/* 朗读高亮样式 */
+.speaking {
+    background: linear-gradient(135deg, #fff9e6 0%, #ffe082 100%);
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin: 12px -16px;
+    box-shadow: 0 2px 8px rgba(255, 167, 38, 0.2);
+    transition: all 0.3s;
+    cursor: pointer;
+    font-size: 2em;
+    line-height: 1.8;
+}
+
+.speaking:hover {
+    background: linear-gradient(135deg, #ffe082 0%, #ffd54f 100%);
+    transform: scale(1.02);
+}
+
+/* 可朗读段落样式 */
+.readable-paragraph {
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+.readable-paragraph:hover {
+    background: rgba(0, 128, 128, 0.05);
+}
+
+/* ========================================
+   学习目录 (TOC) 样式
+   ======================================== */
+
+.toc {
+    position: fixed;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    max-height: 80vh;
+    overflow-y: auto;
+    z-index: 100;
+    width: 260px;
+    max-width: calc(100vw - 40px);
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.toc.toc-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.toc.toc-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.toc h3 {
+    margin: 0 0 15px 0;
+    color: #008080;
+    font-size: 1.1em;
+    font-weight: 600;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent-purple-light);
+}
+
+.toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc li {
+    margin: 0;
+    padding: 0;
+}
+
+.toc a {
+    display: block;
+    padding: 10px 12px;
+    color: var(--text-primary);
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s;
+    font-size: 0.95em;
+    line-height: 1.4;
+}
+
+.toc a:hover {
+    background: var(--accent-purple-light);
+    color: var(--accent-purple);
+}
+
+.toc a.active {
+    background: linear-gradient(135deg, var(--accent-purple) 0%, #7c4dff 100%);
+    color: white;
+    font-weight: 600;
+}
+
+.toc .section-number {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    background: var(--accent-purple);
+    color: white;
+    border-radius: 50%;
+    font-size: 0.85em;
+    font-weight: 600;
+    margin-right: 8px;
+}
+
+.toc a.active .section-number {
+    background: white;
+    color: var(--accent-purple);
+}
+
+/* 为锚点目标添加偏移，避免被sticky面板遮挡 */
+.section[id] {
+    scroll-margin-top: 140px;
+}
+
+/* 移动端适配 */
+@media (max-width: 1024px) {
+    .toc {
+        display: none;
+    }
+}
+
+/* ========================================
+   导航目录按钮样式
+   ======================================== */
+
+.toc-toggle-btn {
+    position: fixed;
+    top: 100px;
+    left: 20px;
+    z-index: 99;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #008080 0%, #006666 100%);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 128, 128, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.toc-toggle-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 128, 128, 0.5);
+}
+
+.toc-toggle-btn:active {
+    transform: scale(0.95);
+}
+
+.toc-toggle-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: white;
+}
+
+.toc-toggle-btn.btn-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* ========================================
+   响应式适配
+   ======================================== */
+
+@media (max-width: 768px) {
+    /* TTS 面板响应式适配 */
+    .tts-panel {
+        padding: 12px 16px;
+        margin: 0;
+        border-radius: 0 0 8px 8px;
+    }
+
+    .tts-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .tts-title {
+        font-size: 1em;
+    }
+
+    .tts-controls {
+        gap: 8px;
+        width: 100%;
+    }
+
+    .tts-btn {
+        padding: 8px 12px;
+        font-size: 0.85em;
+        flex: 1;
+        min-width: 0;
+        justify-content: center;
+    }
+
+    /* 语音选择器响应式 */
+    .voice-selector {
+        width: 100%;
+        margin: 8px 0;
+    }
+
+    .voice-selector select {
+        width: 100%;
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+
+    /* 滑块响应式 */
+    .slider-container {
+        width: 100%;
+        margin: 8px 0;
+    }
+
+    .slider-container label {
+        font-size: 0.9em;
+    }
+
+    .slider-container input {
+        width: calc(100% - 60px);
+    }
+
+    /* 学习模式按钮响应式 */
+    .mode-buttons {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .mode-btn {
+        padding: 6px 12px;
+        font-size: 0.85em;
+        flex: 1;
+        min-width: calc(50% - 6px);
+    }
+
+    /* 状态显示响应式 */
+    .tts-status {
+        font-size: 0.9em;
+        margin-top: 8px;
+    }
+}
+
+/* 超小屏幕适配（< 480px） */
+@media (max-width: 480px) {
+    .tts-panel {
+        padding: 10px 12px;
+    }
+
+    .tts-title {
+        font-size: 0.95em;
+    }
+
+    .tts-controls {
+        gap: 6px;
+    }
+
+    .tts-btn {
+        padding: 6px 10px;
+        font-size: 0.8em;
+    }
+
+    .mode-btn {
+        font-size: 0.8em;
+        padding: 6px 10px;
+    }
+}

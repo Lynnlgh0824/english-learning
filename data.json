@@ -13,6 +13,62 @@
       "patternCount": 8,
       "preview": "Learn the fundamentals of tennis with this beginner lesson covering forehand, backhand, and serve techniques...",
       "tags": ["Tennis", "Sports", "Tutorial", "Beginner"]
+    },
+    {
+      "id": "2026-02-06-coming-home",
+      "title": "Coming Home - What Happens When You Leave Everything Behind?",
+      "date": "2026-02-06",
+      "type": "youtube",
+      "typeLabel": "YouTube",
+      "file": "records/2026-02-06-coming-home.html",
+      "sourceUrl": "https://www.youtube.com/watch?v=video-id",
+      "wordCount": 20,
+      "expressionCount": 15,
+      "patternCount": 8,
+      "preview": "A powerful story about leaving everything behind and finding your way back home...",
+      "tags": ["Life", "Travel", "Personal Growth"]
+    },
+    {
+      "id": "2026-02-06-month-alone-chiang-mai",
+      "title": "A Month Alone in Chiang Mai, Thailand",
+      "date": "2026-02-06",
+      "type": "youtube",
+      "typeLabel": "YouTube",
+      "file": "records/2026-02-06-month-alone-chiang-mai.html",
+      "sourceUrl": "https://www.youtube.com/watch?v=video-id",
+      "wordCount": 20,
+      "expressionCount": 15,
+      "patternCount": 8,
+      "preview": "Experience a month of solo travel in Chiang Mai, Thailand...",
+      "tags": ["Travel", "Thailand", "Solo Travel"]
+    },
+    {
+      "id": "2026-02-06-shanghai-starting-over",
+      "title": "Starting Over in Shanghai",
+      "date": "2026-02-06",
+      "type": "youtube",
+      "typeLabel": "YouTube",
+      "file": "records/2026-02-06-shanghai-starting-over.html",
+      "sourceUrl": "https://www.youtube.com/watch?v=video-id",
+      "wordCount": 20,
+      "expressionCount": 15,
+      "patternCount": 8,
+      "preview": "Moving to Shanghai and starting a new chapter in life...",
+      "tags": ["Life", "Shanghai", "New Beginnings"]
+    },
+    {
+      "id": "2026-02-06-youtube-entrepreneurship",
+      "title": "YouTube Entrepreneurship Journey",
+      "date": "2026-02-06",
+      "type": "youtube",
+      "typeLabel": "YouTube",
+      "file": "records/2026-02-06-youtube-entrepreneurship.html",
+      "sourceUrl": "https://www.youtube.com/watch?v=video-id",
+      "wordCount": 20,
+      "expressionCount": 15,
+      "patternCount": 8,
+      "preview": "Building a business on YouTube and the entrepreneurial journey...",
+      "tags": ["Business", "YouTube", "Entrepreneurship"]
     }
   ],
   "byDate": {
@@ -22,17 +78,32 @@
       "totalWords": 20,
       "totalExpressions": 15,
       "totalPatterns": 8,
-      "records": ["2026-02-24-beginner-tennis-lesson"]
+      "records": [
+        "2026-02-24-beginner-tennis-lesson"
+      ]
+    },
+    "2026-02-06": {
+      "weekday": "星期五",
+      "count": 4,
+      "totalWords": 80,
+      "totalExpressions": 60,
+      "totalPatterns": 32,
+      "records": [
+        "2026-02-06-coming-home",
+        "2026-02-06-month-alone-chiang-mai",
+        "2026-02-06-shanghai-starting-over",
+        "2026-02-06-youtube-entrepreneurship"
+      ]
     }
   },
   "statistics": {
-    "totalRecords": 1,
-    "totalWords": 20,
-    "totalExpressions": 15,
-    "totalPatterns": 8,
-    "firstDate": "2026-02-24",
+    "totalRecords": 5,
+    "totalWords": 100,
+    "totalExpressions": 75,
+    "totalPatterns": 40,
+    "firstDate": "2026-02-06",
     "lastDate": "2026-02-24",
-    "activeDays": 1
+    "activeDays": 2
   },
-  "lastUpdated": "2026-02-25T18:20:00+08:00"
+  "lastUpdated": "2026-02-25T19:00:00+08:00"
 }

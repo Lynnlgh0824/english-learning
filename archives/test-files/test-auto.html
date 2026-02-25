@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TTS 一键测试</title>
+</head>
+<body>
+    <h1>TTS 自动测试</h1>
+    <p>页面加载后会自动尝试播放音频</p>
+    <p id="result">等待中...</p>
+
+    <script>
+        // 页面加载后自动测试
+        window.addEventListener('load', async function() {
+            document.getElementById('result').innerHTML = '⏳ 等待语音加载...';
+
+            // 等待语音加载的异步函数
+            function waitForVoices() {
+                return new Promise(resolve => {
+                    const voices = window.speechSynthesis.getVoices();
+                    if (voices.length > 0) {
+                        resolve(voices);
+                        return;
+                    }
+
+                    // 监听语音加载事件
+                    window.speechSynthesis.onvoiceschanged = () => {
+                        const voices = window.speechSynthesis.getVoices();
+                        if (voices.length > 0) {
+                            resolve(voices);
+                        }
+                    };
+
+                    // 超时保护：最多等 5 秒
+                    setTimeout(() => {
+                        resolve(window.speechSynthesis.getVoices());
+                    }, 5000);
+                });
+            }
+
+            const voices = await waitForVoices();
+            console.log('📊 语音数量:', voices.length);
+
+            if (voices.length === 0) {
+                document.getElementById('result').innerHTML = '❌ 语音未加载<br>请刷新页面重试或重启浏览器';
+                console.error('❌ 语音未加载');
+                return;
+            }
+
+            // 显示所有语音信息
+            let voiceInfo = '可用语音:<br>';
+            voices.slice(0, 5).forEach((v, i) => {
+                voiceInfo += `${i + 1}. ${v.name} (${v.lang})<br>`;
+            });
+            console.log(voiceInfo);
+
+            // 测试1: 不设置语音
+            console.log('🧪 测试1: 不设置语音');
+            const utterance1 = new SpeechSynthesisUtterance('Test one');
+            utterance1.onstart = () => {
+                console.log('✅ 测试1成功（无语音设置）');
+                document.getElementById('result').innerHTML = '✅<b>测试1成功！</b><br>' + voiceInfo;
+            };
+            utterance1.onerror = (e) => {
+                console.error('❌ 测试1失败:', e.error);
+            };
+            window.speechSynthesis.speak(utterance1);
+
+            // 3秒后测试设置语音
+            setTimeout(() => {
+                if (voices[0]) {
+                    console.log('🧪 测试2: 设置第一个语音');
+                    const utterance2 = new SpeechSynthesisUtterance('Test two');
+                    utterance2.voice = voices[0];
+                    utterance2.onstart = () => {
+                        console.log('✅ 测试2成功（设置语音）');
+                    };
+                    utterance2.onerror = (e) => {
+                        console.error('❌ 测试2失败:', e.error);
+                    };
+                    window.speechSynthesis.speak(utterance2);
+                }
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

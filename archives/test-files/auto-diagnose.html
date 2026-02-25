@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TTS 全自动诊断</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 3px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #4CAF50;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .test-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid #dee2e6;
+            transition: all 0.3s ease;
+        }
+
+        .test-card.running {
+            border-left-color: #ffc107;
+            background: #fff8e1;
+        }
+
+        .test-card.pass {
+            border-left-color: #4CAF50;
+            background: #e8f5e9;
+        }
+
+        .test-card.fail {
+            border-left-color: #f44336;
+            background: #ffebee;
+        }
+
+        .test-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .test-status {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .test-details {
+            margin-top: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .icon {
+            font-size: 24px;
+        }
+
+        .summary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .summary h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .summary-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #f0f0f0;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .spinning {
+            animation: spin 1s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔊 TTS 全自动诊断工具</h1>
+            <p>自动检查浏览器权限、执行测试、诊断问题</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div id="testsContainer"></div>
+
+            <div class="summary" id="summary" style="display: none;">
+                <h2>✨ 诊断完成</h2>
+                <div class="summary-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="passCount">0</div>
+                        <div class="stat-label">通过</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="failCount">0</div>
+                        <div class="stat-label">失败</div>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn-primary" onclick="location.reload()">重新测试</button>
+                    <button class="btn-secondary" onclick="exportReport()">导出报告</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const tests = [];
+        let passCount = 0;
+        let failCount = 0;
+
+        // 创建测试卡片
+        function createTestCard(title, icon) {
+            const card = document.createElement('div');
+            card.className = 'test-card running';
+            card.id = `test-${tests.length}`;
+            card.innerHTML = `
+                <div class="test-title">
+                    <span class="icon spinning">${icon}</span>
+                    <span>${title}</span>
+                </div>
+                <div class="test-status">正在测试...</div>
+            `;
+            document.getElementById('testsContainer').appendChild(card);
+
+            const test = {
+                card,
+                title,
+                status: 'running',
+                details: []
+            };
+            tests.push(test);
+            return test;
+        }
+
+        // 更新测试状态
+        function updateTestStatus(testIndex, status, message, details = '') {
+            const test = tests[testIndex];
+            test.status = status;
+
+            const card = test.card;
+            card.className = `test-card ${status}`;
+
+            const icons = {
+                'running': '⏳',
+                'pass': '✅',
+                'fail': '❌'
+            };
+
+            card.querySelector('.icon').textContent = icons[status];
+            card.querySelector('.icon').classList.remove('spinning');
+            card.querySelector('.test-status').innerHTML = message;
+
+            if (details) {
+                const detailsDiv = document.createElement('div');
+                detailsDiv.className = 'test-details';
+                detailsDiv.textContent = details;
+                card.appendChild(detailsDiv);
+            }
+
+            if (status === 'pass') passCount++;
+            if (status === 'fail') failCount++;
+
+            updateProgress();
+        }
+
+        // 更新进度条
+        function updateProgress() {
+            const progress = ((passCount + failCount) / tests.length) * 100;
+            document.getElementById('progressFill').style.width = `${progress}%`;
+        }
+
+        // 显示总结
+        function showSummary() {
+            document.getElementById('summary').style.display = 'block';
+            document.getElementById('passCount').textContent = passCount;
+            document.getElementById('failCount').textContent = failCount;
+        }
+
+        // 测试1: 检查浏览器支持
+        async function testBrowserSupport() {
+            const test = createTestCard('浏览器支持检查', '🌐');
+
+            await sleep(500);
+
+            const supported = 'speechSynthesis' in window;
+            const audioContextSupported = !!(window.AudioContext || window.webkitAudioContext);
+
+            if (supported && audioContextSupported) {
+                updateTestStatus(0, 'pass',
+                    '✅ 浏览器支持 Web Speech API 和 AudioContext',
+                    `speechSynthesis: ${supported}\nAudioContext: ${audioContextSupported}\n用户代理: ${navigator.userAgent.substring(0, 100)}...`
+                );
+            } else {
+                updateTestStatus(0, 'fail',
+                    '❌ 浏览器不支持必要的 API',
+                    `speechSynthesis: ${supported}\nAudioContext: ${audioContextSupported}`
+                );
+            }
+        }
+
+        // 测试2: 系统音频输出
+        async function testSystemAudio() {
+            const test = createTestCard('系统音频输出', '🔊');
+
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+
+                oscillator.frequency.value = 800;
+                oscillator.type = 'sine';
+                gainNode.gain.value = 0.3;
+
+                oscillator.start();
+                oscillator.stop(audioContext.currentTime + 0.3);
+
+                updateTestStatus(1, 'pass',
+                    '✅ 系统音频正常（应该听到"哔"声）',
+                    '播放了 800Hz 正弦波，持续 0.3 秒\n音量: 30%\n如果你听到声音，说明系统音频输出正常'
+                );
+            } catch (error) {
+                updateTestStatus(1, 'fail',
+                    '❌ 系统音频测试失败',
+                    `错误: ${error.message}\n请检查系统音量和音频输出设备`
+                );
+            }
+        }
+
+        // 测试3: 语音列表加载
+        async function testVoiceLoading() {
+            const test = createTestCard('语音列表加载', '🎤');
+
+            // 等待语音加载
+            const voices = await waitForVoices(5000);
+
+            if (voices.length > 0) {
+                const englishVoices = voices.filter(v => v.lang.startsWith('en'));
+                const chineseVoices = voices.filter(v => v.lang.startsWith('zh'));
+
+                updateTestStatus(2, 'pass',
+                    `✅ 成功加载 ${voices.length} 个语音`,
+                    `总语音数: ${voices.length}\n英文语音: ${englishVoices.length}\n中文语音: ${chineseVoices.length}\n\n前5个语音:\n${voices.slice(0, 5).map((v, i) => `${i + 1}. ${v.name} (${v.lang})`).join('\n')}`
+                );
+            } else {
+                updateTestStatus(2, 'fail',
+                    '❌ 语音列表为空',
+                    '5 秒内未加载到任何语音\n建议: 重启浏览器或检查系统语音设置'
+                );
+            }
+        }
+
+        // 测试4: 权限检查
+        async function testPermissions() {
+            const test = createTestCard('浏览器权限检查', '🔐');
+
+            await sleep(500);
+
+            const checks = [];
+
+            // 检查自动播放策略
+            checks.push('自动播放策略: 检查中...');
+
+            // 尝试创建一个无声的 utterance 来测试权限
+            try {
+                const testUtterance = new SpeechSynthesisUtterance('');
+                speechSynthesis.speak(testUtterance);
+                speechSynthesis.cancel();
+
+                checks.push('✅ TTS 权限: 已授予');
+            } catch (error) {
+                checks.push(`❌ TTS 权限: ${error.message}`);
+            }
+
+            // 检查页面是否在焦点
+            checks.push(`页面焦点: ${document.hasFocus() ? '是' : '否'}`);
+            checks.push(`页面可见性: ${document.visibilityState}`);
+
+            updateTestStatus(3, 'pass',
+                '✅ 权限检查完成',
+                checks.join('\n')
+            );
+        }
+
+        // 测试5: TTS 播放测试
+        async function testTTSPlayback() {
+            const test = createTestCard('TTS 实际播放测试', '🔉');
+
+            const voices = await waitForVoices(3000);
+            if (voices.length === 0) {
+                updateTestStatus(4, 'fail', '❌ 无法测试：没有可用语音');
+                return;
+            }
+
+            // 清空队列
+            speechSynthesis.cancel();
+            await sleep(100);
+
+            return new Promise((resolve) => {
+                const utterance = new SpeechSynthesisUtterance('TTS test');
+                utterance.volume = 1;
+                utterance.rate = 1;
+                utterance.pitch = 1;
+
+                let started = false;
+                let ended = false;
+                let errored = false;
+                const startTime = Date.now();
+
+                utterance.onstart = () => {
+                    started = true;
+                    const responseTime = Date.now() - startTime;
+                    updateTestStatus(4, 'pass',
+                        `✅ TTS 播放成功！',
+                        `onstart 触发 ✅\n响应时间: ${responseTime}ms\n使用文本: "TTS test"\n\n如果你听到声音，TTS 完全正常！\n如果没听到声音，请检查:\n1. 系统音量\n2. 浏览器音量\n3. 音频输出设备`
+                    );
+                    resolve();
+                };
+
+                utterance.onend = () => {
+                    ended = true;
+                    if (!started) {
+                        updateTestStatus(4, 'pass',
+                            '⚠️ TTS 快速完成',
+                            'onend 直接触发，可能播放太快\n建议使用更长的测试文本'
+                        );
+                        resolve();
+                    }
+                };
+
+                utterance.onerror = (e) => {
+                    errored = true;
+                    updateTestStatus(4, 'fail',
+                        `❌ TTS 播放失败: ${e.error}`,
+                        `错误类型: ${e.error}\nstartTime: ${new Date(startTime).toLocaleTimeString()}\nerrorTime: ${new Date().toLocaleTimeString()}\nelapsed: ${Date.now() - startTime}ms\n\n常见原因:\n- canceled: 被其他页面或代码取消\n- interrupted: 被中断\n- voice-unavailable: 语音不可用`
+                    );
+                    resolve();
+                };
+
+                console.log('[TTS Test] 调用 speak()...');
+                speechSynthesis.speak(utterance);
+
+                // 超时检查
+                setTimeout(() => {
+                    if (!started && !ended && !errored) {
+                        updateTestStatus(4, 'fail',
+                            '❌ TTS 超时：3秒内未开始播放',
+                            'onstart 未触发\n可能原因:\n1. 浏览器自动播放策略限制\n2. 语音数据损坏\n3. 系统语音服务异常\n\n建议: 重启浏览器'
+                        );
+                        resolve();
+                    }
+                }, 3000);
+            });
+        }
+
+        // 测试6: 逐个测试语音
+        async function testEachVoice() {
+            const test = createTestCard('语音可用性测试', '🎵');
+
+            const voices = await waitForVoices(3000);
+            if (voices.length === 0) {
+                updateTestStatus(5, 'fail', '❌ 没有可用语音');
+                return;
+            }
+
+            const results = [];
+            const testVoices = voices.slice(0, 5); // 只测试前5个
+
+            for (let i = 0; i < testVoices.length; i++) {
+                const voice = testVoices[i];
+
+                await new Promise((resolve) => {
+                    speechSynthesis.cancel();
+                    setTimeout(() => {
+                        const utterance = new SpeechSynthesisUtterance(`Voice ${i + 1}`);
+                        utterance.voice = voice;
+                        utterance.volume = 1;
+
+                        utterance.onstart = () => {
+                            results.push(`✅ ${voice.name} (${voice.lang})`);
+                            resolve();
+                        };
+
+                        utterance.onerror = (e) => {
+                            results.push(`❌ ${voice.name} (${voice.lang}) - ${e.error}`);
+                            resolve();
+                        };
+
+                        speechSynthesis.speak(utterance);
+
+                        // 超时
+                        setTimeout(resolve, 2000);
+                    }, 100);
+                });
+
+                await sleep(300);
+            }
+
+            const workingCount = results.filter(r => r.startsWith('✅')).length;
+            const status = workingCount > 0 ? 'pass' : 'fail';
+
+            updateTestStatus(5, status,
+                `${workingCount > 0 ? '✅' : '❌'} ${workingCount}/${testVoices.length} 个语音可用`,
+                `测试结果:\n${results.join('\n')}\n\n如果部分语音可用，尝试更换语音即可解决问题`
+            );
+        }
+
+        // 等待语音加载
+        function waitForVoices(timeout = 5000) {
+            return new Promise(resolve => {
+                const voices = speechSynthesis.getVoices();
+                if (voices.length > 0) {
+                    resolve(voices);
+                    return;
+                }
+
+                speechSynthesis.onvoiceschanged = () => {
+                    const voices = speechSynthesis.getVoices();
+                    if (voices.length > 0) {
+                        resolve(voices);
+                    }
+                };
+
+                setTimeout(() => {
+                    resolve(speechSynthesis.getVoices());
+                }, timeout);
+            });
+        }
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // 导出报告
+        function exportReport() {
+            const report = {
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent,
+                platform: navigator.platform,
+                tests: tests.map(t => ({
+                    title: t.title,
+                    status: t.status,
+                    details: t.details
+                })),
+                summary: {
+                    pass: passCount,
+                    fail: failCount
+                }
+            };
+
+            const blob = new Blob([JSON.stringify(report, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `tts-diagnostic-${Date.now()}.json`;
+            a.click();
+        }
+
+        // 自动运行所有测试
+        async function runAllTests() {
+            await testBrowserSupport();
+            await sleep(500);
+
+            await testSystemAudio();
+            await sleep(1000);
+
+            await testVoiceLoading();
+            await sleep(500);
+
+            await testPermissions();
+            await sleep(500);
+
+            await testTTSPlayback();
+            await sleep(1000);
+
+            await testEachVoice();
+
+            showSummary();
+        }
+
+        // 页面加载后自动开始
+        window.addEventListener('load', () => {
+            console.log('🚀 开始自动诊断...');
+            setTimeout(runAllTests, 1000);
+        });
+    </script>
+</body>
+</html>

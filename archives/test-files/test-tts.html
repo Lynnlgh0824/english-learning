@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TTS 测试页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-section {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .log {
+            background: #333;
+            color: #0f0;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .log-item {
+            margin: 5px 0;
+        }
+        .success { color: #0f0; }
+        .error { color: #f00; }
+        .info { color: #0ff; }
+    </style>
+</head>
+<body>
+    <h1>TTS 功能测试</h1>
+
+    <div class="test-section">
+        <h2>1. 基础测试</h2>
+        <button onclick="testSpeechSynthesis()">测试 speechSynthesis API</button>
+        <button onclick="testVoices()">测试语音列表</button>
+        <button onclick="testSimpleSpeak()">测试简单朗读</button>
+    </div>
+
+    <div class="test-section">
+        <h2>2. 段落获取测试</h2>
+        <button onclick="testGetParagraphs()">测试段落获取</button>
+        <button onclick="testContainerCheck()">检查容器元素</button>
+    </div>
+
+    <div class="test-section">
+        <h2>3. 日志输出</h2>
+        <div class="log" id="logOutput"></div>
+    </div>
+
+    <!-- 测试内容 -->
+    <div class="container" style="display: none;">
+        <h2>Test Content</h2>
+        <p>This is a test paragraph with English text. It should be long enough to be considered readable, with more than twenty characters.</p>
+        <p>Another paragraph for testing the TTS functionality. This contains English letters and should be detected as readable content.</p>
+        <h3>Subheading Test</h3>
+        <p>Third paragraph to ensure multiple readable paragraphs are detected by the system.</p>
+    </div>
+
+    <script src="/scripts/tts-common.js"></script>
+    <script>
+        function log(message, type = 'info') {
+            const logDiv = document.getElementById('logOutput');
+            const item = document.createElement('div');
+            item.className = 'log-item ' + type;
+            item.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logDiv.appendChild(item);
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log(message);
+        }
+
+        function testSpeechSynthesis() {
+            log('测试 speechSynthesis API...', 'info');
+            if ('speechSynthesis' in window) {
+                log('✅ speechSynthesis API 可用', 'success');
+                log(`speechSynthesis 对象: ${typeof window.speechSynthesis}`, 'info');
+            } else {
+                log('❌ speechSynthesis API 不可用', 'error');
+            }
+        }
+
+        function testVoices() {
+            log('获取语音列表...', 'info');
+            const voices = window.speechSynthesis.getVoices();
+            log(`总语音数: ${voices.length}`, 'info');
+
+            const englishVoices = voices.filter(v => v.lang.startsWith('en'));
+            log(`英文语音数: ${englishVoices.length}`, 'info');
+
+            if (englishVoices.length > 0) {
+                log('前3个英文语音:', 'info');
+                englishVoices.slice(0, 3).forEach((v, i) => {
+                    log(`  ${i + 1}. ${v.name} (${v.lang})`, 'info');
+                });
+            } else {
+                log('⚠️ 没有找到英文语音', 'error');
+            }
+        }
+
+        function testSimpleSpeak() {
+            log('测试简单朗读...', 'info');
+            const text = 'Hello, this is a test of the text to speech functionality.';
+            log(`文本: "${text}"`, 'info');
+
+            const utterance = new SpeechSynthesisUtterance(text);
+
+            utterance.onstart = () => log('✅ 朗读开始', 'success');
+            utterance.onend = () => log('✅ 朗读结束', 'success');
+            utterance.onerror = (e) => log(`❌ 朗读错误: ${e.error}`, 'error');
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function testGetParagraphs() {
+            log('测试段落获取功能...', 'info');
+            log(`window.paragraphs: ${window.paragraphs ? window.paragraphs.length : 'undefined'}`, 'info');
+
+            // 手动调用 getReadableParagraphs
+            const container = document.querySelector('.container');
+            if (!container) {
+                log('❌ 未找到 .container 元素', 'error');
+                return;
+            }
+
+            const allParagraphs = container.querySelectorAll('p, h1, h2, h3, h4, li, blockquote');
+            log(`容器中总元素数: ${allParagraphs.length}`, 'info');
+
+            let readableCount = 0;
+            allParagraphs.forEach((elem, i) => {
+                const text = elem.textContent.trim();
+                if (text.length > 20 && /[a-zA-Z]/.test(text)) {
+                    readableCount++;
+                    if (i < 3) {
+                        log(`  可读段落 ${readableCount}: "${text.substring(0, 40)}..."`, 'info');
+                    }
+                }
+            });
+
+            log(`符合条件的段落数: ${readableCount}`, readableCount > 0 ? 'success' : 'error');
+        }
+
+        function testContainerCheck() {
+            log('检查容器元素...', 'info');
+            const container = document.querySelector('.container');
+            if (container) {
+                log('✅ .container 元素存在', 'success');
+                log(`容器内容长度: ${container.textContent.length}`, 'info');
+            } else {
+                log('❌ .container 元素不存在', 'error');
+            }
+        }
+
+        // 页面加载完成后自动运行基础测试
+        window.addEventListener('DOMContentLoaded', () => {
+            log('=== TTS 测试页面加载完成 ===', 'info');
+            setTimeout(() => {
+                testSpeechSynthesis();
+                testVoices();
+            }, 500);
+        });
+    </script>
+</body>
+</html>

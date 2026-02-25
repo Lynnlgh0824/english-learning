@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TTS 自动化测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .pass { background: #d4edda; color: #155724; }
+        .fail { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+    </style>
+</head>
+<body>
+    <h1>🤖 TTS 自动化测试</h1>
+    <div id="results"></div>
+
+    <script>
+        const results = document.getElementById('results');
+
+        function log(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.textContent = message;
+            results.appendChild(div);
+            console.log(message);
+        }
+
+        async function runTests() {
+            log('开始自动化测试...', 'info');
+
+            // 测试1: API 支持
+            log('测试1: 检查 API 支持', 'info');
+            if ('speechSynthesis' in window) {
+                log('✅ API 支持', 'pass');
+            } else {
+                log('❌ API 不支持', 'fail');
+                return;
+            }
+
+            // 测试2: 等待语音加载
+            log('测试2: 等待语音加载...', 'info');
+            const voices = await waitForVoices();
+            if (voices.length > 0) {
+                log(`✅ 语音加载成功，数量: ${voices.length}`, 'pass');
+            } else {
+                log('❌ 语音加载失败', 'fail');
+                return;
+            }
+
+            // 测试3: 创建 utterance
+            log('测试3: 创建 utterance', 'info');
+            const utterance = new SpeechSynthesisUtterance('This is an automated test');
+            log('✅ utterance 创建成功', 'pass');
+
+            // 测试4: 绑定事件
+            log('测试4: 绑定事件监听器', 'info');
+            let started = false;
+            let errored = false;
+
+            utterance.onstart = () => {
+                started = true;
+                log('✅✅✅ onstart 触发！TTS 正常工作！', 'pass');
+            };
+
+            utterance.onerror = (e) => {
+                errored = true;
+                log(`❌ 错误: ${e.error}`, 'fail');
+            };
+
+            utterance.onend = () => {
+                log('✅ 播放结束', 'pass');
+            };
+
+            // 测试5: 调用 speak
+            log('测试5: 调用 synthesis.speak()', 'info');
+            window.speechSynthesis.speak(utterance);
+
+            // 等待结果
+            await new Promise(resolve => setTimeout(resolve, 5000));
+
+            // 总结
+            log('=== 测试总结 ===', 'info');
+            if (started && !errored) {
+                log('🎉 所有测试通过！TTS 工作正常！', 'pass');
+            } else if (errored) {
+                log('❌ TTS 出错', 'fail');
+            } else {
+                log('⚠️ onstart 未触发（可能是浏览器问题）', 'fail');
+            }
+        }
+
+        function waitForVoices() {
+            return new Promise(resolve => {
+                const voices = window.speechSynthesis.getVoices();
+                if (voices.length > 0) {
+                    resolve(voices);
+                    return;
+                }
+
+                window.speechSynthesis.onvoiceschanged = () => {
+                    const v = window.speechSynthesis.getVoices();
+                    if (v.length > 0) {
+                        resolve(v);
+                    }
+                };
+
+                // 超时保护
+                setTimeout(() => {
+                    const v = window.speechSynthesis.getVoices();
+                    resolve(v);
+                }, 3000);
+            });
+        }
+
+        // 页面加载后自动运行测试
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                runTests();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

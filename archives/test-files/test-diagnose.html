@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>音频诊断</title>
+</head>
+<body>
+    <h1>🔍 音频诊断</h1>
+
+    <div id="step1">
+        <h2>步骤1: 检查系统</h2>
+        <button onclick="checkSystem()">检查</button>
+        <pre id="systemInfo"></pre>
+    </div>
+
+    <div id="step2">
+        <h2>步骤2: 最简单的测试</h2>
+        <button onclick="simpleTest()">播放 "Hello"</button>
+        <p id="result2"></p>
+    </div>
+
+    <div id="step3">
+        <h2>步骤3: 检查音量</h2>
+        <button onclick="testVolume()">测试不同音量</button>
+        <p id="result3"></p>
+    </div>
+
+    <div id="step4">
+        <h2>步骤4: 列出所有语音</h2>
+        <button onclick="listVoices()">列出语音</button>
+        <pre id="voiceList"></pre>
+    </div>
+
+    <script>
+        function checkSystem() {
+            const info = {
+                '浏览器': navigator.userAgent,
+                'speechSynthesis API': 'speechSynthesis' in window ? '✅ 支持' : '❌ 不支持',
+                '当前语音数量': speechSynthesis.getVoices().length,
+                'speaking': speechSynthesis.speaking,
+                'pending': speechSynthesis.pending,
+                'paused': speechSynthesis.paused
+            };
+            document.getElementById('systemInfo').textContent = JSON.stringify(info, null, 2);
+            console.log('系统信息:', info);
+        }
+
+        function simpleTest() {
+            const result = document.getElementById('result2');
+            result.innerHTML = '⏳ 正在测试...';
+
+            const utterance = new SpeechSynthesisUtterance('Hello');
+
+            utterance.volume = 1;
+            utterance.rate = 1;
+            utterance.pitch = 1;
+
+            let started = false;
+            let ended = false;
+
+            utterance.onstart = () => {
+                started = true;
+                result.innerHTML = '✅ onstart 触发！<br><strong>请确认：听到声音了吗？</strong>';
+                console.log('✅ onstart 触发');
+                alert('onstart 触发了！听到声音了吗？');
+            };
+
+            utterance.onend = () => {
+                ended = true;
+                result.innerHTML += '<br>✅ onend 触发';
+                console.log('✅ onend 触发');
+            };
+
+            utterance.onerror = (e) => {
+                result.innerHTML = `❌ 错误: ${e.error}`;
+                console.error('❌ 错误:', e.error);
+                alert(`TTS 错误: ${e.error}`);
+            };
+
+            console.log('调用 speak()...');
+            speechSynthesis.speak(utterance);
+
+            setTimeout(() => {
+                if (!started && !ended) {
+                    result.innerHTML = '⚠️ 3秒内未触发 onstart 或 onerror<br>控制台有错误吗？';
+                }
+            }, 3000);
+        }
+
+        function testVolume() {
+            const result = document.getElementById('result3');
+            result.innerHTML = '⏳ 测试不同音量...';
+
+            const volumes = [0.3, 0.5, 0.8, 1.0];
+
+            volumes.forEach((vol, index) => {
+                setTimeout(() => {
+                    const utterance = new SpeechSynthesisUtterance(`Volume ${vol}`);
+                    utterance.volume = vol;
+                    speechSynthesis.speak(utterance);
+                    result.innerHTML += `<br>音量 ${vol}: 已播放（听到声音了吗？）`;
+                    console.log(`测试音量 ${vol}`);
+                }, index * 1500);
+            });
+        }
+
+        function listVoices() {
+            const voices = speechSynthesis.getVoices();
+            const list = voices.map((v, i) => {
+                return `${i}. ${v.name}
+   语言: ${v.lang}
+   默认: ${v.default}
+   本地服务: ${v.localService}`;
+            }).join('\n\n');
+
+            document.getElementById('voiceList').textContent = list || '没有语音';
+            console.log('所有语音:', voices);
+        }
+
+        // 页面加载时检查
+        window.addEventListener('load', () => {
+            console.log('页面加载完成');
+
+            // 监听语音加载
+            if (speechSynthesis.onvoiceschanged !== undefined) {
+                speechSynthesis.onvoiceschanged = () => {
+                    console.log('语音列表已更新，数量:', speechSynthesis.getVoices().length);
+                };
+            }
+
+            // 延迟检查语音
+            setTimeout(() => {
+                console.log('延迟检查语音数量:', speechSynthesis.getVoices().length);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TTS 极简测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .speaking {
+            background-color: #e0f2f1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>TTS 极简测试</h1>
+
+    <div class="controls">
+        <select id="voiceSelect"></select>
+        <button id="playBtn">播放测试</button>
+    </div>
+
+    <div class="container">
+        <h2>Test Content</h2>
+        <p>This is the first paragraph for testing the text to speech functionality. It should be long enough to be readable and contain English text.</p>
+        <p>This is the second paragraph. The TTS system should be able to read this text aloud without any issues or delays.</p>
+        <p>Here is the third paragraph to ensure that the system works correctly for multiple paragraphs of text.</p>
+    </div>
+
+    <script src="/scripts/tts-simple.js"></script>
+</body>
+</html>

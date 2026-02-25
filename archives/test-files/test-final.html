@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>最终测试</title>
+</head>
+<body>
+    <h1>TTS 最终测试 - 只保留这一个页面</h1>
+    <p>请关闭所有其他浏览器窗口和标签页</p>
+
+    <button onclick="testTTS()">点击播放</button>
+    <p id="result"></p>
+
+    <script>
+        function testTTS() {
+            const result = document.getElementById('result');
+            result.innerHTML = '⏳ 正在测试...';
+
+            // 清空队列
+            speechSynthesis.cancel();
+
+            setTimeout(() => {
+                const u = new SpeechSynthesisUtterance('Hello');
+                u.volume = 1;
+
+                u.onstart = () => {
+                    result.innerHTML = '✅ onstart - 听到声音了吗？';
+                    console.log('✅ onstart');
+                };
+
+                u.onend = () => {
+                    result.innerHTML = '✅ 播放完成';
+                    console.log('✅ onend');
+                };
+
+                u.onerror = (e) => {
+                    result.innerHTML = `❌ 错误: ${e.error}`;
+                    console.error('❌', e.error);
+                };
+
+                console.log('调用 speak...');
+                speechSynthesis.speak(u);
+            }, 100);
+        }
+    </script>
+</body>
+</html>

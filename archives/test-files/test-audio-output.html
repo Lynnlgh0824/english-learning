@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>音频输出诊断</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-card {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .success { border-left: 4px solid #4CAF50; }
+        .error { border-left: 4px solid #f44336; }
+        .warning { border-left: 4px solid #ff9800; }
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #1976D2; }
+        .status { margin: 10px 0; padding: 10px; background: #e3f2fd; border-radius: 4px; }
+        pre { background: #263238; color: #aed581; padding: 15px; border-radius: 4px; overflow-x: auto; }
+        .voice-item { padding: 8px; margin: 5px 0; background: #f5f5f5; border-radius: 4px; cursor: pointer; }
+        .voice-item:hover { background: #e3f2fd; }
+        .voice-item.selected { background: #4CAF50; color: white; }
+    </style>
+</head>
+<body>
+    <h1>🔊 音频输出完整诊断</h1>
+
+    <!-- 测试1: HTML5 Audio -->
+    <div class="test-card">
+        <h2>测试1: HTML5 Audio（系统音频）</h2>
+        <p>测试系统音频输出是否正常</p>
+        <button onclick="testSystemAudio()">播放系统提示音</button>
+        <div id="systemAudioResult" class="status"></div>
+    </div>
+
+    <!-- 测试2: TTS 测试 -->
+    <div class="test-card">
+        <h2>测试2: TTS 语音测试</h2>
+        <p>点击每个按钮测试不同的 TTS 调用方式</p>
+        <button onclick="testTTS1()">测试A: 默认设置</button>
+        <button onclick="testTTS2()">测试B: 明确设置语音</button>
+        <button onclick="testTTS3()">测试C: 指定英文字符</button>
+        <button onclick="testTTS4()">测试D: 中文测试</button>
+        <div id="ttsResult" class="status"></div>
+    </div>
+
+    <!-- 测试3: 语音选择测试 -->
+    <div class="test-card">
+        <h2>测试3: 逐个测试每个语音</h2>
+        <p>点击语音名称来测试该语音是否能正常播放</p>
+        <button onclick="loadAndTestVoices()">加载所有语音</button>
+        <div id="voiceList"></div>
+    </div>
+
+    <!-- 测试4: 浏览器信息 -->
+    <div class="test-card">
+        <h2>测试4: 浏览器和系统信息</h2>
+        <button onclick="showBrowserInfo()">显示详细信息</button>
+        <pre id="browserInfo"></pre>
+    </div>
+
+    <script>
+        // 测试1: 系统音频
+        function testSystemAudio() {
+            const result = document.getElementById('systemAudioResult');
+            result.innerHTML = '⏳ 正在播放系统提示音...';
+
+            // 创建一个简单的 beep 音
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            oscillator.frequency.value = 800;
+            oscillator.type = 'sine';
+            gainNode.gain.value = 0.3;
+
+            oscillator.start();
+            oscillator.stop(audioContext.currentTime + 0.5);
+
+            result.innerHTML = '✅ 应该听到了 "哔" 的一声（800Hz 正弦波）<br>如果没有声音，说明系统音频输出有问题';
+            console.log('✅ 系统音频测试完成');
+        }
+
+        // 测试2A: 默认 TTS
+        function testTTS1() {
+            const result = document.getElementById('ttsResult');
+            result.innerHTML = '⏳ 测试A: 使用默认设置...';
+
+            // 先取消所有正在播放的
+            speechSynthesis.cancel();
+            console.log('🔇 已取消之前的播放');
+
+            // 等待一小段时间
+            setTimeout(() => {
+                const utterance = new SpeechSynthesisUtterance('Test A default');
+                utterance.volume = 1;
+                utterance.rate = 1;
+                utterance.pitch = 1;
+
+                utterance.onstart = () => {
+                    result.innerHTML = '✅ 测试A: onstart 触发<br><strong>听到声音了吗？</strong>';
+                    console.log('✅ 测试A onstart');
+                };
+
+                utterance.onend = () => {
+                    result.innerHTML += '<br>✅ 播放完成';
+                    console.log('✅ 测试A onend');
+                };
+
+                utterance.onerror = (e) => {
+                    result.innerHTML = `❌ 测试A 错误: ${e.error}`;
+                    console.error('❌ 测试A:', e.error);
+                };
+
+                console.log('🔊 调用 speak()...');
+                speechSynthesis.speak(utterance);
+                console.log('✅ speak() 已调用');
+            }, 100);
+        }
+
+        // 测试2B: 指定语音
+        function testTTS2() {
+            const result = document.getElementById('ttsResult');
+            result.innerHTML = '⏳ 测试B: 指定语音...';
+
+            const voices = speechSynthesis.getVoices();
+            if (voices.length === 0) {
+                result.innerHTML = '❌ 没有可用语音';
+                return;
+            }
+
+            const utterance = new SpeechSynthesisUtterance('Test B with voice');
+            utterance.voice = voices[0];
+            utterance.volume = 1;
+            utterance.rate = 1;
+            utterance.pitch = 1;
+
+            utterance.onstart = () => {
+                result.innerHTML = `✅ 测试B: 使用语音 "${voices[0].name}"<br><strong>听到声音了吗？</strong>`;
+                console.log('✅ 测试B onstart');
+            };
+
+            utterance.onerror = (e) => {
+                result.innerHTML = `❌ 测试B 错误: ${e.error}`;
+            };
+
+            speechSynthesis.speak(utterance);
+        }
+
+        // 测试2C: 英文字符
+        function testTTS3() {
+            const result = document.getElementById('ttsResult');
+            result.innerHTML = '⏳ 测试C: 英文字符...';
+
+            const utterance = new SpeechSynthesisUtterance('A');
+            utterance.lang = 'en-US';
+            utterance.volume = 1;
+            utterance.rate = 0.8;
+
+            utterance.onstart = () => {
+                result.innerHTML = '✅ 测试C: 播放字母 "A"<br><strong>听到声音了吗？</strong>';
+            };
+
+            utterance.onerror = (e) => {
+                result.innerHTML = `❌ 测试C 错误: ${e.error}`;
+            };
+
+            speechSynthesis.speak(utterance);
+        }
+
+        // 测试2D: 中文
+        function testTTS4() {
+            const result = document.getElementById('ttsResult');
+            result.innerHTML = '⏳ 测试D: 中文测试...';
+
+            const utterance = new SpeechSynthesisUtterance('你好');
+            utterance.lang = 'zh-CN';
+            utterance.volume = 1;
+
+            utterance.onstart = () => {
+                result.innerHTML = '✅ 测试D: 播放 "你好"<br><strong>听到声音了吗？</strong>';
+            };
+
+            utterance.onerror = (e) => {
+                result.innerHTML = `❌ 测试D 错误: ${e.error}`;
+            };
+
+            speechSynthesis.speak(utterance);
+        }
+
+        // 测试3: 加载并测试所有语音
+        function loadAndTestVoices() {
+            const voiceListDiv = document.getElementById('voiceList');
+            voiceListDiv.innerHTML = '⏳ 加载语音...';
+
+            const voices = speechSynthesis.getVoices();
+            if (voices.length === 0) {
+                voiceListDiv.innerHTML = '❌ 没有语音';
+                return;
+            }
+
+            voiceListDiv.innerHTML = `<p>找到 ${voices.length} 个语音，点击测试：</p>`;
+
+            voices.forEach((voice, index) => {
+                const div = document.createElement('div');
+                div.className = 'voice-item';
+                div.innerHTML = `<strong>${index + 1}. ${voice.name}</strong><br>
+                    语言: ${voice.lang} | 默认: ${voice.default ? '是' : '否'} | 本地: ${voice.localService}`;
+
+                div.onclick = () => {
+                    // 清除之前的选择
+                    document.querySelectorAll('.voice-item').forEach(item => {
+                        item.classList.remove('selected');
+                    });
+                    div.classList.add('selected');
+
+                    // 测试这个语音
+                    console.log(`测试语音 ${voice.name}`);
+                    const utterance = new SpeechSynthesisUtterance(`This is ${voice.name}`);
+                    utterance.voice = voice;
+
+                    utterance.onstart = () => {
+                        alert(`正在播放: ${voice.name}\n\n听到声音了吗？`);
+                    };
+
+                    utterance.onerror = (e) => {
+                        alert(`语音 ${voice.name} 播放失败: ${e.error}`);
+                    };
+
+                    speechSynthesis.cancel();
+                    speechSynthesis.speak(utterance);
+                };
+
+                voiceListDiv.appendChild(div);
+            });
+        }
+
+        // 测试4: 浏览器信息
+        function showBrowserInfo() {
+            const info = {
+                '用户代理': navigator.userAgent,
+                '平台': navigator.platform,
+                '语言': navigator.language,
+                'cookie启用': navigator.cookieEnabled,
+                '在线状态': navigator.onLine,
+                'speechSynthesis 支持': 'speechSynthesis' in window,
+                'AudioContext 支持': !!(window.AudioContext || window.webkitAudioContext),
+                '当前语音数量': speechSynthesis.getVoices().length,
+                'synthesis.speaking': speechSynthesis.speaking,
+                'synthesis.pending': speechSynthesis.pending,
+                'synthesis.paused': speechSynthesis.paused,
+            };
+
+            document.getElementById('browserInfo').textContent = JSON.stringify(info, null, 2);
+            console.log('浏览器信息:', info);
+        }
+
+        // 页面加载
+        window.addEventListener('load', () => {
+            console.log('页面加载完成');
+
+            // 监听语音加载
+            if (speechSynthesis.onvoiceschanged !== undefined) {
+                speechSynthesis.onvoiceschanged = () => {
+                    console.log('语音列表更新:', speechSynthesis.getVoices().length);
+                };
+            }
+        });
+    </script>
+</body>
+</html>

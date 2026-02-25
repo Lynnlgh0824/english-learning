@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs ls -lt)",
+      "Bash(wc -l scripts/* tests/* records/*)",
+      "Bash(grep -A5 -B5 \"流畅度\\\\|用户界面\\\\|操作便捷\" docs/*.md)",
+      "Bash(git add -A)",
+      "Bash(git commit:*)",
+      "Bash(git push origin main)",
+      "Bash(git pull --rebase origin main)",
+      "Bash(git add .claude/settings.json)"
+    ]
+  }
+}

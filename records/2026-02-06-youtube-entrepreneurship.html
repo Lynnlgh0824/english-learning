@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube创业：1年半涨粉百万 - 英语学习记录</title>
+    <!-- 页面基础样式 -->
+    <link rel="stylesheet" href="/styles/common.css">
+    <!-- TTS 公共样式 -->
+    <link rel="stylesheet" href="/styles/tts-common.css">
+</head>
+<body>
+    <div class="reading-progress" id="readingProgress"></div>
+
+    <div class="container">
+        <a href="../index.html" class="back-link">← 返回学习列表</a>
+
+        <!-- 朗读控制面板 -->
+        <div class="tts-panel" id="ttsPanel">
+            <div class="tts-header">
+                <div class="tts-title">
+                    <span>🎙️</span>
+                    <span>智能朗读助手</span>
+                </div>
+                <div class="tts-controls">
+                    <button class="tts-btn primary" id="playBtn" onclick="togglePlay()">
+                        <span id="playIcon">▶️</span>
+                        <span id="playText">播放</span>
+                    </button>
+                    <button class="tts-btn" id="selectionBtn" onclick="playSelection()" disabled style="opacity: 0.5; cursor: not-allowed;">
+                        <span>📝</span>
+                        <span>从划词区域开始</span>
+                    </button>
+                    <button class="mode-btn" data-mode="quick" onclick="switchMode('quick')">
+                        <span>⚡</span>
+                        <span>快速</span>
+                    </button>
+                    <button class="mode-btn active" data-mode="standard" onclick="switchMode('standard')">
+                        <span>📚</span>
+                        <span>标准</span>
+                    </button>
+                    <button class="mode-btn" data-mode="intensive" onclick="switchMode('intensive')">
+                        <span>🔥</span>
+                        <span>缓慢</span>
+                    </button>
+                </div>
+            </div>
+            <div class="tts-settings">
+                <div class="tts-setting">
+                    <label>🗣️ 语音：</label>
+                    <select class="tts-select" id="voiceSelect" onchange="handleVoiceChange()">
+                        <option value="">加载中...</option>
+                    </select>
+                </div>
+                <div class="tts-setting">
+                    <label>⚡ 语速：</label>
+                    <input type="range" class="tts-slider" id="rateSlider" min="0.5" max="2" step="0.1" value="0.75" oninput="updateRate()">
+                    <span id="rateValue">0.75x</span>
+                </div>
+            </div>
+            <div class="tts-progress-row">
+                <div class="tts-status" id="ttsStatus">
+                    💡 点击"播放"开始朗读内容
+                </div>
+                <div class="tts-progress">
+                    <div class="tts-progress-bar" id="ttsProgressBar"></div>
+                </div>
+            </div>
+        </div>
+
+        <h1>📚 YouTube: "YouTube创业：1年半涨粉百万，我做对的这件事"</h1>
+        <p class="subtitle">英语学习工具包</p>
+
+        <div class="meta-info">
+            <p><strong>📺 视频来源</strong>：<a href="https://www.youtube.com/watch?v=qdgUqNjIAkA" target="_blank">YouTube - 大米Jojo</a></p>
+            <p><strong>📅 学习日期</strong>：2026-02-06</p>
+            <p><strong>🏷️ 类型</strong>：YouTube 创业经验分享 - 内容创作、粉丝增长</p>
+        </div>
+
+        <div class="toc">
+            <h3>📑 学习目录</h3>
+            <ul>
+                <li><a href="#section-1"><span class="section-number">1</span>内容总览</a></li>
+                <li><a href="#section-2"><span class="section-number">2</span>核心词汇表（20个）</a></li>
+                <li><a href="#section-3"><span class="section-number">3</span>地道表达（15个）</a></li>
+                <li><a href="#section-4"><span class="section-number">4</span>句型解析（8个）</a></li>
+                <li><a href="#section-5"><span class="section-number">5</span>学习任务</a></li>
+                <li><a href="#section-6"><span class="section-number">6</span>学习建议</a></li>
+            </ul>
+        </div>
+
+        <!-- 导航目录按钮 -->
+        <button class="toc-toggle-btn" id="tocToggleBtn" aria-label="切换目录">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+            </svg>
+        </button>
+
+        <div class="section" id="section-1">
+            <h2>1. 内容总览</h2>
+
+            <h3>核心观点总结</h3>
+            <p>This video shares the creator's journey of growing from zero to one million subscribers in just 18 months on YouTube. The core message focuses on identifying a unique content niche, consistent value creation, and building authentic connections with the audience. The creator emphasizes that success comes from solving real problems for viewers rather than chasing trends or viral tactics.</p>
+
+            <h3>关键词列表</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>英文</th>
+                        <th>中文</th>
+                        <th>语境提示</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Content Creation</strong></td><td>内容创作</td><td>核心主题</td></tr>
+                    <tr><td><strong>Niche</strong></td><td>细分领域</td><td>定位策略</td></tr>
+                    <tr><td><strong>Audience Engagement</strong></td><td>观众互动</td><td>增长关键</td></tr>
+                    <tr><td><strong>Consistency</strong></td><td>持续性</td><td>成功要素</td></tr>
+                    <tr><td><strong>Value Proposition</strong></td><td>价值主张</td><td>差异化</td></tr>
+                    <tr><td><strong>Monetization</strong></td><td>变现</td><td>商业模式</td></tr>
+                    <tr><td><strong>Authenticity</strong></td><td>真实性</td><td>品牌建设</td></tr>
+                    <tr><td><strong>Analytics</strong></td><td>数据分析</td><td>优化工具</td></tr>
+                    <tr><td><strong>Collaboration</strong></td><td>合作</td><td>增长策略</td></tr>
+                    <tr><td><strong>Algorithm</strong></td><td>算法</td><td>平台机制</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section" id="section-2">
+            <h2>2. 核心词汇表（20个）</h2>
+
+            <div class="word-card">
+                <h3>1. <strong>Subscribers</strong> <code>/səbˈskraɪbərz/</code></h3>
+                <p><strong>订阅者</strong></p>
+
+                <p><strong>📖 语境含义</strong><br>订阅某个频道或服务的人</p>
+
+                <p><strong>💬 材料中的原句用法</strong></p>
+                <blockquote>"I grew from zero to one million <strong>subscribers</strong> in just 18 months."</blockquote>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ul>
+                    <li><strong>💼 职场场景</strong><br><blockquote>"Our channel gained 50,000 new <strong>subscribers</strong> after the product launch."</blockquote></li>
+                    <li><strong>☕ 日常场景</strong><br><blockquote>"I subscribe to several cooking channels for recipe ideas."</blockquote></li>
+                    <li><strong>📚 学术场景</strong><br><blockquote>"Researchers track <strong>subscriber</strong> engagement metrics to study audience behavior."</blockquote></li>
+                </ul>
+
+                <p><strong>🔗 习惯搭配</strong></p>
+                <ul>
+                    <li>gain subscribers - 获得订阅者</li>
+                    <li>loyal subscribers - 忠实订阅者</li>
+                    <li>subscriber count - 订阅者数量</li>
+                    <li>subscribe to a channel - 订阅频道</li>
+                </ul>
+            </div>
+
+            <div class="word-card">
+                <h3>2. <strong>Niche</strong> <code>/niːʃ/</code></h3>
+                <p><strong>细分市场；利基市场</strong></p>
+
+                <p><strong>📖 语境含义</strong><br>适合某人或某产品的特定市场或领域</p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ul>
+                    <li><strong>💼 职场场景</strong><br><blockquote>"The company carved out a <strong>niche</strong> in the luxury sustainable fashion market."</blockquote></li>
+                    <li><strong>☕ 日常场景</strong><br><blockquote>"She found her <strong>niche</strong> teaching fitness to busy professionals."</blockquote></li>
+                    <li><strong>📚 学术场景</strong><br><blockquote>"<strong>Niche</strong> marketing strategies often outperform mass marketing in specialized industries."</blockquote></li>
+                </ul>
+
+                <p><strong>🔗 习惯搭配</strong></p>
+                <ul>
+                    <li>find a niche - 找到细分市场</li>
+                    <li>niche market - 细分市场</li>
+                    <li>niche audience - 细分受众</li>
+                    <li>carve out a niche - 开拓细分市场</li>
+                </ul>
+            </div>
+
+            <div class="word-card">
+                <h3>3. <strong>Consistent</strong> <code>/kənˈsɪstənt/</code></h3>
+                <p><strong>持续的；一致的</strong></p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ul>
+                    <li><strong>💼 职场场景</strong><br><blockquote>"<strong>Consistent</strong> performance is key to career advancement."</blockquote></li>
+                    <li><strong>☕ 日常场景</strong><br><blockquote>"I try to maintain a <strong>consistent</strong> workout routine."</blockquote></li>
+                    <li><strong>📚 学术场景</strong><br><blockquote>"<strong>Consistent</strong> results across multiple experiments strengthen the research findings."</blockquote></li>
+                </ul>
+
+                <p><strong>🔗 习惯搭配</strong></p>
+                <ul>
+                    <li>consistent effort - 持续努力</li>
+                    <li>consistent quality - 一致的质量</li>
+                    <li>be consistent with - 与...保持一致</li>
+                    <li>consistent growth - 持续增长</li>
+                </ul>
+            </div>
+
+            <div class="word-card">
+                <h3>4. <strong>Engagement</strong> <code>/ɪnˈɡeɪdʒmənt/</code></h3>
+                <p><strong>互动；参与度</strong></p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ul>
+                    <li><strong>💼 职场场景</strong><br><blockquote>"Employee <strong>engagement</strong> directly impacts productivity and retention."</blockquote></li>
+                    <li><strong>☕ 日常场景</strong><br><blockquote>"The post received amazing <strong>engagement</strong> from my followers."</blockquote></li>
+                    <li><strong>📚 学术场景</strong><br><blockquote>"Student <strong>engagement</strong> is a critical factor in learning outcomes."</blockquote></li>
+                </ul>
+
+                <p><strong>🔗 习惯搭配</strong></p>
+                <ul>
+                    <li>audience engagement - 观众互动</li>
+                    <li>engagement rate - 互动率</li>
+                    <li>engage with - 与...互动</li>
+                    <li>boost engagement - 提升互动</li>
+                </ul>
+            </div>
+
+            <div class="word-card">
+                <h3>5. <strong>Monetize</strong> <code>/ˈmɒnɪtaɪz/</code></h3>
+                <p><strong>变现；货币化</strong></p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ul>
+                    <li><strong>💼 职场场景</strong><br><blockquote>"The company plans to <strong>monetize</strong> its free app through premium features."</blockquote></li>
+                    <li><strong>☕ 日常场景</strong><br><blockquote>"Many bloggers <strong>monetize</strong> their content through affiliate marketing."</blockquote></li>
+                    <li><strong>📚 学术场景</strong><br><blockquote>"Researchers study how creators <strong>monetize</strong> digital content on social platforms."</blockquote></li>
+                </ul>
+
+                <p><strong>🔗 习惯搭配</strong></p>
+                <ul>
+                    <li>monetize content - 内容变现</li>
+                    <li>monetize a channel - 频道变现</li>
+                    <li>monetization strategy - 变现策略</li>
+                    <li>successfully monetize - 成功变现</li>
+                </ul>
+            </div>
+
+            <div class="word-card">
+                <h3>6. <strong>Authentic</strong> <code>/ɔːˈθentɪk/</code></h3>
+                <p><strong>真实的；可信的</strong></p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ul>
+                    <li><strong>💼 职场场景</strong><br><blockquote>"<strong>Authentic</strong> leadership builds trust and loyalty among team members."</blockquote></li>
+                    <li><strong>☕ 日常场景</strong><br><blockquote>"I appreciate <strong>authentic</strong> people who don't pretend to be someone they're not."</blockquote></li>
+                    <li><strong>📚 学术场景</strong><br><blockquote>"<strong>Authentic</strong> assessment methods evaluate real-world skills more effectively."</blockquote></li>
+                </ul>
+
+                <p><strong>🔗 习惯搭配</strong></p>
+                <ul>
+                    <li>authentic content - 真实内容</li>
+                    <li>be authentic - 保持真实</li>
+                    <li>authentic voice - 真实的声音</li>
+                    <li>authentic self - 真实的自我</li>
+                </ul>
+            </div>
+
+            <div class="word-card">
+                <h3>7. <strong>Algorithm</strong> <code>/ˈælɡərɪðəm/</code></h3>
+                <p><strong>算法</strong></p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ul>
+                    <li><strong>💼 职场场景</strong><br><blockquote>"Social media <strong>algorithms</strong> determine which content users see first."</blockquote></li>
+                    <li><strong>☕ 日常场景</strong><br><blockquote>"The app's <strong>algorithm</strong> recommends songs based on my listening history."</blockquote></li>
+                    <li><strong>📚 学术场景</strong><br><blockquote>"Researchers develop <strong>algorithms</strong> to solve complex computational problems."</blockquote></li>
+                </ul>
+
+                <p><strong>🔗 习惯搭配</strong></p>
+                <ul>
+                    <li>platform algorithm - 平台算法</li>
+                    <li>algorithm change - 算法变化</li>
+                    <li>work with the algorithm - 配合算法</li>
+                    <li>optimize for algorithm - 针对算法优化</li>
+                </ul>
+            </div>
+
+            <div class="word-card">
+                <h3>8. <strong>Collaborate</strong> <code>/kəˈlæbəreɪt/</code></h3>
+                <p><strong>合作；协作</strong></p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ul>
+                    <li><strong>💼 职场场景</strong><br><blockquote>"We need to <strong>collaborate</strong> with the marketing team on this campaign."</blockquote></li>
+                    <li><strong>☕ 日常场景</strong><br><blockquote>"I love to <strong>collaborate</strong> with friends on creative projects."</blockquote></li>
+                    <li><strong>📚 学术场景</strong><br><blockquote>"Scientists <strong>collaborate</strong> across institutions to advance research."</blockquote></li>
+                </ul>
+
+                <p><strong>🔗 习惯搭配</strong></p>
+                <ul>
+                    <li>collaborate with - 与...合作</li>
+                    <li>collaborate on - 在...上合作</li>
+                    <li>collaboration opportunity - 合作机会</li>
+                    <li>successful collaboration - 成功的合作</li>
+                </ul>
+            </div>
+
+            <div class="word-card">
+                <h3>9. <strong>Optimize</strong> <code>/ˈɒptɪmaɪz/</code></h3>
+                <p><strong>优化</strong></p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ul>
+                    <li><strong>💼 职场场景</strong><br><blockquote>"We need to <strong>optimize</strong> our workflow to reduce costs."</blockquote></li>
+                    <li><strong>☕ 日常场景</strong><br><blockquote>"I <strong>optimize</strong> my morning routine to be more productive."</blockquote></li>
+                    <li><strong>📚 学术场景</strong><br><blockquote>"Researchers <strong>optimize</strong> parameters to achieve the best experimental results."</blockquote></li>
+                </ul>
+
+                <p><strong>🔗 习惯搭配</strong></p>
+                <ul>
+                    <li>optimize content - 优化内容</li>
+                    <li>optimize for - 针对...优化</li>
+                    <li>optimize performance - 优化性能</li>
+                    <li>continuously optimize - 持续优化</li>
+                </ul>
+            </div>
+
+            <div class="word-card">
+                <h3>10. <strong>Viral</strong> <code>/ˈvaɪrəl/</code></h3>
+                <p><strong>病毒式传播的</strong></p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ul>
+                    <li><strong>💼 职场场景</strong><br><blockquote>"The marketing campaign went <strong>viral</strong>, generating millions of impressions."</blockquote></li>
+                    <li><strong>☕ 日常场景</strong><br><blockquote>"That funny video went <strong>viral</strong> on social media last week."</blockquote></li>
+                    <li><strong>📚 学术场景</strong><br><blockquote>"<strong>Viral</strong> marketing strategies leverage social networks for rapid diffusion."</blockquote></li>
+                </ul>
+
+                <p><strong>🔗 习惯搭配</strong></p>
+                <ul>
+                    <li>go viral - 病毒式传播</li>
+                    <li>viral content - 病毒式内容</li>
+                    <li>viral video - 病毒式视频</li>
+                    <li>viral marketing - 病毒式营销</li>
+                </ul>
+            </div>
+
+            <div class="word-card">
+                <h3>11. <strong>Audience</strong> <code>/ˈɔːdiəns/</code></h3>
+                <p><strong>观众；受众</strong></p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ul>
+                    <li><strong>💼 职场场景</strong><br><blockquote>"Understanding your target <strong>audience</strong> is essential for effective marketing."</blockquote></li>
+                    <li><strong>☕ 日常场景</strong><br><blockquote>"The comedian had the <strong>audience</strong> laughing throughout the show."</blockquote></li>
+                    <li><strong>📚 学术场景</strong><br><blockquote>"Academic writing often targets a specialized <strong>audience</strong> of researchers."</blockquote></li>
+                </ul>
+
+                <p><strong>🔗 习惯搭配</strong></p>
+                <ul>
+                    <li>target audience - 目标受众</li>
+                    <li>audience engagement - 观众互动</li>
+                    <li>build an audience - 建立受众</li>
+                    <li>know your audience - 了解你的受众</li>
+                </ul>
+            </div>
+
+            <div class="word-card">
+                <h3>12. <strong>Strategy</strong> <code>/ˈstrætədʒi/</code></h3>
+                <p><strong>策略</strong></p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ul>
+                    <li><strong>💼 职场场景</strong><br><blockquote>"We need a comprehensive <strong>strategy</strong> to enter new markets."</blockquote></li>
+                    <li><strong>☕ 日常场景</strong><br><blockquote>"My study <strong>strategy</strong> involves active recall and spaced repetition."</blockquote></li>
+                    <li><strong>📚 学术场景</strong><br><blockquote>"Research methodology requires a well-defined data collection <strong>strategy</strong>."</blockquote></li>
+                </ul>
+
+                <p><strong>🔗 习惯搭配</strong></p>
+                <ul>
+                    <li>content strategy - 内容策略</li>
+                    <li>growth strategy - 增长策略</li>
+                    <li>develop a strategy - 制定策略</li>
+                    <li>effective strategy - 有效策略</li>
+                </ul>
+            </div>
+
+            <div class="word-card">
+                <h3>13. <strong>Milestone</strong> <code>/ˈmaɪlstəʊn/</code></h3>
+                <p><strong>里程碑</strong></p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ul>
+                    <li><strong>💼 职场场景</strong><br><blockquote>"Completing the project ahead of schedule was a significant <strong>milestone</strong>."</blockquote></li>
+                    <li><strong>☕ 日常场景</strong><br><blockquote>"Graduating from college was an important <strong>milestone</strong> in my life."</blockquote></li>
+                    <li><strong>📚 学术场景</strong><br><blockquote>"Publishing a first research paper is a key <strong>milestone</strong> for PhD students."</blockquote></li>
+                </ul>
+
+                <p><strong>🔗 习惯搭配</strong></p>
+                <ul>
+                    <li>reach a milestone - 达到里程碑</li>
+                    <li>major milestone - 重大里程碑</li>
+                    <li>celebrate milestones - 庆祝里程碑</li>
+                    <li>milestone achievement - 里程碑成就</li>
+                </ul>
+            </div>
+
+            <div class="word-card">
+                <h3>14. <strong>Revenue</strong> <code>/ˈrevənjuː/</code></h3>
+                <p><strong>收入；收益</strong></p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ul>
+                    <li><strong>💼 职场场景</strong><br><blockquote>"The company's annual <strong>revenue</strong> exceeded all expectations."</blockquote></li>
+                    <li><strong>☕ 日常场景</strong><br><blockquote>"Diversified <strong>revenue</strong> sources provide financial security."</blockquote></li>
+                    <li><strong>📚 学术场景</strong><br><blockquote>"<strong>Revenue</strong> models in digital publishing continue to evolve."</blockquote></li>
+                </ul>
+
+                <p><strong>🔗 习惯搭配</strong></p>
+                <ul>
+                    <li>revenue stream - 收入来源</li>
+                    <li>generate revenue - 产生收入</li>
+                    <li>revenue growth - 收入增长</li>
+                    <li>advertising revenue - 广告收入</li>
+                </ul>
+            </div>
+
+            <div class="word-card">
+                <h3>15. <strong>Thumbnail</strong> <code>/ˈθʌmneɪl/</code></h3>
+                <p><strong>缩略图</strong></p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ul>
+                    <li><strong>💼 职场场景</strong><br><blockquote>"Design effective <strong>thumbnails</strong> to improve video discoverability."</blockquote></li>
+                    <li><strong>☕ 日常场景</strong><br><blockquote>"I always check the <strong>thumbnails</strong> before clicking on a video."</blockquote></li>
+                    <li><strong>📚 学术场景</strong><br><blockquote>"Visual elements like <strong>thumbnails</strong> influence user behavior on platforms."</blockquote></li>
+                </ul>
+
+                <p><strong>🔗 习惯搭配</strong></p>
+                <ul>
+                    <li>video thumbnail - 视频缩略图</li>
+                    <li>custom thumbnail - 自定义缩略图</li>
+                    <li>thumbnail design - 缩略图设计</li>
+                    <li>click-through rate - 点击率</li>
+                </ul>
+            </div>
+
+            <div class="word-card">
+                <h3>16. <strong>Analytics</strong> <code>/ˌænəˈlɪtɪks/</code></h3>
+                <p><strong>分析；数据</strong></p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ul>
+                    <li><strong>💼 职场场景</strong><br><blockquote>"Data <strong>analytics</strong> help businesses make informed decisions."</blockquote></li>
+                    <li><strong>☕ 日常场景</strong><br><blockquote>"I check my social media <strong>analytics</strong> to see which posts get the most engagement."</blockquote></li>
+                    <li><strong>📚 学术场景</strong><br><blockquote>"Learning <strong>analytics</strong> provide insights into student performance."</blockquote></li>
+                </ul>
+
+                <p><strong>🔗 习惯搭配</strong></p>
+                <ul>
+                    <li>view analytics - 查看分析</li>
+                    <li>analytics dashboard - 分析仪表板</li>
+                    <li>data analytics - 数据分析</li>
+                    <li>google analytics - 谷歌分析</li>
+                </ul>
+            </div>
+
+            <div class="word-card">
+                <h3>17. <strong>Retention</strong> <code>/rɪˈtenʃn/</code></h3>
+                <p><strong>保留；留存率</strong></p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ul>
+                    <li><strong>💼 职场场景</strong><br><blockquote>"Employee <strong>retention</strong> improves with good workplace culture."</blockquote></li>
+                    <li><strong>☕ 日常场景</strong><br><blockquote>"Customer <strong>retention</strong> is cheaper than acquiring new customers."</blockquote></li>
+                    <li><strong>📚 学术场景</strong><br><blockquote>"Student <strong>retention</strong> rates affect university funding and reputation."</blockquote></li>
+                </ul>
+
+                <p><strong>🔗 习惯搭配</strong></p>
+                <ul>
+                    <li>audience retention - 观众留存率</li>
+                    <li>retention rate - 留存率</li>
+                    <li>improve retention - 提高留存率</li>
+                    <li>high retention - 高留存率</li>
+                </ul>
+            </div>
+
+            <div class="word-card">
+                <h3>18. <strong>Trend</strong> <code>/trend/</code></h3>
+                <p><strong>趋势</strong></p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ul>
+                    <li><strong>💼 职场场景</strong><br><blockquote>"Keeping up with industry <strong>trends</strong> is crucial for professional growth."</blockquote></li>
+                    <li><strong>☕ 日常场景</strong><br><blockquote>"Fashion <strong>trends</strong> change every season."</blockquote></li>
+                    <li><strong>📚 学术场景</strong><br><blockquote>"Researchers identify <strong>trends</strong> in data to draw conclusions."</blockquote></li>
+                </ul>
+
+                <p><strong>🔗 习惯搭配</strong></p>
+                <ul>
+                    <li>follow trends - 跟随趋势</li>
+                    <li>current trend - 当前趋势</li>
+                    <li>trend analysis - 趋势分析</li>
+                    <li>set a trend - 引领趋势</li>
+                </ul>
+            </div>
+
+            <div class="word-card">
+                <h3>19. <strong>Brand</strong> <code>/brænd/</code></h3>
+                <p><strong>品牌</strong></p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ul>
+                    <li><strong>💼 职场场景</strong><br><blockquote>"Strong <strong>brands</strong> command premium prices in the market."</blockquote></li>
+                    <li><strong>☕ 日常场景</strong><br><blockquote>"I'm loyal to <strong>brands</strong> that share my values."</blockquote></li>
+                    <li><strong>📚 学术场景</strong><br><blockquote>"<strong>Brand</strong> equity influences consumer purchasing decisions."</blockquote></li>
+                </ul>
+
+                <p><strong>🔗 习惯搭配</strong></p>
+                <ul>
+                    <li>personal brand - 个人品牌</li>
+                    <li>brand awareness - 品牌知名度</li>
+                    <li>build a brand - 建立品牌</li>
+                    <li>brand identity - 品牌形象</li>
+                </ul>
+            </div>
+
+            <div class="word-card">
+                <h3>20. <strong>Sustainable</strong> <code>/səˈsteɪnəbl/</code></h3>
+                <p><strong>可持续的</strong></p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ul>
+                    <li><strong>💼 职场场景</strong><br><blockquote>"<strong>Sustainable</strong> business practices benefit both companies and the environment."</blockquote></li>
+                    <li><strong>☕ 日常场景</strong><br><blockquote>"I aim for a <strong>sustainable</strong> work-life balance."</blockquote></li>
+                    <li><strong>📚 学术场景</strong><br><blockquote>"<strong>Sustainable</strong> development meets present needs without compromising future generations."</blockquote></li>
+                </ul>
+
+                <p><strong>🔗 习惯搭配</strong></p>
+                <ul>
+                    <li>sustainable growth - 可持续增长</li>
+                    <li>sustainable income - 可持续收入</li>
+                    <li>sustainable lifestyle - 可持续生活方式</li>
+                    <li>sustainable business - 可持续业务</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section" id="section-3">
+            <h2>3. 地道表达（15个）</h2>
+
+            <div class="expression-card">
+                <h3>1. <strong>Carve out a niche</strong> - 开拓细分市场</h3>
+
+                <p><strong>📖 释义</strong>：成功地在某个特定领域或市场建立自己的位置</p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ol>
+                    <li>She <strong>carved out a niche</strong> in luxury sustainable fashion.</li>
+                    <li>Small businesses can <strong>carve out a niche</strong> by serving underserved communities.</li>
+                    <li>It took years to <strong>carve out a niche</strong> in such a competitive industry.</li>
+                </ol>
+
+                <p><strong>💡 同义表达对比</strong></p>
+                <ul>
+                    <li>❌ Find a special place</li>
+                    <li>✅ Carve out a niche (更专业、更主动)</li>
+                </ul>
+            </div>
+
+            <div class="expression-card">
+                <h3>2. <strong>Game-changing</strong> - 颠覆性的；改变游戏规则的</h3>
+
+                <p><strong>📖 释义</strong>：产生巨大影响、彻底改变现状的</p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ol>
+                    <li>The new technology is <strong>game-changing</strong> for the industry.</li>
+                    <li>Her advice was <strong>game-changing</strong> for my business strategy.</li>
+                    <li>This feature is <strong>game-changing</strong> for user experience.</li>
+                </ol>
+
+                <p><strong>💡 同义表达对比</strong></p>
+                <ul>
+                    <li>❌ Very important</li>
+                    <li>✅ Game-changing (更生动、更有冲击力)</li>
+                </ul>
+            </div>
+
+            <div class="expression-card">
+                <h3>3. <strong>Hit the ground running</strong> - 快速上手；立即开始高效工作</h3>
+
+                <p><strong>📖 释义</strong>：立即充满活力地开始做某事</p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ol>
+                    <li>We need to <strong>hit the ground running</strong> on this project.</li>
+                    <li>She <strong>hit the ground running</strong> in her new role.</li>
+                    <li>With proper preparation, you can <strong>hit the ground running</strong>.</li>
+                </ol>
+
+                <p><strong>💡 同义表达对比</strong></p>
+                <ul>
+                    <li>❌ Start quickly</li>
+                    <li>✅ Hit the ground running (更地道、更有画面感)</li>
+                </ul>
+            </div>
+
+            <div class="expression-card">
+                <h3>4. <strong>Learn the ropes</strong> - 摸清门道；学习基础知识</h3>
+
+                <p><strong>📖 释义</strong>：学习如何做某事或理解某个系统的运作方式</p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ol>
+                    <li>It took a few months to <strong>learn the ropes</strong> of the job.</li>
+                    <li>He's still <strong>learning the ropes</strong> of content creation.</li>
+                    <li>An internship helps you <strong>learn the ropes</strong> quickly.</li>
+                </ol>
+
+                <p><strong>💡 同义表达对比</strong></p>
+                <ul>
+                    <li>❌ Learn the basics</li>
+                    <li>✅ Learn the ropes (更生动、源自航海术语)</li>
+                </ul>
+            </div>
+
+            <div class="expression-card">
+                <h3>5. <strong>In the long run</strong> - 从长远来看</h3>
+
+                <p><strong>📖 释义</strong>：最终、经过较长时间后</p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ol>
+                    <li>Hard work pays off <strong>in the long run</strong>.</li>
+                    <li>Investing in education is beneficial <strong>in the long run</strong>.</li>
+                    <li>Short-term sacrifices lead to long-term gains.</li>
+                </ol>
+
+                <p><strong>💡 同义表达对比</strong></p>
+                <ul>
+                    <li>❌ Eventually</li>
+                    <li>✅ In the long run (更常用、更自然)</li>
+                </ul>
+            </div>
+
+            <div class="expression-card">
+                <h3>6. <strong>Strike while the iron is hot</strong> - 趁热打铁</h3>
+
+                <p><strong>📖 释义</strong>：抓住有利时机立即行动</p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ol>
+                    <li>The market is hot—<strong>strike while the iron is hot</strong>.</li>
+                    <li>You should <strong>strike while the iron is hot</strong> and apply now.</li>
+                    <li>Successful entrepreneurs know when to <strong>strike while the iron is hot</strong>.</li>
+                </ol>
+
+                <p><strong>💡 同义表达对比</strong></p>
+                <ul>
+                    <li>❌ Take action quickly</li>
+                    <li>✅ Strike while the iron is hot (更形象、更有表现力)</li>
+                </ul>
+            </div>
+
+            <div class="expression-card">
+                <h3>7. <strong>Go the extra mile</strong> - 更加努力；额外付出</h3>
+
+                <p><strong>📖 释义</strong>：比要求的或预期的做得更多</p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ol>
+                    <li>She always <strong>goes the extra mile</strong> for her clients.</li>
+                    <li><strong>Going the extra mile</strong> sets you apart from competitors.</li>
+                    <li>His willingness to <strong>go the extra mile</strong> impressed everyone.</li>
+                </ol>
+
+                <p><strong>💡 同义表达对比</strong></p>
+                <ul>
+                    <li>❌ Work harder</li>
+                    <li>✅ Go the extra mile (更生动、更强调主动性)</li>
+                </ul>
+            </div>
+
+            <div class="expression-card">
+                <h3>8. <strong>Keep up with</strong> - 跟上；了解最新情况</h3>
+
+                <p><strong>📖 释义</strong>：跟上进度、趋势或变化</p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ol>
+                    <li>It's hard to <strong>keep up with</strong> all the new technologies.</li>
+                    <li>She <strong>keeps up with</strong> industry trends through continuous learning.</li>
+                    <li>Try to <strong>keep up with</strong> the latest developments.</li>
+                </ol>
+
+                <p><strong>💡 同义表达对比</strong></p>
+                <ul>
+                    <li>❌ Stay current with</li>
+                    <li>✅ Keep up with (更口语化、更常用)</li>
+                </ul>
+            </div>
+
+            <div class="expression-card">
+                <h3>9. <strong>At the end of the day</strong> - 归根结底；说到底</h3>
+
+                <p><strong>📖 释义</strong>：最终、考虑所有因素后</p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ol>
+                    <li><strong>At the end of the day</strong>, customer satisfaction is what counts.</li>
+                    <li><strong>At the end of the day</strong>, it's your decision to make.</li>
+                    <li>Money isn't everything—<strong>at the end of the day</strong>, happiness matters more.</li>
+                </ol>
+
+                <p><strong>💡 同义表达对比</strong></p>
+                <ul>
+                    <li>❌ Ultimately</li>
+                    <li>✅ At the end of the day (更口语化、更有力)</li>
+                </ul>
+            </div>
+
+            <div class="expression-card">
+                <h3>10. <strong>A piece of the pie</strong> - 一杯羹；一份份额</h3>
+
+                <p><strong>📖 释义</strong>：分享利润、市场或资源的一部分</p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ol>
+                    <li>Small businesses want <strong>a piece of the</strong> e-commerce <strong>pie</strong>.</li>
+                    <li>New competitors are fighting for <strong>a piece of the</strong> market <strong>pie</strong>.</li>
+                    <li>She deserves <strong>a piece of the pie</strong> for her contribution.</li>
+                </ol>
+
+                <p><strong>💡 同义表达对比</strong></p>
+                <ul>
+                    <li>❌ A share of the market</li>
+                    <li>✅ A piece of the pie (更形象、更生动)</li>
+                </ul>
+            </div>
+
+            <div class="expression-card">
+                <h3>11. <strong>Roll with the punches</strong> - 随机应变；灵活应对</h3>
+
+                <p><strong>📖 释义</strong>：适应困难或变化的情况</p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ol>
+                    <li>Running a startup requires you to <strong>roll with the punches</strong>.</li>
+                    <li>She learned to <strong>roll with the punches</strong> during the crisis.</li>
+                    <li>Life is unpredictable—learn to <strong>roll with the punches</strong>.</li>
+                </ol>
+
+                <p><strong>💡 同义表达对比</strong></p>
+                <ul>
+                    <li>❌ Adapt to changes</li>
+                    <li>✅ Roll with the punches (源自拳击，更生动)</li>
+                </ul>
+            </div>
+
+            <div class="expression-card">
+                <h3>12. <strong>Double down on</strong> - 加倍投入；强化</h3>
+
+                <p><strong>📖 释义</strong>：在某方面投入更多精力或资源</p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ol>
+                    <li>The company <strong>doubled down on</strong> its core product.</li>
+                    <li>Instead of giving up, she <strong>doubled down on</strong> her efforts.</li>
+                    <li>We should <strong>double down on</strong> our strengths, not weaknesses.</li>
+                </ol>
+
+                <p><strong>💡 同义表达对比</strong></p>
+                <ul>
+                    <li>❌ Focus more on</li>
+                    <li>✅ Double down on (更强调力度和决心)</li>
+                </ul>
+            </div>
+
+            <div class="expression-card">
+                <h3>13. <strong>Build momentum</strong> - 积累势头；推动发展</h3>
+
+                <p><strong>📖 释义</strong>：逐渐获得力量或速度</p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ol>
+                    <li>The campaign is starting to <strong>build momentum</strong>.</li>
+                    <li>Consistency helps <strong>build momentum</strong> in your career.</li>
+                    <li>Early wins help <strong>build momentum</strong> for larger projects.</li>
+                </ol>
+
+                <p><strong>💡 同义表达对比</strong></p>
+                <ul>
+                    <li>❌ Make progress</li>
+                    <li>✅ Build momentum (更有动感、强调过程)</li>
+                </ul>
+            </div>
+
+            <div class="expression-card">
+                <h3>14. <strong>Pay off</strong> - 取得成功；得到回报</h3>
+
+                <p><strong>📖 释义</strong>：产生好的结果或回报</p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ol>
+                    <li>Years of study finally <strong>paid off</strong> when she got the job.</li>
+                    <li>The investment in quality <strong>paid off</strong> in customer loyalty.</li>
+                    <li>Your efforts will eventually <strong>pay off</strong>.</li>
+                </ol>
+
+                <p><strong>💡 同义表达对比</strong></p>
+                <ul>
+                    <li>❌ Be successful</li>
+                    <li>✅ Pay off (更强调努力的结果)</li>
+                </ul>
+            </div>
+
+            <div class="expression-card">
+                <h3>15. <strong>Stay ahead of the curve</strong> - 保持领先</h3>
+
+                <p><strong>📖 释义</strong>：比其他人更先进或更有准备</p>
+
+                <p><strong>✍️ 实用例句</strong></p>
+                <ol>
+                    <li>Innovation helps companies <strong>stay ahead of the curve</strong>.</li>
+                    <li>Continuous learning keeps you <strong>ahead of the curve</strong>.</li>
+                    <li>She <strong>stays ahead of the curve</strong> by anticipating trends.</li>
+                </ol>
+
+                <p><strong>💡 同义表达对比</strong></p>
+                <ul>
+                    <li>❌ Be advanced</li>
+                    <li>✅ Stay ahead of the curve (更形象、强调动态性)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section" id="section-4">
+            <h2>4. 句型解析（8个）</h2>
+
+            <div class="word-card">
+                <h3>1. <strong>It took [time period] to [verb]</strong> - 花费时间做某事</h3>
+
+                <p><strong>📝 句型结构</strong></p>
+                <blockquote><code>It took + 时间段 + to + 动词原形</code></blockquote>
+
+                <p><strong>🔍 语法分析</strong></p>
+                <p>It是形式主语，真正的主语是后面的不定式短语</p>
+
+                <p><strong>✍️ 替换练习模板</strong></p>
+                <ul>
+                    <li>It took six months to build the audience.</li>
+                    <li>It took years of practice to master the skill.</li>
+                    <li>It took courage to start something new.</li>
+                </ul>
+
+                <p><strong>💡 实际应用</strong></p>
+                <ol>
+                    <li>It took consistent effort to reach 100K subscribers.</li>
+                    <li>It took three tries to finally get it right.</li>
+                    <li>It took me a while to understand the platform.</li>
+                </ol>
+            </div>
+
+            <div class="word-card">
+                <h3>2. <strong>The key to [noun] is [noun/gerund]</strong> - ...的关键是...</h3>
+
+                <p><strong>📝 句型结构</strong></p>
+                <blockquote><code>The key to + 名词 + is + 名词/动名词</code></blockquote>
+
+                <p><strong>🔍 语法分析</strong></p>
+                <p>to后面接名词，is后面可接名词或动名词</p>
+
+                <p><strong>✍️ 替换练习模板</strong></p>
+                <ul>
+                    <li>The key to success is persistence.</li>
+                    <li>The key to growth is consistency.</li>
+                    <li>The key to engagement is value.</li>
+                </ul>
+
+                <p><strong>💡 实际应用</strong></p>
+                <ol>
+                    <li>The key to building an audience is trust.</li>
+                    <li>The key to monetization is providing real value.</li>
+                    <li>The key to sustainability is finding balance.</li>
+                </ol>
+            </div>
+
+            <div class="word-card">
+                <h3>3. <strong>What matters most is [clause]</strong> - 最重要的是...</h3>
+
+                <p><strong>📝 句型结构</strong></p>
+                <blockquote><code>What matters most + is + 从句/名词</code></blockquote>
+
+                <p><strong>🔍 语法分析</strong></p>
+                <p>What引导主语从句，强调最重要的事物</p>
+
+                <p><strong>✍️ 替换练习模板</strong></p>
+                <ul>
+                    <li>What matters most is quality.</li>
+                    <li>What matters most is authenticity.</li>
+                    <li>What matters most is helping others.</li>
+                </ul>
+
+                <p><strong>💡 实际应用</strong></p>
+                <ol>
+                    <li>What matters most is solving real problems.</li>
+                    <li>What matters most is connecting with your audience.</li>
+                    <li>What matters most is staying true to your vision.</li>
+                </ol>
+            </div>
+
+            <div class="word-card">
+                <h3>4. <strong>Instead of [gerund], [verb]</strong> - 与其...不如...</h3>
+
+                <p><strong>📝 句型结构</strong></p>
+                <blockquote><code>Instead of + 动名词, + 主句</code></blockquote>
+
+                <p><strong>🔍 语法分析</strong></p>
+                <p>Instead of后面接动名词，表示"而不是"</p>
+
+                <p><strong>✍️ 替换练习模板</strong></p>
+                <ul>
+                    <li>Instead of copying, create original content.</li>
+                    <li>Instead of quitting, learn from failure.</li>
+                    <li>Instead of rushing, take your time.</li>
+                </ul>
+
+                <p><strong>💡 实际应用</strong></p>
+                <ol>
+                    <li>Instead of chasing trends, focus on value.</li>
+                    <li>Instead of working harder, work smarter.</li>
+                    <li>Instead of giving up, try a different approach.</li>
+                </ol>
+            </div>
+
+            <div class="word-card">
+                <h3>5. <strong>Not only... but also...</strong> - 不仅...而且...</h3>
+
+                <p><strong>📝 句型结构</strong></p>
+                <blockquote><code>Not only + 动词/形容词, but also + 动词/形容词</code></blockquote>
+
+                <p><strong>🔍 语法分析</strong></p>
+                <p>表示递进关系，强调后者同样重要</p>
+
+                <p><strong>✍️ 替换练习模板</strong></p>
+                <ul>
+                    <li>Not only is it effective, but also scalable.</li>
+                    <li>Not only did I grow, but also learned.</li>
+                    <li>Not only is it popular, but also profitable.</li>
+                </ul>
+
+                <p><strong>💡 实际应用</strong></p>
+                <ol>
+                    <li>Not only is consistency important, but essential for growth.</li>
+                    <li>Not only did the channel grow, but also built a community.</li>
+                    <li>Not only is the content valuable, but also highly engaging.</li>
+                </ol>
+            </div>
+
+            <div class="word-card">
+                <h3>6. <strong>The more... the more...</strong> - 越...就越...</h3>
+
+                <p><strong>📝 句型结构</strong></p>
+                <blockquote><code>The more + 名词/动词, the more + 名词/动词</code></blockquote>
+
+                <p><strong>🔍 语法分析</strong></p>
+                <p>表示因果关系，前者程度增加导致后者也增加</p>
+
+                <p><strong>✍️ 替换练习模板</strong></p>
+                <ul>
+                    <li>The more you practice, the better you get.</li>
+                    <li>The more you give, the more you receive.</li>
+                    <li>The more you learn, the more you grow.</li>
+                </ul>
+
+                <p><strong>💡 实际应用</strong></p>
+                <ol>
+                    <li>The more consistent you are, the faster you grow.</li>
+                    <li>The more value you provide, the more loyal your audience becomes.</li>
+                    <li>The more you experiment, the more you discover what works.</li>
+                </ol>
+            </div>
+
+            <div class="word-card">
+                <h3>7. <strong>Whether [or not], [clause]</strong> - 无论...都...</h3>
+
+                <p><strong>📝 句型结构</strong></p>
+                <blockquote><code>Whether + 从句 + or not, + 主句</code></blockquote>
+
+                <p><strong>🔍 语法分析</strong></p>
+                <p>表示条件让步，"无论是否"</p>
+
+                <p><strong>✍️ 替换练习模板</strong></p>
+                <ul>
+                    <li>Whether you succeed or fail, learn from it.</li>
+                    <li>Whether it's easy or hard, keep going.</li>
+                    <li>Whether you're big or small, start today.</li>
+                </ul>
+
+                <p><strong>💡 实际应用</strong></p>
+                <ol>
+                    <li>Whether you have 10 views or 10,000, create your best content.</li>
+                    <li>Whether it's trending or not, stay true to your niche.</li>
+                    <li>Whether you feel motivated or not, maintain consistency.</li>
+                </ol>
+            </div>
+
+            <div class="word-card">
+                <h3>8. <strong>There's no substitute for [noun]</strong> - ...无法替代</h3>
+
+                <p><strong>📝 句型结构</strong></p>
+                <blockquote><code>There's no substitute for + 名词</code></blockquote>
+
+                <p><strong>🔍 语法分析</strong></p>
+                <p>表示某事物是独一无二、不可替代的</p>
+
+                <p><strong>✍️ 替换练习模板</strong></p>
+                <ul>
+                    <li>There's no substitute for hard work.</li>
+                    <li>There's no substitute for experience.</li>
+                    <li>There's no substitute for authenticity.</li>
+                </ul>
+
+                <p><strong>💡 实际应用</strong></p>
+                <ol>
+                    <li>There's no substitute for genuine connection with your audience.</li>
+                    <li>There's no substitute for consistent effort over time.</li>
+                    <li>There's no substitute for providing real value.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="section" id="section-5">
+            <h2>5. 学习任务</h2>
+
+            <h3>📖 阅读理解题（5道）</h3>
+
+            <div class="practice-section">
+                <h4>题目 1：细节理解题</h4>
+                <p>According to the video, what was the most important factor in growing from zero to one million subscribers?</p>
+                <ol type="A">
+                    <li>Posting videos daily</li>
+                    <li>Following every trend</li>
+                    <li>Finding the right niche and providing value</li>
+                    <li>Expensive equipment</li>
+                </ol>
+
+                <p><strong>✅ 正确答案：C</strong></p>
+                <p><strong>💡 解析</strong>：The creator emphasizes that finding a specific niche and consistently providing authentic value was more important than frequency or equipment. The focus was on solving real problems for a targeted audience rather than chasing trends.</p>
+            </div>
+
+            <div class="practice-section">
+                <h4>题目 2：推理判断题</h4>
+                <p>What can be inferred about the creator's approach to content creation?</p>
+                <ol type="A">
+                    <li>They focused on viral hits only</li>
+                    <li>They prioritized long-term sustainability over quick growth</li>
+                    <li>They copied popular creators</li>
+                    <li>They changed their niche frequently</li>
+                </ol>
+
+                <p><strong>✅ 正确答案：B</strong></p>
+                <p><strong>💡 解析</strong>：The creator mentions sustainability, consistency, and building momentum over time rather than chasing viral hits. This indicates a long-term, strategic approach rather than seeking overnight success.</p>
+            </div>
+
+            <div class="practice-section">
+                <h4>题目 3：主旨大意题</h4>
+                <p>What is the main message of this video?</p>
+                <ol type="A">
+                    <li>How to get rich quick on YouTube</li>
+                    <li>The importance of finding and serving a specific audience</li>
+                    <li>Technical aspects of video production</li>
+                    <li>How to buy subscribers</li>
+                </ol>
+
+                <p><strong>✅ 正确答案：B</strong></p>
+                <p><strong>💡 解析</strong>：The core message is about identifying a specific audience, understanding their needs, and consistently delivering value. Success comes from authentic connection and service, not shortcuts or tricks.</p>
+            </div>
+
+            <div class="practice-section">
+                <h4>题目 4：词义猜测题</h4>
+                <p>What does "game-changing" mean in the context of the video?</p>
+                <ol type="A">
+                    <li>Related to playing games</li>
+                    <li>Something that completely changes the situation</li>
+                    <li>A small improvement</li>
+                    <li>A risky decision</li>
+                </ol>
+
+                <p><strong>✅ 正确答案：B</strong></p>
+                <p><strong>💡 解析</strong>：In this context, "game-changing" means transformative or revolutionary—something that fundamentally changed the trajectory of the channel. It's not about games but about creating a major shift or breakthrough.</p>
+            </div>
+
+            <div class="practice-section">
+                <h4>题目 5：细节理解题</h4>
+                <p>According to the video, why is analytics important?</p>
+                <ol type="A">
+                    <li>To count how many videos you have</li>
+                    <li>To understand what content performs best and optimize</li>
+                    <li>To compare with other creators</li>
+                    <li>To satisfy the platform requirements</li>
+                </ol>
+
+                <p><strong>✅ 正确答案：B</strong></p>
+                <p><strong>💡 解析</strong>：The creator uses analytics as a tool for continuous improvement—to identify what resonates with the audience, understand viewing patterns, and make data-driven decisions about content strategy.</p>
+            </div>
+
+            <h3>✍️ 口语/写作练习（3个）</h3>
+
+            <div class="practice-section">
+                <h4>练习 1：观点讨论题</h4>
+                <p><strong>题目</strong>：Some people believe that authenticity is more important than production quality on YouTube. Do you agree or disagree? Explain your reasoning and provide examples.</p>
+
+                <p><strong>参考思路</strong>：</p>
+                <ul>
+                    <li>Start with your position (agree/disagree/partially agree)</li>
+                    <li>Define authenticity in the context of content creation</li>
+                    <li>Discuss the pros and cons of high production value</li>
+                    <li>Provide examples from successful creators</li>
+                    <li>Conclude with a balanced perspective</li>
+                </ul>
+
+                <p><strong>表达提示</strong>：</p>
+                <ul>
+                    <li>"From my perspective..."</li>
+                    <li>"I believe that... because..."</li>
+                    <li>"For instance/For example..."</li>
+                    <li>"On the other hand..."</li>
+                    <li>"In conclusion, I think..."</li>
+                </ul>
+            </div>
+
+            <div class="practice-section">
+                <h4>练习 2：实际场景应用题</h4>
+                <p><strong>题目</strong>：Imagine you want to start a YouTube channel in a specific niche (e.g., cooking, fitness, education). Describe your strategy for the first three months, including content planning, audience building, and monetization.</p>
+
+                <p><strong>参考思路</strong>：</p>
+                <ul>
+                    <li>Choose a specific niche and explain why</li>
+                    <li>Outline content strategy (types of videos, posting schedule)</li>
+                    <li>Describe audience engagement tactics</li>
+                    <li>Discuss initial monetization approach</li>
+                    <li>Set realistic milestones</li>
+                </ul>
+
+                <p><strong>表达提示</strong>：</p>
+                <ul>
+                    <li>"If I were to start a channel..."</li>
+                    <li>"My strategy would involve..."</li>
+                    <li>"First/Second/Third..."</li>
+                    <li>"I would focus on..."</li>
+                    <li>"The key milestones would be..."</li>
+                </ul>
+            </div>
+
+            <div class="practice-section">
+                <h4>练习 3：创意延伸题</h4>
+                <p><strong>题目</strong>：The video mentions that "what worked 18 months ago might not work today." Predict what content creation will look like in 5 years. How might platforms, algorithms, and audience expectations change?</p>
+
+                <p><strong>参考思路</strong>：</p>
+                <ul>
+                    <li>Analyze current trends in social media and content</li>
+                    <li>Consider technological advances (AI, VR, etc.)</li>
+                    <li>Discuss changing audience preferences</li>
+                    <li>Explore potential new platforms or formats</li>
+                    <li>Consider the role of authenticity vs. technology</li>
+                </ul>
+
+                <p><strong>表达提示</strong>：</p>
+                <ul>
+                    <li>"In the next five years, I predict..."</li>
+                    <li>"One major change could be..."</li>
+                    <li>"Technology will likely enable..."</li>
+                    <li>"However, some things will remain important, such as..."</li>
+                    <li>"Ultimately, the future will probably involve..."</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section" id="section-6">
+            <h2>6. 学习建议</h2>
+
+            <h3>🎯 适合的学习场景</h3>
+            <ul>
+                <li><strong>☕ 通勤时间（30分钟）</strong>：内容总览 + 10个核心词汇</li>
+                <li><strong>🌙 午休时间（20分钟）</strong>：8个地道表达 + 例句朗读</li>
+                <li><strong>📚 晚间学习（40分钟）</strong>：句型解析 + 阅读理解题</li>
+                <li><strong>💻 周末专注（90分钟）</strong>：完整学习流程 + 写作练习</li>
+            </ul>
+
+            <h3>⚠️ 重点关注的难点</h3>
+            <ul>
+                <li><strong>🔤 词汇难点</strong>：
+                    <ul>
+                        <li>Niche vs. Market 的区别</li>
+                        <li>Monetize 的多种用法</li>
+                        <li>Algorithm 的发音和语境</li>
+                    </ul>
+                </li>
+                <li><strong>📖 语法难点</strong>：
+                    <ul>
+                        <li>What从句作主语</li>
+                        <li>The more...the more... 句型</li>
+                        <li>Not only...but also... 的倒装</li>
+                    </ul>
+                </li>
+                <li><strong>💬 表达难点</strong>：
+                    <ul>
+                        <li>地道短语的恰当使用</li>
+                        <li>商业/创业语境下的表达</li>
+                        <li>避免直译，使用地道说法</li>
+                    </ul>
+                </li>
+                <li><strong>🌍 文化难点</strong>：
+                    <ul>
+                        <li>YouTube和社交媒体文化</li>
+                        <li>创业和内容行业术语</li>
+                        <li>数字游民和远程工作文化</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>🔗 可拓展的关联话题</h3>
+            <ul>
+                <li><strong>相关TED演讲</strong>：
+                    <ul>
+                        <li>"The power of vulnerability" by Brené Brown (authenticity)</li>
+                        <li>"Grit: The power of passion and perseverance" by Angela Ducksworth (consistency)</li>
+                    </ul>
+                </li>
+                <li><strong>延伸学习资源</strong>：
+                    <ul>
+                        <li>YouTube Creator Academy (官方课程)</li>
+                        <li>"Contagious: How to Build Word of Mouth in the Digital Age" (book)</li>
+                        <li>"Start with Why" by Simon Sinek (品牌和价值观)</li>
+                    </ul>
+                </li>
+                <li><strong>实际应用场景</strong>：
+                    <ul>
+                        <li>个人品牌建设</li>
+                        <li>内容营销策略</li>
+                        <li>社交媒体管理</li>
+                        <li>数字创业</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 50px; padding-top: 30px; border-top: 2px solid var(--border-color); text-align: center; color: var(--text-secondary);">
+            <p style="margin-bottom: 10px;"><strong>📚 学习资源</strong></p>
+            <ul style="list-style: none; padding: 0;">
+                <li><a href="https://www.youtube.com/watch?v=qdgUqNjIAkA" target="_blank">🎬 Original YouTube Video</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="back-to-top" id="backToTop">↑</div>
+    <a href="../index.html" class="back-to-home" id="backToHome" title="回到首页">🏠</a>
+
+
+    <!-- 朗读功能脚本 -->
+    <script src="/scripts/tts-common.js"></script>
+    <!-- 页面公共功能脚本 -->
+    <script src="/scripts/page-common.js"></script>

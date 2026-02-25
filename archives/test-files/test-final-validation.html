@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TTS 最终验证</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-card {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-card h2 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .pass { background: #d4edda; color: #155724; }
+        .fail { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #45a049; }
+        #log {
+            background: #1a1a1a;
+            color: #aed581;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>✅ TTS 最终验证测试</h1>
+
+    <div class="test-card">
+        <h2>测试1: 基础播放</h2>
+        <p>验证队列策略是否正常工作</p>
+        <button onclick="test1()">开始测试1</button>
+        <div id="test1-status" class="status info">等待测试...</div>
+    </div>
+
+    <div class="test-card">
+        <h2>测试2: 多段落连续播放</h2>
+        <p>验证是否能自动播放多个段落</p>
+        <button onclick="test2()">开始测试2</button>
+        <div id="test2-status" class="status info">等待测试...</div>
+    </div>
+
+    <div class="test-card">
+        <h2>测试3: 暂停/继续</h2>
+        <p>验证暂停和继续功能</p>
+        <button onclick="test3()">开始测试3</button>
+        <div id="test3-status" class="status info">等待测试...</div>
+    </div>
+
+    <div class="test-card">
+        <h2>测试4: 语音切换</h2>
+        <p>验证切换语音后是否能正常播放</p>
+        <button onclick="test4()">开始测试4</button>
+        <div id="test4-status" class="status info">等待测试...</div>
+    </div>
+
+    <div class="test-card">
+        <h2>📝 实时日志</h2>
+        <div id="log"></div>
+    </div>
+
+    <script>
+        function log(msg) {
+            const time = new Date().toLocaleTimeString();
+            const logDiv = document.getElementById('log');
+            logDiv.innerHTML += `[${time}] ${msg}<br>`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log(msg);
+        }
+
+        async function waitForVoices() {
+            return new Promise(resolve => {
+                const voices = speechSynthesis.getVoices();
+                if (voices.length > 0) return resolve(voices);
+
+                speechSynthesis.onvoiceschanged = () => {
+                    resolve(speechSynthesis.getVoices());
+                };
+
+                setTimeout(() => resolve(speechSynthesis.getVoices()), 3000);
+            });
+        }
+
+        async function test1() {
+            const status = document.getElementById('test1-status');
+            status.className = 'status info';
+            status.innerHTML = '⏳ 测试中...';
+            log('=== 测试1开始 ===');
+
+            const voices = await waitForVoices();
+            log(`语音加载: ${voices.length}个`);
+
+            speechSynthesis.cancel();
+
+            const u = new SpeechSynthesisUtterance('Test one paragraph');
+            u.volume = 1;
+
+            u.onstart = () => {
+                log('✅ onstart 触发');
+                status.className = 'status pass';
+                status.innerHTML = '✅ 测试通过：能听到声音吗？';
+            };
+
+            u.onerror = (e) => {
+                log(`❌ 错误: ${e.error}`);
+                status.className = 'status fail';
+                status.innerHTML = `❌ 测试失败: ${e.error}`;
+            };
+
+            u.onend = () => {
+                log('✅ onend 触发');
+                status.innerHTML = '✅ 测试1完成';
+            };
+
+            speechSynthesis.speak(u);
+        }
+
+        async function test2() {
+            const status = document.getElementById('test2-status');
+            status.className = 'status info';
+            status.innerHTML = '⏳ 测试中...';
+            log('=== 测试2开始 ===');
+
+            const voices = await waitForVoices();
+            speechSynthesis.cancel();
+
+            let completed = 0;
+            const total = 3;
+
+            // 队列策略：一次性添加3段
+            for (let i = 1; i <= total; i++) {
+                const u = new SpeechSynthesisUtterance(`Paragraph ${i}`);
+                u.volume = 1;
+
+                if (i === 1) {
+                    u.onstart = () => {
+                        log('✅ 第1段开始');
+                        status.className = 'status pass';
+                        status.innerHTML = '✅ 播放中...（应该听到3段）';
+                    };
+
+                    u.onerror = (e) => {
+                        log(`❌ 错误: ${e.error}`);
+                        status.className = 'status fail';
+                        status.innerHTML = `❌ 测试失败: ${e.error}`;
+                    };
+                }
+
+                if (i === total) {
+                    u.onend = () => {
+                        completed++;
+                        log(`✅ 第${i}段结束，总计${completed}/${total}`);
+                        status.className = 'status pass';
+                        status.innerHTML = '✅ 测试2完成：队列策略有效！';
+                    };
+                } else {
+                    u.onstart = () => {
+                        log(`✅ 第${i}段开始（自动播放）`);
+                    };
+                    u.onend = () => {
+                        completed++;
+                        log(`✅ 第${i}段结束`);
+                    };
+                }
+
+                speechSynthesis.speak(u);
+                log(`添加第${i}段到队列`);
+            }
+        }
+
+        async function test3() {
+            const status = document.getElementById('test3-status');
+            status.className = 'status info';
+            status.innerHTML = '⏳ 测试中...';
+            log('=== 测试3开始 ===');
+
+            const voices = await waitForVoices();
+            speechSynthesis.cancel();
+
+            const u = new SpeechSynthesisUtterance('This is a pause test');
+            u.volume = 1;
+
+            u.onstart = () => {
+                log('✅ 开始播放');
+
+                // 2秒后暂停
+                setTimeout(() => {
+                    log('⏸️ 调用 pause()');
+                    speechSynthesis.pause();
+                    status.innerHTML = '⏸️ 已暂停';
+
+                    // 再2秒后继续
+                    setTimeout(() => {
+                        log('▶️ 调用 resume()');
+                        speechSynthesis.resume();
+                        status.className = 'status pass';
+                        status.innerHTML = '✅ 继续播放...';
+                    }, 2000);
+                }, 2000);
+            };
+
+            u.onend = () => {
+                log('✅ 播放完成');
+                status.className = 'status pass';
+                status.innerHTML = '✅ 测试3完成';
+            };
+
+            u.onerror = (e) => {
+                log(`❌ 错误: ${e.error}`);
+                status.className = 'status fail';
+                status.innerHTML = `❌ 测试失败: ${e.error}`;
+            };
+
+            speechSynthesis.speak(u);
+        }
+
+        async function test4() {
+            const status = document.getElementById('test4-status');
+            status.className = 'status info';
+            status.innerHTML = '⏳ 测试中...';
+            log('=== 测试4开始 ===');
+
+            const voices = await waitForVoices();
+            speechSynthesis.cancel();
+
+            // 第一段
+            const u1 = new SpeechSynthesisUtterance('First voice test');
+            u1.volume = 1;
+
+            u1.onstart = () => {
+                log('✅ 第1段开始（默认语音）');
+            };
+
+            u1.onend = () => {
+                log('✅ 第1段结束，切换语音...');
+
+                // 切换到第一个语音
+                const u2 = new SpeechSynthesisUtterance('Second voice test');
+                if (voices[0]) {
+                    u2.voice = voices[0];
+                    log(`切换到语音: ${voices[0].name}`);
+                }
+                u2.volume = 1;
+
+                u2.onstart = () => {
+                    log('✅ 第2段开始（新语音）');
+                    status.className = 'status pass';
+                    status.innerHTML = '✅ 测试4完成：语音切换正常！';
+                };
+
+                u2.onerror = (e) => {
+                    log(`❌ 第2段错误: ${e.error}`);
+                    status.className = 'status fail';
+                    status.innerHTML = `❌ 测试失败: ${e.error}`;
+                };
+
+                speechSynthesis.speak(u2);
+            };
+
+            speechSynthesis.speak(u1);
+        }
+
+        // 页面加载时初始化
+        window.addEventListener('load', () => {
+            log('✅ 页面加载完成');
+            log('✅ 等待语音加载...');
+            waitForVoices().then(voices => {
+                log(`✅ 语音加载完成: ${voices.length}个`);
+                log('✅ 准备就绪，请点击测试按钮');
+            });
+        });
+    </script>
+</body>
+</html>

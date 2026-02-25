@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TTS 自动测试和报告</title>
+</head>
+<body>
+    <h1>TTS 自动测试 - 生成报告</h1>
+    <div id="report"></div>
+
+    <script>
+        const report = [];
+
+        function log(msg) {
+            report.push(msg);
+            console.log(msg);
+            document.getElementById('report').innerHTML += msg + '<br>';
+        }
+
+        async function runTests() {
+            log('=== 开始自动化测试 ===');
+
+            // 测试1: API支持
+            log('测试1: API支持 = ' + ('speechSynthesis' in window));
+
+            // 测试2: 等待语音
+            const waitForVoices = () => new Promise(resolve => {
+                const voices = speechSynthesis.getVoices();
+                if (voices.length > 0) return resolve(voices);
+
+                speechSynthesis.onvoiceschanged = () => {
+                    resolve(speechSynthesis.getVoices());
+                };
+
+                setTimeout(() => resolve(speechSynthesis.getVoices()), 5000);
+            });
+
+            const voices = await waitForVoices();
+            log('测试2: 语音数量 = ' + voices.length);
+
+            // 测试3: 用户点击触发
+            return new Promise(resolve => {
+                const btn = document.createElement('button');
+                btn.textContent = '点击测试';
+                btn.style.cssText = 'position:fixed;top:0;right:0;padding:20px;z-index:9999';
+                document.body.appendChild(btn);
+
+                let clicked = false;
+                btn.addEventListener('click', () => {
+                    clicked = true;
+                    log('测试3: 按钮已点击');
+
+                    speechSynthesis.cancel();
+
+                    setTimeout(() => {
+                        const u = new SpeechSynthesisUtterance('Test');
+                        u.volume = 1;
+
+                        u.onstart = () => {
+                            log('测试3: onstart触发 - TTS工作正常！');
+                            document.body.removeChild(btn);
+
+                            // 写入报告文件
+                            fetch('data:text/plain,' + encodeURIComponent(report.join('\n')))
+                                .then(() => {
+                                    log('=== 测试完成 ===');
+                                    resolve();
+                                });
+                        };
+
+                        u.onerror = (e) => {
+                            log('测试3: 错误 = ' + e.error);
+                            document.body.removeChild(btn);
+                            resolve();
+                        };
+
+                        log('测试3: 调用 speak()...');
+                        speechSynthesis.speak(u);
+
+                        // 超时
+                        setTimeout(() => resolve(), 5000);
+                    }, 100);
+                });
+
+                // 自动点击
+                setTimeout(() => {
+                    if (!clicked) {
+                        log('测试3: 自动点击按钮...');
+                        btn.click();
+                    }
+                }, 1000);
+
+                // 超时
+                setTimeout(() => {
+                    if (document.body.contains(btn)) {
+                        document.body.removeChild(btn);
+                        log('测试3: 超时');
+                    }
+                    resolve();
+                }, 10000);
+            });
+        }
+
+        window.addEventListener('load', () => {
+            setTimeout(() => runTests().then(() => {
+                setTimeout(() => window.close(), 3000);
+            }), 1000);
+        });
+    </script>
+</body>
+</html>
