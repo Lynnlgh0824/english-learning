@@ -8,7 +8,10 @@
       "Bash(git commit:*)",
       "Bash(git push origin main)",
       "Bash(git pull --rebase origin main)",
-      "Bash(git add .claude/settings.json)"
+      "Bash(git add .claude/settings.json)",
+      "Bash(git remote set-url origin https://github.com/Lynnlgh0824/english-learning.git)",
+      "Bash(git fetch origin)",
+      "Bash(git push origin main --force)"
     ]
   }
 }
