@@ -1,171 +1,128 @@
-# CLAUDE.md
+# CLAUDE.md - English Learning TTS System
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
----
-
-## Project Identity
-
-**Project Name:** English Learning Platform
-
-This is an **independent project**.
-
-Claude must **NEVER** reference files, code, or context from other projects.
-
-Claude must **ONLY** operate within this directory (`/Users/yuzhoudeshengyin/Documents/my_project/english-learning/`).
+> **项目**: English Learning TTS System
+> **状态**: 活跃维护中
 
 ---
 
-## Architecture Rules
+## 项目身份
 
-Claude MUST **NOT**:
-- Modify folder structure without permission
-- Rename files without permission
-- Move files without permission
-- Delete files without permission
+**项目名称**: English Learning TTS System
+**一句话描述**: 智能文本转语音系统，支持多种学习模式、划词朗读、句子间停顿
 
-Claude MUST:
-- Preserve existing structure
-- Follow established patterns
-- Extend code without breaking structure
+Claude 必须 **NEVER** 引用其他项目的文件、代码或上下文。
+Claude 必须 **ONLY** 在本目录内操作：`/Users/yuzhoudeshengyin/Documents/my_project/english-learning/`
 
 ---
 
-## Memory Scope
+## 核心文档（必读）
 
-Claude memory is **LIMITED** to this project directory.
-
-Do **NOT** assume context from:
-- Other folders in `/Users/yuzhoudeshengyin/Documents/my_project/`
-- Other repositories
-- Other projects
-
----
-
-## Coding Rules
-
-Before coding, Claude must:
-1. Read `README.md`
-2. Read architecture
-3. Follow existing patterns
+| 文档 | 内容 |
+|------|------|
+| [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) | 项目背景、愿景、设计理念 |
+| [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) | 完整目录结构 |
+| [PROJECT_RULES.md](PROJECT_RULES.md) | 代码规范、命名约定 |
+| [README.md](README.md) | 功能说明、快速开始 |
 
 ---
 
-## Safety Rule
+## 核心功能
 
-If unsure, Claude must **ASK** instead of modifying.
-
----
-
-## Git Rule
-
-Claude must **NEVER**:
-- Expose secrets
-- Commit `.env`
-- Commit private keys
+### TTS 智能朗读
+- **队列策略** - 解决浏览器自动播放策略限制
+- **划词朗读** - 选中任意文本即可开始播放
+- **句子间停顿** - 智能识别句子边界，添加自然停顿
+- **三种学习模式** - 快速模式 (1.2x) / 标准模式 (1.0x) / 缓慢模式 (0.8x)
+- **段落高亮** - 自动高亮当前朗读的段落
+- **自动滚动** - 平滑滚动到当前播放位置
 
 ---
 
-## Project Overview
+## 技术栈
 
-English Learning is a language learning platform built with Next.js, providing comprehensive English education tools including TTS (Text-to-Speech) functionality and interactive learning experiences.
+- **前端**: HTML5 + CSS3 + 原生 JavaScript
+- **后端**: Python (可选，用于本地服务器)
+- **数据**: localStorage + JSON 文件
+- **测试**: Playwright
 
-## Tech Stack
+---
 
-- **Framework**: Next.js 15 (App Router)
-- **Runtime**: React 19
-- **Language**: TypeScript
-- **Package Manager**: pnpm
-
-## Project Structure
+## 项目结构
 
 ```
 english-learning/
-├── src/
-│   ├── app/                  # Next.js App Router pages
-│   ├── components/           # React components
-│   ├── lib/                  # Utilities and helpers
-│   └── styles/               # Styling files
-├── public/                   # Static assets
-├── learnings/                # Learning resources and experiments
-│   ├── moltbook-auth-integration.js  # Moltbook authentication
-│   ├── moltbook-auth-test.js         # Auth testing
-│   └── MOLTBOOK_AUTH_GUIDE.md        # Auth documentation
-└── docs/                     # Documentation
+├── index.html              # 主学习页面
+├── project-log.html        # 项目日志
+├── test-center.html        # 测试中心
+├── server.py               # Python 服务器
+├── data.json               # 学习数据
+├── records/                # 学习记录
+├── docs/                   # 文档
+├── memory/                 # 项目记忆
+├── learnings/              # 学习资源
+├── scripts/                # 自动化脚本
+└── tests/                  # 测试文件
 ```
-
-## Key Features
-
-- **TTS System**: Text-to-Speech functionality for language learning
-- **Interactive Learning**: Engaging learning experiences
-- **Authentication**: Integration with external services (Moltbook)
-- **Progress Tracking**: Monitor learning progress
-
-## Development Commands
-
-```bash
-# Install dependencies
-pnpm install
-
-# Start development server
-pnpm dev
-
-# Build for production
-pnpm build
-
-# Start production server
-pnpm start
-
-# Type checking
-pnpm typecheck
-
-# Linting
-pnpm lint
-```
-
-## Environment Variables
-
-Key environment variables (check `.env.example` for full list):
-
-```bash
-# App Configuration
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-
-# Authentication (if applicable)
-NEXTAUTH_SECRET=
-NEXTAUTH_URL=
-
-# External Integrations
-# Add any API keys or service configurations
-```
-
-## Learning Resources
-
-The `learnings/` directory contains experimental features and integration documentation:
-
-- **Moltbook Auth**: Authentication system integration and testing
-- **TTS Troubleshooting**: Technical documentation for TTS issues
-
-## Important Notes
-
-- This project focuses on English education and language learning
-- TTS functionality is a core feature
-- External authentication integrations may require specific configuration
-- Learning resources are actively developed and may change
-
-## Getting Started
-
-1. Install dependencies: `pnpm install`
-2. Set up environment variables from `.env.example`
-3. Start development: `pnpm dev`
-4. Open http://localhost:3000
-
-## Documentation
-
-- See `docs/` for detailed documentation
-- Check `learnings/MOLTBOOK_AUTH_GUIDE.md` for authentication details
-- Refer to `TTS_TROUBLESHOOTING.md` for TTS-related issues
 
 ---
 
-**Last Updated**: 2026-02-25
+## 常用命令
+
+```bash
+# 启动学习系统
+open index.html
+
+# 启动本地服务器
+./start-server.sh
+
+# 运行测试
+pnpm test
+```
+
+---
+
+## 学习模式
+
+| 模式 | 速度 | 适用场景 |
+|------|------|----------|
+| 快速模式 | 1.2x | 快速复习已掌握内容 |
+| 标准模式 | 1.0x | 日常学习，保持原速 |
+| 缓慢模式 | 0.8x | 仔细学习，理解细节 |
+
+---
+
+## 架构约束
+
+Claude 必须 **NOT**:
+- 未经允许修改目录结构
+- 未经允许重命名文件
+- 未经允许移动文件
+- 未经允许删除文件
+
+Claude 必须:
+- 保持现有结构
+- 遵循既定模式
+- 不破坏结构的前提下扩展代码
+
+---
+
+## 工作流程
+
+每个任务必须遵循:
+
+1. **理解** - 复述需求，确认理解
+2. **设计** - 分析方案，识别风险
+3. **确认** - 展示完整计划，等待批准
+4. **执行** - 按计划执行，验证每步
+
+---
+
+## 安全规则
+
+- 永远不暴露密钥
+- 不提交 `.env`
+- 不提交私钥
+
+---
+
+**Last Updated**: 2026-04-14
