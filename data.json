@@ -1,18 +1,42 @@
 {
   "records": [
     {
+      "id": "2026-07-29-bilibili-ai-agent-engineer",
+      "title": "英语学习包 · 如何成为 AI Agent 工程师",
+      "date": "2026-07-29",
+      "type": "bilibili",
+      "typeLabel": "Bilibili",
+      "file": "records/2026-07-29-bilibili-ai-agent-engineer.html",
+      "sourceUrl": "https://www.bilibili.com/video/BV1UvPSzjE3z/",
+      "wordCount": 20,
+      "expressionCount": 15,
+      "patternCount": 8,
+      "preview": "从 B 站视频《怎么成为一个 AI Agent 工程师》提炼的英语学习包：20 个核心词汇（含音标/搭配）、15 个实用表达、8 个句型模板、5 题阅读测验与 3 个写作练习，围绕 AI Agent 工程师职业路径。",
+      "tags": [
+        "AI",
+        "Bilibili",
+        "Career",
+        "Tech English"
+      ]
+    },
+    {
       "id": "2026-02-26-youtube-english-learning-methods",
-      "title": "📚 How to Learn English with YouTube - Effective Methods for Beginners",
+      "title": "How to Learn English with YouTube - Effective Methods for Beginners",
       "date": "2026-02-26",
       "type": "youtube",
       "typeLabel": "YouTube",
       "file": "records/2026-02-26-youtube-english-learning-methods.html",
-      "sourceUrl": "https://www.youtube.com/watch?v=6aGVB-VGgoM&list=PLEjrF3twLW4Kg-E65-g0ZdRz2KQ5YCJ66",
-      "wordCount": 20,
-      "expressionCount": 15,
-      "patternCount": 8,
+      "sourceUrl": "https://www.youtube.com/results?search_query=How+to+Learn+English+with+YouTube+Effective+Methods",
+      "wordCount": 5,
+      "expressionCount": 3,
+      "patternCount": 2,
       "preview": "Comprehensive guide exploring the most effective methods for learning English through YouTube in 2026, emphasizing a six-step progressive approach from 5-minute daily immersion to full fluency...",
-      "tags": ["Learning", "YouTube", "Education", "Methods"]
+      "tags": [
+        "Learning",
+        "YouTube",
+        "Education",
+        "Methods"
+      ]
     },
     {
       "id": "2026-02-24-beginner-tennis-lesson",
@@ -22,25 +46,34 @@
       "typeLabel": "YouTube",
       "file": "records/2026-02-24-beginner-tennis-lesson.html",
       "sourceUrl": "https://www.youtube.com/watch?v=YqgcykDGB2A",
-      "wordCount": 20,
-      "expressionCount": 15,
-      "patternCount": 8,
+      "wordCount": 8,
+      "expressionCount": 5,
+      "patternCount": 3,
       "preview": "Learn the fundamentals of tennis with this beginner lesson covering forehand, backhand, and serve techniques...",
-      "tags": ["Tennis", "Sports", "Tutorial", "Beginner"]
+      "tags": [
+        "Tennis",
+        "Sports",
+        "Tutorial",
+        "Beginner"
+      ]
     },
     {
       "id": "2026-02-06-coming-home",
-      "title": "Coming Home - What Happens When You Leave Everything Behind?",
+      "title": "Coming Home - Digital Nomad Diaries Ep.7",
       "date": "2026-02-06",
       "type": "youtube",
       "typeLabel": "YouTube",
       "file": "records/2026-02-06-coming-home.html",
-      "sourceUrl": "https://www.youtube.com/watch?v=video-id",
-      "wordCount": 20,
-      "expressionCount": 15,
-      "patternCount": 8,
+      "sourceUrl": "https://www.youtube.com/watch?v=Ek-qoBqAg9A",
+      "wordCount": 8,
+      "expressionCount": 5,
+      "patternCount": 3,
       "preview": "A powerful story about leaving everything behind and finding your way back home...",
-      "tags": ["Life", "Travel", "Personal Growth"]
+      "tags": [
+        "Life",
+        "Travel",
+        "Personal Growth"
+      ]
     },
     {
       "id": "2026-02-06-month-alone-chiang-mai",
@@ -49,85 +82,107 @@
       "type": "youtube",
       "typeLabel": "YouTube",
       "file": "records/2026-02-06-month-alone-chiang-mai.html",
-      "sourceUrl": "https://www.youtube.com/watch?v=video-id",
-      "wordCount": 20,
-      "expressionCount": 15,
-      "patternCount": 8,
+      "sourceUrl": "https://www.youtube.com/watch?v=66MgD1FAZDA",
+      "wordCount": 10,
+      "expressionCount": 4,
+      "patternCount": 2,
       "preview": "Experience a month of solo travel in Chiang Mai, Thailand...",
-      "tags": ["Travel", "Thailand", "Solo Travel"]
+      "tags": [
+        "Travel",
+        "Thailand",
+        "Solo Travel"
+      ]
     },
     {
       "id": "2026-02-06-shanghai-starting-over",
-      "title": "Starting Over in Shanghai",
+      "title": "I Moved to Shanghai - Starting Over in My 30s",
       "date": "2026-02-06",
       "type": "youtube",
       "typeLabel": "YouTube",
       "file": "records/2026-02-06-shanghai-starting-over.html",
-      "sourceUrl": "https://www.youtube.com/watch?v=video-id",
-      "wordCount": 20,
-      "expressionCount": 15,
-      "patternCount": 8,
+      "sourceUrl": "https://www.youtube.com/watch?v=vQNVQIZySxU",
+      "wordCount": 8,
+      "expressionCount": 5,
+      "patternCount": 3,
       "preview": "Moving to Shanghai and starting a new chapter in life...",
-      "tags": ["Life", "Shanghai", "New Beginnings"]
+      "tags": [
+        "Life",
+        "Shanghai",
+        "New Beginnings"
+      ]
     },
     {
       "id": "2026-02-06-youtube-entrepreneurship",
-      "title": "YouTube Entrepreneurship Journey",
+      "title": "YouTube创业：1年半涨粉百万，我做对的这件事",
       "date": "2026-02-06",
       "type": "youtube",
       "typeLabel": "YouTube",
       "file": "records/2026-02-06-youtube-entrepreneurship.html",
-      "sourceUrl": "https://www.youtube.com/watch?v=video-id",
-      "wordCount": 20,
+      "sourceUrl": "https://www.youtube.com/watch?v=qdgUqNjIAkA",
+      "wordCount": 28,
       "expressionCount": 15,
-      "patternCount": 8,
+      "patternCount": 0,
       "preview": "Building a business on YouTube and the entrepreneurial journey...",
-      "tags": ["Business", "YouTube", "Entrepreneurship"]
+      "tags": [
+        "Business",
+        "YouTube",
+        "Entrepreneurship"
+      ]
     }
   ],
   "byDate": {
-    "2026-02-26": {
-      "weekday": "星期四",
-      "count": 1,
-      "totalWords": 20,
-      "totalExpressions": 15,
-      "totalPatterns": 8,
-      "records": [
-        "2026-02-26-youtube-english-learning-methods"
-      ]
-    },
-    "2026-02-24": {
-      "weekday": "星期二",
-      "count": 1,
-      "totalWords": 20,
-      "totalExpressions": 15,
-      "totalPatterns": 8,
-      "records": [
-        "2026-02-24-beginner-tennis-lesson"
-      ]
-    },
     "2026-02-06": {
-      "weekday": "星期五",
-      "count": 4,
-      "totalWords": 80,
-      "totalExpressions": 60,
-      "totalPatterns": 32,
       "records": [
         "2026-02-06-coming-home",
         "2026-02-06-month-alone-chiang-mai",
         "2026-02-06-shanghai-starting-over",
         "2026-02-06-youtube-entrepreneurship"
-      ]
+      ],
+      "weekday": "星期五",
+      "count": 4,
+      "totalWords": 54,
+      "totalExpressions": 29,
+      "totalPatterns": 8
+    },
+    "2026-02-24": {
+      "records": [
+        "2026-02-24-beginner-tennis-lesson"
+      ],
+      "weekday": "星期二",
+      "count": 1,
+      "totalWords": 8,
+      "totalExpressions": 5,
+      "totalPatterns": 3
+    },
+    "2026-02-26": {
+      "records": [
+        "2026-02-26-youtube-english-learning-methods"
+      ],
+      "weekday": "星期四",
+      "count": 1,
+      "totalWords": 5,
+      "totalExpressions": 3,
+      "totalPatterns": 2
+    },
+    "2026-07-29": {
+      "records": [
+        "2026-07-29-bilibili-ai-agent-engineer"
+      ],
+      "weekday": "星期三",
+      "count": 1,
+      "totalWords": 20,
+      "totalExpressions": 15,
+      "totalPatterns": 8
     }
   },
   "statistics": {
-    "totalRecords": 6,
-    "totalWords": 120,
-    "totalExpressions": 90,
-    "totalPatterns": 48,
+    "totalRecords": 7,
+    "totalWords": 87,
+    "totalExpressions": 52,
+    "totalPatterns": 21,
     "firstDate": "2026-02-06",
-    "lastDate": "2026-02-26",
-    "activeDays": 3
+    "lastDate": "2026-07-29",
+    "activeDays": 4
   },
-  "lastUpdated": "2026-02-26T23:59:00+08:00"
+  "lastUpdated": "2026-07-28T15:11:00+08:00"
 }

@@ -6,7 +6,7 @@
 
 set -e  # 遇到错误立即退出
 
-PROJECT_ROOT="/Users/yuzhoudeshengyin/english-learning"
+PROJECT_ROOT="/Users/yuzhoudeshengyin/Documents/my_project/english-learning"
 RECORDS_DIR="$PROJECT_ROOT/records"
 STYLES_DIR="$PROJECT_ROOT/styles"
 SCRIPTS_DIR="$PROJECT_ROOT/scripts"

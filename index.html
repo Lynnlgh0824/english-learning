@@ -332,6 +332,11 @@
             color: #4caf50;
         }
 
+        .record-list-type.bilibili {
+            background: #e3f2fd;
+            color: #00a1d6;
+        }
+
         .record-list-title {
             flex: 1;
             color: #333;
@@ -778,6 +783,10 @@
 
         .record-type.article {
             background: #4caf50;
+        }
+
+        .record-type.bilibili {
+            background: #00a1d6;
         }
 
         .record-preview {
@@ -1890,7 +1899,7 @@
         // 更新统计数据
         function updateStats() {
             document.getElementById('totalRecords').textContent = records.length;
-            document.getElementById('totalWords').textContent = records.length * 20;
+            document.getElementById('totalWords').textContent = records.reduce((s, r) => s + (r.wordCount || 0), 0);
             document.getElementById('totalHours').textContent = records.length * 1.5;
         }
 

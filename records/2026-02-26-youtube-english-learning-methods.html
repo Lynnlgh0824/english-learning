@@ -1,107 +1,106 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang=zh-CN><head>
+    <meta charset=UTF-8>
+    <meta name=viewport content="width=device-width, initial-scale=1.0">
     <title>YouTube创业：1年半涨粉百万 - 英语学习记录</title>
     <!-- 页面基础样式 -->
-    <link rel="stylesheet" href="/styles/common.css">
+    <link rel=stylesheet href="/styles/common.css">
     <!-- TTS 公共样式 -->
-    <link rel="stylesheet" href="/styles/tts-common.css">
+    <link rel=stylesheet href="/styles/tts-common.css">
 </head>
 <body>
-    <div class="reading-progress" id="readingProgress"></div>
+    <div class=reading-progress id=readingProgress></div>
 
-    <div class="container">
-        <a href="../index.html" class="back-link">← 返回学习列表</a>
+    <div class=container>
+        <a href="../index.html" class=back-link>← 返回学习列表</a>
 
         <!-- 朗读控制面板 -->
-        <div class="tts-panel" id="ttsPanel">
-            <div class="tts-header">
-                <div class="tts-title">
+        <div class=tts-panel id=ttsPanel>
+            <div class=tts-header>
+                <div class=tts-title>
                     <span>🎙️</span>
                     <span>智能朗读助手</span>
                 </div>
-                <div class="tts-controls">
-                    <button class="tts-btn primary" id="playBtn" onclick="togglePlay()">
-                        <span id="playIcon">▶️</span>
-                        <span id="playText">播放</span>
+                <div class=tts-controls>
+                    <button class="tts-btn primary" id=playBtn onclick=togglePlay()>
+                        <span id=playIcon>▶️</span>
+                        <span id=playText>播放</span>
                     </button>
-                    <button class="tts-btn" id="selectionBtn" onclick="playSelection()" disabled style="opacity: 0.5; cursor: not-allowed;">
+                    <button class=tts-btn id=selectionBtn onclick=playSelection() disabled style="opacity: 0.5; cursor: not-allowed;">
                         <span>📝</span>
                         <span>从划词区域开始</span>
                     </button>
-                    <button class="mode-btn" data-mode="quick" onclick="switchMode('quick')">
+                    <button class=mode-btn data-mode=quick onclick="switchMode('quick')">
                         <span>⚡</span>
                         <span>快速</span>
                     </button>
-                    <button class="mode-btn active" data-mode="standard" onclick="switchMode('standard')">
+                    <button class="mode-btn active" data-mode=standard onclick="switchMode('standard')">
                         <span>📚</span>
                         <span>标准</span>
                     </button>
-                    <button class="mode-btn" data-mode="intensive" onclick="switchMode('intensive')">
+                    <button class=mode-btn data-mode=intensive onclick="switchMode('intensive')">
                         <span>🔥</span>
                         <span>缓慢</span>
                     </button>
                 </div>
             </div>
-            <div class="tts-settings">
-                <div class="tts-setting">
+            <div class=tts-settings>
+                <div class=tts-setting>
                     <label>🗣️ 语音：</label>
-                    <select class="tts-select" id="voiceSelect" onchange="handleVoiceChange()">
+                    <select class=tts-select id=voiceSelect onchange=handleVoiceChange()>
                         <option value="">加载中...</option>
                     </select>
                 </div>
-                <div class="tts-setting">
+                <div class=tts-setting>
                     <label>⚡ 语速：</label>
-                    <input type="range" class="tts-slider" id="rateSlider" min="0.5" max="2" step="0.1" value="0.75" oninput="updateRate()">
-                    <span id="rateValue">0.75x</span>
+                    <input type=range class=tts-slider id=rateSlider min=0.5 max=2 step=0.1 value=0.75 oninput=updateRate()>
+                    <span id=rateValue>0.75x</span>
                 </div>
             </div>
-            <div class="tts-progress-row">
-                <div class="tts-status" id="ttsStatus">
+            <div class=tts-progress-row>
+                <div class=tts-status id=ttsStatus>
                     💡 点击"播放"开始朗读内容
                 </div>
-                <div class="tts-progress">
-                    <div class="tts-progress-bar" id="ttsProgressBar"></div>
+                <div class=tts-progress>
+                    <div class=tts-progress-bar id=ttsProgressBar></div>
                 </div>
             </div>
         </div>
 
-        <h1>📚 YouTube: "YouTube创业：1年半涨粉百万，我做对的这件事"</h1>
-        <p class="subtitle">英语学习工具包</p>
+        <h1>📚 YouTube: "How to Learn English with YouTube - Effective Methods for Beginners"</h1>
+        <p class=subtitle>英语学习工具包</p>
 
-        <div class="meta-info">
-            <p><strong>📺 视频来源</strong>：<a href="https://www.youtube.com/watch?v=qdgUqNjIAkA" target="_blank">YouTube - 大米Jojo</a></p>
+        <div class=meta-info>
+            <p><strong>📺 视频来源</strong>：<a href="https://www.youtube.com/results?search_query=How+to+Learn+English+with+YouTube+Effective+Methods" target=_blank>YouTube（英语学习方法合集）</a></p>
             <p><strong>📅 学习日期</strong>：2026-02-06</p>
-            <p><strong>🏷️ 类型</strong>：YouTube 创业经验分享 - 内容创作、粉丝增长</p>
+            <p><strong>🏷️ 类型</strong>：YouTube 英语学习方法 - 沉浸式学习、习惯养成</p>
         </div>
 
-        <div class="toc">
+        <div class=toc>
             <h3>📑 学习目录</h3>
             <ul>
-                <li><a href="#section-1"><span class="section-number">1</span>内容总览</a></li>
-                <li><a href="#section-2"><span class="section-number">2</span>核心词汇表（20个）</a></li>
-                <li><a href="#section-3"><span class="section-number">3</span>地道表达（15个）</a></li>
-                <li><a href="#section-4"><span class="section-number">4</span>句型解析（8个）</a></li>
-                <li><a href="#section-5"><span class="section-number">5</span>学习任务</a></li>
-                <li><a href="#section-6"><span class="section-number">6</span>学习建议</a></li>
+                <li><a href=#section-1><span class=section-number>1</span>内容总览</a></li>
+                <li><a href=#section-2><span class=section-number>2</span>核心词汇表（20个）</a></li>
+                <li><a href=#section-3><span class=section-number>3</span>地道表达（15个）</a></li>
+                <li><a href=#section-4><span class=section-number>4</span>句型解析（8个）</a></li>
+                <li><a href=#section-5><span class=section-number>5</span>学习任务</a></li>
+                <li><a href=#section-6><span class=section-number>6</span>学习建议</a></li>
             </ul>
         </div>
 
         <!-- 导航目录按钮 -->
-        <button class="toc-toggle-btn" id="tocToggleBtn" aria-label="切换目录">
+        <button class=toc-toggle-btn id=tocToggleBtn aria-label=切换目录>
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
             </svg>
         </button>
 
 
-        <div class="section" id="section-1">
+        <div class=section id=section-1>
             <h2>1. 内容总览</h2>
 
-            <h3>核心观点总结</h3>
-            <p>This comprehensive guide explores the most effective methods for learning English through YouTube in 2026. The content emphasizes a <strong>six-step progressive approach</strong> starting from 5-minute daily immersion to building full fluency through consistent listening and speaking practice. The methodology focuses on <strong>habit formation rather than grammar memorization</strong>, encouraging learners to start with content they genuinely enjoy—animations, food programs, and trending videos. The key principle is <strong>immersion through interest</strong>, making learning feel natural and sustainable rather than forced.</p>
+                        <h3>核心观点总结</h3>
+            <p class=summary-en>This comprehensive guide explores the most effective methods for learning English through YouTube in 2026. The content emphasizes a <strong>six-step progressive approach</strong> starting from 5-minute daily immersion to building full fluency through consistent listening and speaking practice. The methodology focuses on <strong>habit formation rather than grammar memorization</strong>, encouraging learners to start with content they genuinely enjoy—animations, food programs, and trending videos. The key principle is <strong>immersion through interest</strong>, making learning feel natural and sustainable rather than forced.</p>
+            <p class=summary-zh>这份综合指南探讨了 2026 年通过 YouTube 学习英语最有效的方法。内容强调一种六步渐进式方法：从每天 5 分钟的沉浸式输入开始，通过持续的听说练习逐步建立完整的流利度。方法论侧重于习惯养成而非语法死记硬背，鼓励学习者从自己真正喜欢的内容（动画、美食节目、热门视频）入手。核心原则是「通过兴趣沉浸」，让学习变得自然、可持续，而不是被迫进行。</p>
 
             <h3>关键词列表</h3>
             <table>
@@ -113,21 +112,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td><strong>Immersion</strong></td><td>沉浸式学习</td><td>完全置身于英语环境</td></tr>
-                    <tr><td><strong>Fluency</strong></td><td>流利度</td><td>语言表达的流畅程度</td></tr>
-                    <tr><td><strong>Comprehension</strong></td><td>理解能力</td><td>听力和阅读理解水平</td></tr>
-                    <tr><td><strong>Pronunciation</strong></td><td>发音</td><td>语音语调的正确性</td></tr>
-                    <tr><td><strong>Consistent</strong></td><td>持续的</td><td>保持规律的学习习惯</td></tr>
-                    <tr><td><strong>Authentic</strong></td><td>真实的</td><td>地道的母语者内容</td></tr>
-                    <tr><td><strong>Sustainable</strong></td><td>可持续的</td><td>能够长期坚持的方法</td></tr>
+                    <tr><td><strong>Immersion</strong><td>沉浸式学习<td>完全置身于英语环境</tr>
+                    <tr><td><strong>Fluency</strong><td>流利度<td>语言表达的流畅程度</tr>
+                    <tr><td><strong>Comprehension</strong><td>理解能力<td>听力和阅读理解水平</tr>
+                    <tr><td><strong>Pronunciation</strong><td>发音<td>语音语调的正确性</tr>
+                    <tr><td><strong>Consistent</strong><td>持续的<td>保持规律的学习习惯</tr>
+                    <tr><td><strong>Authentic</strong><td>真实的<td>地道的母语者内容</tr>
+                    <tr><td><strong>Sustainable</strong><td>可持续的<td>能够长期坚持的方法</tr>
                 </tbody>
             </table>
         </div>
 
-        <div class="section" id="section-2">
+        <div class=section id=section-2>
             <h2>2. 核心词汇表（20个）</h2>
 
-            <div class="word-card">
+            <div class=word-card>
                 <h3>1. <strong>Immersion</strong> <code>/ɪˈmɜːrʒn/</code></h3>
                 <p><strong>沉浸；全身心投入</strong></p>
 
@@ -151,7 +150,7 @@
                 </ul>
             </div>
 
-            <div class="word-card">
+            <div class=word-card>
                 <h3>2. <strong>Fluency</strong> <code>/ˈfluːənsi/</code></h3>
                 <p><strong>流利；流畅</strong></p>
 
@@ -175,7 +174,7 @@
                 </ul>
             </div>
 
-            <div class="word-card">
+            <div class=word-card>
                 <h3>3. <strong>Comprehension</strong> <code>/ˌkɒmprɪˈhenʃn/</code></h3>
                 <p><strong>理解；理解力</strong></p>
 
@@ -189,7 +188,7 @@
                 </ul>
             </div>
 
-            <div class="word-card">
+            <div class=word-card>
                 <h3>4. <strong>Retention</strong> <code>/rɪˈtenʃn/</code></h3>
                 <p><strong>保持；记忆保持</strong></p>
 
@@ -203,7 +202,7 @@
                 </ul>
             </div>
 
-            <div class="word-card">
+            <div class=word-card>
                 <h3>5. <strong>Pronunciation</strong> <code>/prəˌnʌnsiˈeɪʃn/</code></h3>
                 <p><strong>发音；读音</strong></p>
 
@@ -219,10 +218,10 @@
             </div>
         </div>
 
-        <div class="section" id="section-3">
+        <div class=section id=section-3>
             <h2>3. 地道表达（15个）</h2>
 
-            <div class="expression-card">
+            <div class=expression-card>
                 <h3>1. "Start from scratch"</h3>
                 <p><strong>含义</strong>：从零开始；完全从头开始</p>
 
@@ -240,7 +239,7 @@
                 </ul>
             </div>
 
-            <div class="expression-card">
+            <div class=expression-card>
                 <h3>2. "Pick up" (a language)</h3>
                 <p><strong>含义</strong>：偶然学会；自然习得</p>
 
@@ -252,7 +251,7 @@
                 </ul>
             </div>
 
-            <div class="expression-card">
+            <div class=expression-card>
                 <h3>3. "Get the hang of"</h3>
                 <p><strong>含义</strong>：掌握窍门；熟悉</p>
 
@@ -265,10 +264,10 @@
             </div>
         </div>
 
-        <div class="section" id="section-4">
+        <div class=section id=section-4>
             <h2>4. 句型解析（8个）</h2>
 
-            <div class="word-card">
+            <div class=word-card>
                 <h3>1. "The key to... is..."</h3>
                 <p><strong>中文</strong>：...的关键是...</p>
 
@@ -283,7 +282,7 @@
                 </ul>
             </div>
 
-            <div class="word-card">
+            <div class=word-card>
                 <h3>2. "It takes [time] to..."</h3>
                 <p><strong>中文</strong>：需要...时间才能...</p>
 
@@ -299,10 +298,10 @@
             </div>
         </div>
 
-        <div class="section" id="section-5">
+        <div class=section id=section-5>
             <h2>5. 学习任务</h2>
 
-            <div class="practice-section">
+            <div class=practice-section>
                 <h3>📖 阅读理解题（5道）</h3>
                 <p><strong>题目 1：细节理解题</strong><br>What is the recommended starting duration for daily English immersion?</p>
                 <ul>
@@ -314,7 +313,7 @@
                 <p><strong>原文依据</strong>：Start with 5 minutes daily in English immersion.</p>
             </div>
 
-            <div class="practice-section">
+            <div class=practice-section>
                 <h3>✍️ 口语/写作练习（3个）</h3>
                 <p><strong>练习 1：观点讨论题</strong></p>
                 <p>Write about your opinion: Is living in an English-speaking country the best way to learn English?</p>
@@ -325,19 +324,13 @@
             </div>
         </div>
 
-        <div class="section" id="section-6">
+        <div class=section id=section-6>
             <h2>6. 学习建议</h2>
 
-            <div class="tip-box">
-                <h3>💡 适合的学习场景</h3>
-                <ul>
-                    <li><strong>🚌 通勤时间（20-30分钟）</strong>：内容总览 + 核心词汇</li>
-                    <li><strong>🌙 睡前学习（15-20分钟）</strong>：地道表达 + 句型解析</li>
-                    <li><strong>☕ 周末专注（60-90分钟）</strong>：完整学习流程 + 练习</li>
-                </ul>
+            <div class=tip-box>
             </div>
 
-            <div class="tip-box">
+            <div class=tip-box>
                 <h3>🎯 推荐资源</h3>
                 <table>
                     <thead>
@@ -348,9 +341,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>BBC Learning English</td><td>权威、系统</td><td>初-中级</td></tr>
-                        <tr><td>VOA Learning English</td><td>语速慢、词汇简单</td><td>初学者</td></tr>
-                        <tr><td>Rachel's English</td><td>发音专精</td><td>想改善发音者</td></tr>
+                        <tr><td>BBC Learning English<td>权威、系统<td>初-中级</tr>
+                        <tr><td>VOA Learning English<td>语速慢、词汇简单<td>初学者</tr>
+                        <tr><td>Rachel's English<td>发音专精<td>想改善发音者</tr>
                     </tbody>
                 </table>
             </div>
@@ -370,7 +363,7 @@
                         <li>数字游民和远程工作文化</li>
                     </ul>
                 </li>
-            </ul>
+            
 
             <h3>🔗 可拓展的关联话题</h3>
             <ul>
@@ -401,13 +394,13 @@
         <div style="margin-top: 50px; padding-top: 30px; border-top: 2px solid var(--border-color); text-align: center; color: var(--text-secondary);">
             <p style="margin-bottom: 10px;"><strong>📚 学习资源</strong></p>
             <ul style="list-style: none; padding: 0;">
-                <li><a href="https://www.youtube.com/watch?v=qdgUqNjIAkA" target="_blank">🎬 Original YouTube Video</a></li>
+                <li><a href="https://www.youtube.com/results?search_query=How+to+Learn+English+with+YouTube+Effective+Methods" target=_blank>🔍 相关 YouTube 视频</a></li>
             </ul>
         </div>
-    </div>
+    
 
-    <div class="back-to-top" id="backToTop">↑</div>
-    <a href="../index.html" class="back-to-home" id="backToHome" title="回到首页">🏠</a>
+    <div class=back-to-top id=backToTop>↑</div>
+    <a href="../index.html" class=back-to-home id=backToHome title=回到首页>🏠</a>
 
 
     <!-- 朗读功能脚本 -->

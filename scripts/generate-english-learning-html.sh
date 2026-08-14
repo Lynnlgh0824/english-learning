@@ -7,6 +7,18 @@ TEMPLATE="/Users/yuzhoudeshengyin/Documents/my_project/english-learning/records/
 OUTPUT="/Users/yuzhoudeshengyin/Documents/my_project/english-learning/records/2026-02-26-youtube-english-learning-methods.html"
 MD_SOURCE="/Users/yuzhoudeshengyin/Documents/my_project/english-learning/records/2026-02-26-youtube-english-learning-methods.md"
 
+# ⚠️ 弃用声明（2026-07-29）
+# 本脚本为历史一次性生成器，已被 skills/learn-english/scripts/generate_pack.py 取代。
+# records/ 下的富卡片页为人工精修版本（含双语摘要、修正链接等），重跑会覆盖这些修正。
+# 日常新增学习包请用 generate_pack.py；如需基于模板重建某页，必须显式传入 --force。
+
+# 安全检查：避免覆盖已精修页面（仅 --force 允许重建）
+if [ -f "$OUTPUT" ] && [ "${1:-}" != "--force" ]; then
+  echo "❌ 拒绝覆盖已存在的 $OUTPUT" >&2
+  echo "   该页面为人工精修版本（双语摘要/修正链接等）。如需用本脚本重建，请显式传入 --force。" >&2
+  exit 1
+fi
+
 echo "开始生成英语学习方法HTML..."
 
 # 提取模板头部（前98行到内容开始前）
@@ -245,15 +257,6 @@ cat >> "$OUTPUT" << 'HTMLEOF'
 
         <div class="section" id="section-6">
             <h2>6. 学习建议</h2>
-
-            <div class="tip-box">
-                <h3>💡 适合的学习场景</h3>
-                <ul>
-                    <li><strong>🚌 通勤时间（20-30分钟）</strong>：内容总览 + 核心词汇</li>
-                    <li><strong>🌙 睡前学习（15-20分钟）</strong>：地道表达 + 句型解析</li>
-                    <li><strong>☕ 周末专注（60-90分钟）</strong>：完整学习流程 + 练习</li>
-                </ul>
-            </div>
 
             <div class="tip-box">
                 <h3>🎯 推荐资源</h3>

@@ -337,6 +337,38 @@ tr:hover {
 }
 
 /* ========================================
+   双语摘要（核心观点总结）：英文置顶 + 中文紧随
+   ======================================== */
+
+.summary-en {
+    margin: 0 0 8px 0;
+    color: var(--text-primary);
+    font-size: 1.05em;
+    line-height: 1.8;
+}
+
+.summary-en::before {
+    content: "EN · ";
+    color: var(--accent-purple);
+    font-weight: 600;
+}
+
+.summary-zh {
+    margin: 0 0 10px 0;
+    color: var(--text-secondary);
+    font-size: 1.0em;
+    line-height: 1.8;
+    padding-left: 12px;
+    border-left: 3px solid var(--accent-purple-light);
+}
+
+.summary-zh::before {
+    content: "中文 · ";
+    color: var(--accent-purple);
+    font-weight: 600;
+}
+
+/* ========================================
    浮动按钮
    ======================================== */
 
